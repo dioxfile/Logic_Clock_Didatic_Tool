@@ -1,6 +1,6 @@
 # Vector_Clock
 
-![alt text](https://github.com/dioxfile/Vector_Clock/Imagens/raw/master/QRCode_Vector_clock.png)
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
 Code in Python to Synchronize the computer clock using the [Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport) method.
 
