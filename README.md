@@ -348,7 +348,16 @@ It is advisable to comment on any lines referring to the use of "cdrom" sources,
 
 # How to use it?
 
-*  IMPORTANT: For the hours to change you must have root permission or be the root user.
+*  IMPORTANT: For the hours to change you must have root permission or be the root user.<br/>
+
+Start from terminal<br/>
+`#vectorclock`<br/>
+
+OR<br/>
+
+Start from your system menu<br/>
+
+OR<br/>
 
 Open 'idle-python', it must have root permission<br/>
 `$sudo idle-python2.7`<br/>
