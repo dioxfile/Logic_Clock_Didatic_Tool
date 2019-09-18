@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
 #####	NAME:				INSTALL
-#####	VERSION:			1.0
+#####	VERSION:			1.3
 #####	DESCRIPTION:			Install libraries and dependencies 			
 #####	DATE OF CREATION:		18/04/2019
 #####	WRITTEN BY:			Karan Luciano Silva
 #####	E-MAIL:				karanluciano1@gmail.com			
-#####	DISTRO:				Manjaro Linux
+#####	DISTRO:				Arch Linux
 #####	LICENSE:			GPLv3 			
 #####	PROJECT:			https://github.com/dioxfile/Vector_Clock
 
 #Check architecture
 _arch=$(uname -m)
+
+#Check Dir
+_home=$(pwd)
 
 #Check the distribution name
 _distribDeb=$(cat /etc/*release |grep PRETTY_NAME | sed 's/PRETTY_NAME="//g'|cut -c1-6)
@@ -20,9 +23,11 @@ _distribMin=$(cat /etc/*release |grep DISTRIB_ID= |sed 's/DISTRIB_ID=//g')
 _distribMan=$(cat /etc/*release |grep DISTRIB_ID= |sed 's/DISTRIB_ID=//g')
 _distribArc=$(cat /etc/*release |grep ID=a |sed 's/ID=//g')
 
-_home=$(pwd)
-mkdir "$_home/clock"
-cd "$_home/clock"
+#Check PT-BR
+_user=$(whoami)
+if [ -d "/home/$_user/Documentos" ]; then
+	echo "PT-BR NAO INSTALE NA AREA DE TRABALHO"
+fi
 
 #Debian and derivatives
 debian(){		
@@ -33,18 +38,9 @@ debian(){
 		apt install python-pip
 		pip install python-dateutil
 		pip install netifaces
-		apt-get install multiarch-support
-
-		#Files
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libgstreamer-plugins-base0.10-0_0.10.36-2ubuntu0.1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libgstreamer0.10-0_0.10.36-1.5ubuntu1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxbase2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxgtk-media2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxgtk2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-ipaddr_2.1.11-2_all.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-wxgtk2.8_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-wxversion_3.0.2.0%2Bdfsg-8_all.deb
+		apt install multiarch-support
+		
+		cd "$_home/Files"
 
 		#Compilation
 		dpkg -i libwxbase2.8-0_2.8.12.1+dfsg-2ubuntu2_amd64.deb
@@ -72,15 +68,7 @@ debian(){
 		yes | sudo pip install ipaddr
 		yes | sudo apt-get install libjpeg8-dev
 
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_i386.deb
-		sudo wget http://ftp.br.debian.org/debian/pool/main/t/tiff3/libtiff4_3.9.6-11_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxbase2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxgtk2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gstreamer0.10/libgstreamer0.10-0_0.10.36-1.5ubuntu1_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gst-plugins-base0.10/libgstreamer-plugins-base0.10-0_0.10.36-2_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxgtk-media2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/w/wxpython3.0/python-wxversion_3.0.2.0+dfsg-1build1_all.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/python-wxgtk2.8_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
+		cd "$_home/Files_32"
 
 		sudo dpkg -i libpng12-0_1.2.54-1ubuntu1.1_i386.deb 
 		sudo dpkg -i libtiff4_3.9.6-11_i386.deb
@@ -91,8 +79,6 @@ debian(){
 		sudo dpkg -i libwxgtk-media2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
 		sudo dpkg -i python-wxversion_3.0.2.0+dfsg-1build1_all.deb 
 		sudo dpkg -i python-wxgtk2.8_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb 
-		cd .. 
-		rm -r "$_home/clock"
 	fi
 }
 
@@ -106,16 +92,7 @@ ubuntu(){
 		yes | sudo pip install netifaces
 		yes | sudo apt-get install multiarch-support
 
-		#Files
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libgstreamer-plugins-base0.10-0_0.10.36-2ubuntu0.1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libgstreamer0.10-0_0.10.36-1.5ubuntu1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxbase2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxgtk-media2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/libwxgtk2.8-0_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-ipaddr_2.1.11-2_all.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-wxgtk2.8_2.8.12.1%2Bdfsg-2ubuntu2_amd64.deb
-		wget https://github.com/lkaranl/Vector_Clock/raw/master/Files/python-wxversion_3.0.2.0%2Bdfsg-8_all.deb
+		cd "$_home/Files"
 
 		#Compilation
 		sudo dpkg -i libwxbase2.8-0_2.8.12.1+dfsg-2ubuntu2_amd64.deb
@@ -127,8 +104,6 @@ ubuntu(){
 		sudo dpkg -i libwxgtk-media2.8-0_2.8.12.1+dfsg-2ubuntu2_amd64.deb
 		sudo dpkg -i python-wxgtk2.8_2.8.12.1+dfsg-2ubuntu2_amd64.deb
 		sudo dpkg -i python-ipaddr_2.1.11-2_all.deb
-		cd .. 
-		rm -r "$_home/clock"
 	fi
 
 	#32bits
@@ -143,16 +118,8 @@ ubuntu(){
 		yes | sudo pip install ipaddr
 		yes | sudo apt-get install libjpeg8-dev
 
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1.1_i386.deb
-		sudo wget http://ftp.br.debian.org/debian/pool/main/t/tiff3/libtiff4_3.9.6-11_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxbase2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxgtk2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gstreamer0.10/libgstreamer0.10-0_0.10.36-1.5ubuntu1_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/g/gst-plugins-base0.10/libgstreamer-plugins-base0.10-0_0.10.36-2_i386.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/libwxgtk-media2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-		sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/w/wxpython3.0/python-wxversion_3.0.2.0+dfsg-1build1_all.deb
-		sudo wget http://ppa.launchpad.net/nilarimogard/webupd8/ubuntu/pool/main/w/wxwidgets2.8/python-wxgtk2.8_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
-
+		cd "$_home/Files_32"
+		
 		sudo dpkg -i libpng12-0_1.2.54-1ubuntu1.1_i386.deb 
 		sudo dpkg -i libtiff4_3.9.6-11_i386.deb
 		sudo dpkg -i libwxbase2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb 
@@ -161,9 +128,7 @@ ubuntu(){
 		sudo dpkg -i libgstreamer-plugins-base0.10-0_0.10.36-2_i386.deb 
 		sudo dpkg -i libwxgtk-media2.8-0_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb
 		sudo dpkg -i python-wxversion_3.0.2.0+dfsg-1build1_all.deb 
-		sudo dpkg -i python-wxgtk2.8_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb 
-		cd .. 
-		rm -r "$_home/clock"
+		sudo dpkg -i python-wxgtk2.8_2.8.12.1+dfsg2-2ubuntu2+1~webupd8~xenial0_i386.deb 	
 	fi
 }
 
@@ -210,21 +175,23 @@ archlinux(){
 #Debian
 if [ "$_distribDeb" = "Debian" ]; then
 	debian
-fi
 #Ubuntu
-if [ "$_distribUbu" = "Ubuntu" ]; then
+elif [ "$_distribUbu" = "Ubuntu" ]; then
 	ubuntu
-fi
 #LinuxMint
-if [ "$_distribMin" = "LinuxMint" ]; then
+elif [ "$_distribMin" = "LinuxMint" ]; then
+	ubuntu
+#Manjaro
+elif [ "$_distribMan" = "ManjaroLinux" ]; then
+	archlinux
+#Arch (Unique more special)
+elif [ "$_distribArc" = "arch" ]; then
+	archlinux
+else
 	ubuntu
 fi
-#Manjaro
-if [ "$_distribMan" = "ManjaroLinux" ]; then
-	archlinux
-fi
-#Arch (Unique more special)
-if [ "$_distribArc" = "arch" ]; then
-	archlinux
-fi
+
+#Make and instalation VectorClock.deb
+cd ..
+sudo dpkg -i vectorclock_1.0_all.deb
 exec bash
