@@ -12,7 +12,7 @@
 
 #root permission lockout
 _checks=`id -u`
-_currentuser=`whoami
+_currentuser=`whoami`
 
 if [ $_checks != 0 ]; then
 	echo “Your user is ${_currentuser}. Need be root…”
