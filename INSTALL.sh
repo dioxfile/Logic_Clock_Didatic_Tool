@@ -51,6 +51,7 @@ else
 			cd "$_home/Files"
 
 			#Compilation
+            #Or 'dpkg -i *.deb'
 			dpkg -i libwxbase2.8-0_2.8.12.1+dfsg-2ubuntu2_amd64.deb
 			dpkg -i python-wxversion_3.0.2.0+dfsg-8_all.deb
 			dpkg -i libpng12-0_1.2.54-1ubuntu1.1_amd64.deb
