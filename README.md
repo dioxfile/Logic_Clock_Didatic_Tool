@@ -2,9 +2,9 @@
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
-Code in Python to Synchronize the computer clock using the [Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport) method.
+Code in Python to synchronize the computer clock using the [Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport) method.
 
-People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This article explores the concept of and an implementation of the logical clocks invented by Leslie Lamport in his seminal paper Time, Clocks, and the Ordering of Events in a Distributed System.
+People use the physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This article explores the concept of and implementation of the logical clocks invented by Leslie Lamport in his seminal paper Time, Clocks, and the Ordering of Events in a Distributed System.
 
 ![animacao](https://user-images.githubusercontent.com/32453979/47199699-d9c90e00-d340-11e8-94b7-6b609d44561e.gif)
 
@@ -43,10 +43,10 @@ Its purpose is the synchronization of logical clocks of computers connected to t
 
 
 # What do you need to use this software?
-* You will need a GNU/Linux Ubuntu 18.04.1 cosmic; Debian 9.5 Stretch or Arch Linux x86_64.
+* You will need a GNU/Linux Ubuntu 18.04.1 cosmic; Debian 9.5 Stretch or the Arch Linux x86_64.
 * Internet connection for download.
 
-Probably the software will also work on any other Debian-based or Arch Linux-base distribution, but it has only been tested on the systems listed above.
+Probably the software will also work on any other Debian-based or the Arch Linux-base distribution, but it has only been tested on the systems listed above.
 
 
 * For x86_64 debian-based distributions<br/> 
@@ -156,7 +156,7 @@ Version: 2.8.12.1+dfsg2-2ubuntu2+1-webupd8-xenial0<br/>
 ***********************************************************************************************
 
 * For x86_64 Arch Linux-based distributions.<br/> 
-Before starting with Arch, it is important that the installation of some libraries and packages required the use of community sources (AUR), which are similar to PPA utilities in ubuntu. Why the package has to be compiled in the machine, which ends up requiring a more time than in the distributions without Debian.<br/> 
+Before starting with Arch, it is important that the installation of some libraries and packages required the use of community sources (AUR), which are similar to PPA utilities in ubuntu. Why the package has to be compiled in the machine, which ends up requiring more time than in the distributions without Debian.<br/> 
 
 * 1. GSTREAMER0.10<br/> 
 Package: gstreamer0.10<br/> 
@@ -313,7 +313,7 @@ Once the installations are finished you can delete the downloaded .deb files.
 
 Any module error that you may have to re-view the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
 
-In the Debian system you may have a user error<br/>
+In the Debian system, you may have a user error<br/>
 If you get the error "./INSTALL.sh: sudo: not found". By default sudo is not installed, but you can install it. <br/>
 
 First enable su-mode:<br/>
@@ -322,7 +322,7 @@ First enable su-mode:<br/>
 Install sudo<br/>
 `#apt install sudo -y`<br/>
 
-After that you would need to play around with users and permissions. Give sudo rigth to you own user.<br/>
+After that you would need to play around with users and permissions. Give sudo right to your own user.<br/>
 `#usermod -aG sudo yoursername`<br/>
 
 Edit the file 'sudoers'<br/>
@@ -340,7 +340,7 @@ root ALL=(ALL:ALL) ALL<br/>
 * update error
 
 Obs: In some cases Debian, when new, in the updates configuration file "/etc/apt/sources.list", the line referring to the cdrom is not commented out, this causes an error at the time of the update and consequently when installing some programs and libraries with apt.
-It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "debian" and "security".
+It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security".
 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
