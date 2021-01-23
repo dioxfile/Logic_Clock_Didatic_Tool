@@ -123,6 +123,31 @@ Once the installations are finished you can delete the downloaded .deb files.
 
 ***********************************************************************************************
 
+# How to use it?
+
+*  IMPORTANT: For the hours to change you must have root permission or be the root user.<br/>
+
+You just need to run the file with python
+
+`$ sudo python3 ds_logic_clocks_mc_30.py`
+**************************************************************
+
+The simplest way to use eh the "Broadcast"<br/>
+
+* 1 - Shows the time that is "wrong"<br/>
+
+* 2 - Click "Bind IP/Port" to make a connection<br/>
+
+* 3 - You can choose between automatic and manual<br/>
+Automatic: Send a message every 3 seconds<br/>
+Manual: Send a message each time you click on it<br/>
+
+* 4 - Note that the time has changed, important to realize that it has changed to an hour higher than it was already. Your time is now synchronized.<br/>
+
+![animacao](https://user-images.githubusercontent.com/32777186/47819566-48d73700-dd31-11e8-87e7-d1913935d83b.gif)
+
+***********************************************************************************************
+
 # Possibles errors
 
 * If any module for unknown reasons has not been installed
@@ -159,32 +184,6 @@ Obs: In some cases Debian, when new, in the updates configuration file "/etc/apt
 It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security".
 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
-
-***********************************************************************************************
-
-# How to use it?
-
-*  IMPORTANT: For the hours to change you must have root permission or be the root user.<br/>
-
-You just need to run the file with python
-
-`$ sudo python3 ds_logic_clocks_mc_30.py`
-**************************************************************
-
-The simplest way to use eh the "Broadcast"<br/>
-
-* 1 - Shows the time that is "wrong"<br/>
-
-* 2 - Click "Bind IP/Port" to make a connection<br/>
-
-* 3 - You can choose between automatic and manual<br/>
-Automatic: Send a message every 3 seconds<br/>
-Manual: Send a message each time you click on it<br/>
-
-* 4 - Note that the time has changed, important to realize that it has changed to an hour higher than it was already. Your time is now synchronized.<br/>
-
-![animacao](https://user-images.githubusercontent.com/32777186/47819566-48d73700-dd31-11e8-87e7-d1913935d83b.gif)
-
 
 **[⬆ back to top](#Vector_Clock)**
 
