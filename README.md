@@ -145,7 +145,7 @@ Manual: Send a message each time you click on it<br/>
 
 * 4 - Note that the time has changed, important to realize that it has changed to an hour higher than it was already. Your time is now synchronized.<br/>
 
-![animacao](https://user-images.githubusercontent.com/32777186/47819566-48d73700-dd31-11e8-87e7-d1913935d83b.gif)
+<!-- ![animacao](https://user-images.githubusercontent.com/32777186/47819566-48d73700-dd31-11e8-87e7-d1913935d83b.gif) -->
 
 ***********************************************************************************************
 
