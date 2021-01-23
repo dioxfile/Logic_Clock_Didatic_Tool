@@ -81,7 +81,7 @@ Version: 4.0.3-4<br/>
 ***********************************************************************************************
 # How to install it?
 
-* For x86_64 and 86x<br/>
+* For x86_64<br/>
 Give permission to file INSTALL.sh<br/>
 `$sudo chmod +x INSTALL.sh`
 
@@ -109,16 +109,13 @@ Once the installations are finished you can delete the downloaded .deb files.
 3. INSTALL IPADDR (PIP)<br/>
 `$sudo apt install python3-ipaddr`<br/>
 
-4. INSTALL NETIFACES (PIP)<br/>
-`$sudo pip install netifaces`<br/>
+4. DOWNLOAD NETIFACES<br/>
+`$sudo apt install python3-netifaces`
 
 5. INSTALL IPADDR<br/>
 `$sudo apt install python-ipaddr`<br/>
 
-6. DOWNLOAD NETIFACES<br/>
-`$sudo apt install python3-netifaces`
-
-6.1. INSTALL DATEUTIL<br/>
+6. INSTALL DATEUTIL<br/>
 `sudo apt install python3-dateutil`<br/>
 
 7. DOWNLOAD PUBSUB<br/>
