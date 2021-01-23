@@ -46,7 +46,7 @@ Its purpose is the synchronization of logical clocks of computers connected to t
 * You will need a GNU/Linux Ubuntu 20.04 Focal; Linux Mint 20.1 Ulyssa .
 * Internet connection for download.
 
-Probably the software will also work on any other Debian-based or the Arch Linux-base distribution, but it has only been tested on the systems listed above.
+Probably the software will also work on any other Ubuntu-based, but it has only been tested on the systems listed above.
 
 
 * For x86_64 Ubuntu-based distributions<br/> 
