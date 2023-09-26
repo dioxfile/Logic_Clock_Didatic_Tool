@@ -21,7 +21,8 @@ else
 
     ubuntuLTS(){
         sudo apt install -y python3-wxgtk4.0
-        sudo apt install -y python3-ipaddr
+        sudo apt install -y pip3
+	sudo pip3 install ipaddr
         sudo apt install -y python3-netifaces
         sudo apt install -y python3-dateutil
         sudo apt install -y python3-pubsub
