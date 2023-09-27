@@ -63,23 +63,23 @@ Version: 3.8.2-0ubuntu2 <br/>
 Package: python3-wxgtk4.0<br/>
 Version: 4.0.7+dfsg-2build1 <br/>
 
-* 3.a PIP-3<br/>
+* 3. PIP-3<br/>
 Package: python3-pip<br/>
 Version: 22.0.2<br/>
 
-* 3.b IPADDR<br/>
+* 4. IPADDR<br/>
 Package: ipaddr<br/>
 Version: 2.2.0<br/>
 
-* 4. NETIFACES<br/>
+* 5. NETIFACES<br/>
 Package: python3-netifaces<br/>
 Version: 0.10.4-1ubuntu4<br/>
 
-* 5. DATEUTIL<br/>
+* 6. DATEUTIL<br/>
 Package: python3-dateutil<br/>
 Version: 2.7.3-3ubuntu1<br/>
 
-* 5. PUBSUB<br/>
+* 7. PUBSUB<br/>
 Package: python3-pubsub<br/>
 Version: 4.0.3-4<br/>
 
