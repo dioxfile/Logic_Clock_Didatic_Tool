@@ -37,7 +37,8 @@ Its purpose is the synchronization of logical clocks of computers connected to t
 # Prerequisites
 * Pyhton3 (Or more)
 * Python3-wxgtk4.0
-* Python3-ipaddr
+* python3-pip
+* ipaddr
 * Python3-netifaces
 * Python3-dateutil
 * Python3-pubsub
@@ -108,18 +109,20 @@ Once the installations are finished you can delete the downloaded .deb files.
 `$sudo apt install python3-wxgtk4.0`<br/>
 
 3. INSTALL IPADDR (PIP)<br/>
-`$sudo apt install python3-ipaddr`<br/>
+`$sudo apt install python3-pip`
+`$sudo pip3 install ipaddr`<br/>
 
-4. DOWNLOAD NETIFACES<br/>
+
+5. DOWNLOAD NETIFACES<br/>
 `$sudo apt install python3-netifaces`
 
-5. INSTALL IPADDR<br/>
+6. INSTALL IPADDR<br/>
 `$sudo apt install python-ipaddr`<br/>
 
-6. INSTALL DATEUTIL<br/>
+7. INSTALL DATEUTIL<br/>
 `sudo apt install python3-dateutil`<br/>
 
-7. DOWNLOAD PUBSUB<br/>
+8. DOWNLOAD PUBSUB<br/>
 `sudo apt install python3-pubsub`<br/>
 
 ***********************************************************************************************
