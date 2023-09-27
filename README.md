@@ -69,7 +69,7 @@ Version: 22.0.2<br/>
 
 * 3.b IPADDR<br/>
 Package: ipaddr<br/>
-Version: 2.2<br/>
+Version: 2.2.0<br/>
 
 * 4. NETIFACES<br/>
 Package: python3-netifaces<br/>
