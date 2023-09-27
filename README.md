@@ -63,9 +63,13 @@ Version: 3.8.2-0ubuntu2 <br/>
 Package: python3-wxgtk4.0<br/>
 Version: 4.0.7+dfsg-2build1 <br/>
 
-* 3. IPADDR<br/>
-Package: python3-ipaddr<br/>
-Version: 2.4.0-4<br/>
+* 3.a PIP-3<br/>
+Package: python3-pip<br/>
+Version: 22.0.2<br/>
+
+* 3.b IPADDR<br/>
+Package: ipaddr<br/>
+Version: 2.2<br/>
 
 * 4. NETIFACES<br/>
 Package: python3-netifaces<br/>
