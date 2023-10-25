@@ -5,8 +5,8 @@
   *   Name: "Socket Logic/Vector Clock's". This software synchronizes       *
   *   physical clocks using the concept of Lamport logical clocks.          *
   *                                                                         *
-  *   Copyright (C) 2016 by Diogenes Antonio Marque Jose,                   *
-  *   dioxfile@unemat.br.                                                   *
+  *   Copyright (C) 2016 by Diogenes Antonio Marque Jose and Bruno Hernandes*
+  *   dioxfile@unemat.br and hernandes.bruno@unemat.br                      *
   *   UNEMAT Brazil, Barra do Bugres Campus: bbg.unemat.br.                 *
   *                                                                         *
   *   This program is free software; you can redistribute it and/or modify  *
@@ -38,11 +38,10 @@ import varglobal # Global var shared between class
 from socket import error as socket_error #error socket
 from dateutil import parser
 import netifaces, ipaddr #catch the ip default gateway an apply mask to IP Address
-import math
-
+import platform #ADD by hernandes.bruno@unemat.br 
+import locale #ADD by hernandes.bruno@unemat.br 
 #Global Vars
 MAX_BYTES = 65535
-
 #=== Countdown Thread: it allows to send a message each three seconds ===
 """Based on: https://goo.gl/vLDlOs"""
 class CountDown(threading.Thread):
@@ -154,7 +153,7 @@ class Socket_RL(threading.Thread):
                     mreq = group_type + struct.pack('@I', 0)
                     self.sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_JOIN_GROUP, mreq)
             #Publisher Event Warning in Panel received MS 
-            wx.CallAfter(Publisher.sendMessage, "sock_connect", message="Waiting for connection in {}".format(self.sock.getsockname()))
+            wx.CallAfter(Publisher.sendMessage, "sock_connect", message="Connection in {}".format(self.sock.getsockname()))
         except socket.error as msg:
             self.sock.close()
             wx.CallAfter(Publisher.sendMessage, "main_event", message="SOCKET ERROR, "+str(msg)+"\n")
@@ -191,21 +190,38 @@ class Socket_RL(threading.Thread):
 
     #-------------------------------------------------------------------
     #RTT calc to measure delay, based average PING rtt
+    #ALTERAÇAO UM-------------------------------------------------------
     def rtt(self, ip):
-        ip_ = str(ip)
-        if ip_ == "":
-            ip_ = "('0.0.0.0', TEST)"
-        lista = ip_.split("'")
-        addrinfo = socket.getaddrinfo(lista[1], None)[0]
+        system = platform.system()
+        ip_ = str(ip[0])
         output = 0.0
-        if addrinfo[0] == socket.AF_INET:
-            status, output = subprocess.getstatusoutput("ping -c 1 "+lista[1]+" | egrep rtt | awk -F\"/\" \'{print $5}\'")
+        if ":" in ip_:
+            if system == "Windows":
+                command= f'ping -6 -n 2 {ip_}'
+            else: 
+                command = f'ping6 -c 2 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
         else:
-            status, output = subprocess.getstatusoutput("ping6 -c 1 "+lista[1]+" | egrep rtt | awk -F\"/\" \'{print $5}\'")
+            if system == "Windows":
+                command = f'ping -n 2 {ip_}'
+            else:
+                command = f'ping -c 2 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''         
+        output = subprocess.getoutput(command)
+        if system == "Windows":
+            match = re.search(r"Média = (\d+)ms", output)
+            if match:
+                ms_win = float(match.group(1)) / 1000.0
+                output = ms_win
+            else:
+                output = 0.0005
+        else:
+            ms_linux = float(output)
+            if ms_linux >= 1.0:
+                ms_linux = ms_linux / 1000.0
+                output = ms_linux
         if output == "":
-            output = 0.000001
+            output= 0.00001
         return output
-    
+    #FIM ALTERAÇAO UM-------------------------------------------------------    
     #-------------------------------------------------------------------
     #Thread called by main Thread
     def run(self):
@@ -281,34 +297,55 @@ class Socket_RL(threading.Thread):
                 if (self.from_ != self.local_) and (self.from_ != self.local_sock) and (self.from_ != self.a):
                     #Comparison local date/time and remote date/time
                     self.LOCAL = float(((time.mktime(data_local.timetuple())*1000)/1000)/1000)
-                    self.REMOTE = float(((time.mktime(remote_date_.timetuple())*1000)/1000)/1000)
-                    print("RT: ",self.REMOTE)
+                    self.REMOTE = float(((time.mktime(remote_date_.timetuple())*1000)/1000)/1000)                                      
+                    
                     if self.LOCAL < self.REMOTE:
+                        #ALTERAÇAO DOIS-------------------------------------------------------
+                        diferenca = remote_date_ - data_local
+                        lista_tempo = [
+                            (diferenca.days // 365, "year"),
+                            ((diferenca.days % 365) // 30, "mouth"),
+                            ((diferenca.days % 365) % 30, "day"),
+                            (diferenca.seconds // 3600, "hour"),
+                            ((diferenca.seconds % 3600) // 60, "minute"),
+                            (diferenca.seconds % 60, "second")]
+                        unidades_tempo = []
+                        for valor, unidade in lista_tempo:
+                            if valor > 0:
+                                if valor > 1:
+                                    unidade += "s"
+                                unidades_tempo.append(f"{valor} {unidade}")
+                        diff_time= ", ".join(unidades_tempo)
+                        wx.CallAfter(Publisher.sendMessage, "time", message=str.format((diff_time)))
                         #PING RTT Method (By Diogenes)
                         OLD_H = datetime.now()
+                        
                         # Approximate Time of Propagation (ATP), based average PING RTT
                         ATP = float(self.rtt(self.address))
-                        print("ATP: ",ATP)
                         NOW_H = datetime.now()
-                        delay = (time.mktime(NOW_H.timetuple())*1000+int(NOW_H.strftime('%f')))-\
-                                (time.mktime(OLD_H.timetuple())*1000+int(OLD_H.strftime('%f')))
-                        print("Delay: ",delay)
-                        delay = math.ceil(delay * 1000.0)/1000.0
-                        print("Delay ceil: ",delay)
-                        ATP = math.ceil(ATP * 1000.0)/1000.0
-                        print("ATP ceil: ",ATP)
+                        time_diff= OLD_H - NOW_H
+                        delay= abs(time_diff.total_seconds())
                         RTT = delay+(float(ATP)/2)
-                        print("RTT: ",RTT)
-                        RTT = math.ceil(RTT * 1000.0)/1000.0
-                        print("RTT ceil: ",RTT)
+                        AUX_RTT = RTT * 1000
                         #New hour to setup in system
                         self.h = (time.mktime(remote_date_.timetuple())*1000 + \
-                                  (int(remote_date_.strftime('%f'))+RTT)/1000)/1000
-                        print("H: ",self.h)
-                        wx.CallAfter(Publisher.sendMessage, "rtt", message=str(float(RTT/1000)))
+                                  (int(remote_date_.strftime('%f'))+AUX_RTT)/1000)/1000
+                        wx.CallAfter(Publisher.sendMessage, "rtt", message="{:.5f}".format((RTT)))                        
                         #Set remote date/time in this server
-                        os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
-
+                        system_language= locale.getdefaultlocale()[0]
+                        system= platform.system()
+                        if system == "Windows":
+                            if system_language.lower() == "en_us":
+                                date_time_win= datetime.fromtimestamp(self.h).strftime("%m/%d/%y %H:%M:%S")
+                            else:
+                                date_time_win= datetime.fromtimestamp(self.h).strftime("%d/%m/%y %H:%M:%S")
+                            os.system(f'date {date_time_win.split()[0]} & time {date_time_win.split()[1]}')
+                        else:
+                            if system_language.lower() == "en_us":
+                                os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
+                            else:
+                                os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%d/%m/%Y %H:%M:%S.%f")))
+                        #FIM ALTERAÇAO DOIS-------------------------------------------------------
                         #Check if MSG arrived from R:M/B/U (Reply by Multicast/Broadcast/Unicast)
                         if self.catch_rb(self.text) == "R:M/B/U":
                             #Publisher Event Warning in Panel received MS by R:M/B/U
@@ -419,12 +456,12 @@ class MyPanel(wx.Frame):
         #print self.rbox.ShowItem(0, show=False)
         #-------------------------------------#
         wx.StaticText(self.scroll, -1, "Type a IP to the Server: ", size=(200,20), pos=(5, 70))
-        self.i = wx.TextCtrl(self.scroll, -1, "0.0.0.0", size=(300,30), pos=(180,70))
+        self.i = wx.TextCtrl(self.scroll, -1, "0.0.0.0", size=(250,30), pos=(195,70))
         self.i.SetBackgroundColour("gray")
         self.i.SetForegroundColour("white")
         #-------------------------------------#
         wx.StaticText(self.scroll, -1, "Type a IP to send a message: ", size=(280,20), pos=(5, 105))
-        self.c = wx.TextCtrl(self.scroll, -1, "<broadcast>", size=(300,30), pos=(215,105))
+        self.c = wx.TextCtrl(self.scroll, -1, "<broadcast>", size=(250,30), pos=(195,105))
         self.c.SetBackgroundColour("gray")
         self.c.SetForegroundColour("white")
         #-------------------------------------#
@@ -470,13 +507,20 @@ class MyPanel(wx.Frame):
         #Receiver Publisher
         Publisher.subscribe(self.updatePanelEvent, "main_event")
         #-------------------------------------#
-        wx.StaticText(self.scroll, -1, "RTT Ping Average:", size=(150,20), pos=(600,90))
-        wx.StaticText(self.scroll, -1, "Delay (ms)", size=(100,20), pos=(600,110))
+        wx.StaticText(self.scroll, -1, "RTT Ping Average:", size=(150,20), pos=(620,122))
+        wx.StaticText(self.scroll, -1, "Delay (sec)", size=(100,20), pos=(620,140))
         self.texRtt = wx.TextCtrl(self.scroll, -1, "No Delay...", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
-	size=(100,20), pos=(680,110))
+	size=(90,18), pos=(690,140))
         self.texRtt.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         #Receiver Publisher
         Publisher.subscribe(self.rtt_, "rtt")
+        #Time diff ALTERAÇAO TRES--------------------------------------------------
+        wx.StaticText(self.scroll, -1, "Time Differnce:", size=(150,20), pos=(620,65))
+        self.texDtime = wx.TextCtrl(self.scroll, -1, "None", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
+	size=(160,37), pos=(620,80))
+        self.texDtime.SetDefaultStyle(wx.TextAttr(wx.BLUE))
+        Publisher.subscribe(self.diff_time, "time")
+	    #FIM ALTERAÇAO TRES--------------------------------------------------
         #-------------------------------------#
         wx.StaticText(self.scroll, -1, "Hosts/Proccess Panel: ", size=(200,20), pos=(400,140))
         self.textVC = wx.TextCtrl(self.scroll, -1, style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
@@ -593,7 +637,16 @@ class MyPanel(wx.Frame):
         """
         self.texRtt.Clear()
         self.texRtt.write(message)
-           
+        
+    #Update Diff Time Display
+    #ALTERAÇAO QUATRO--------------------------------------------------
+    def diff_time(self, message):
+        """
+        Catch diff time and updates the display
+        """
+        self.texDtime.Clear()
+        self.texDtime.write(message)   
+    #FIM ALTERAÇAO QUATRO--------------------------------------------------    
     #-------------------------------------------------------------------
     #Show date/time on LED Display
     """Based on:  https://goo.gl/U4gHzg"""
@@ -629,7 +682,7 @@ class MyPanel(wx.Frame):
                     MyPanel.porta_classe = self.porta_
                     MyPanel.ip_unicast = self.c_
                     self.s = Socket_RL(self)
-                    self.s.setDaemon(True)
+                    self.s.daemon = True
                     self.s.start()
                     self.countD.Enable(True)
                     self.btn.Enable(True)
