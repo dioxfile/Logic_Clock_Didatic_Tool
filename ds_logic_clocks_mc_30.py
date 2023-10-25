@@ -432,7 +432,7 @@ class MyPanel(wx.Frame):
 
     #----------------------------------------------------------------------
     #Main function GUI
-    def __init__(self, parent, id=-1,title="Socket Logic/Vector Clock's - DS",pos=wx.DefaultPosition,
+    def __init__(self, parent, id=-1,title="Socket Logic Clock's - DS",pos=wx.DefaultPosition,
          size=(795,700), style=wx.DEFAULT_FRAME_STYLE):
         """Constructor"""
         wx.Frame.__init__(self,parent,id,title,pos,size,style)
