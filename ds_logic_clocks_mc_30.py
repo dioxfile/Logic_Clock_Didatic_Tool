@@ -2,7 +2,7 @@
 #File: ds_logic_clocks_mc.py
 
 """**************************************************************************
-  *   Name: "Socket Logic/Vector Clock's". This software synchronizes       *
+  *   Name: "Socket Logic Clock's". This software synchronizes       *
   *   physical clocks using the concept of Lamport logical clocks.          *
   *                                                                         *
   *   Copyright (C) 2016 by Diogenes Antonio Marque Jose and Bruno Hernandes*
@@ -253,7 +253,7 @@ class Socket_RL(threading.Thread):
                 #Receive event internal count -> Step three Lamport Algorithm
                 varglobal.soma +=1
                 
-                """vector clock algorithm""" 
+                """Logic clock algorithm""" 
                 ############################
                 interPip = self.catch_ip(self.address)
                 elem = str(interPip)
