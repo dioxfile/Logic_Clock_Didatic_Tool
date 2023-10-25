@@ -32,5 +32,3 @@ else
     
     echo -e "\n\033[01;32mNow run the command\n# python3 ds_logic_clocks_mc_30.y\033[01;37m"
 fi
-
-exec bash
