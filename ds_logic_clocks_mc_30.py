@@ -215,10 +215,8 @@ class Socket_RL(threading.Thread):
             else:
                 output = 0.0005
         else:
-            ms_linux = float(output)
-            if ms_linux >= 1.0:
-                ms_linux = ms_linux / 1000.0
-                output = ms_linux
+            ms_linux = float(output) / 1000.0
+            output = ms_linux
         if output == "":
             output= 0.00001
         return output        
