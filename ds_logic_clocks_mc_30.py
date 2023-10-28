@@ -40,6 +40,7 @@ from dateutil import parser
 import netifaces, ipaddr #catch the ip default gateway an apply mask to IP Address
 import platform #ADD by hernandes.bruno@unemat.br 
 import locale #ADD by hernandes.bruno@unemat.br 
+import re #ADD by hernandes.bruno@unemat.br
 #Global Vars
 MAX_BYTES = 65535
 #=== Countdown Thread: it allows to send a message each three seconds ===
@@ -190,21 +191,21 @@ class Socket_RL(threading.Thread):
 
     #-------------------------------------------------------------------
     #RTT calc to measure delay, based average PING rtt
-    #ALTERAÇAO UM-------------------------------------------------------
+    #--------------------------------------------------------------
     def rtt(self, ip):
         system = platform.system()
         ip_ = str(ip[0])
         output = 0.0
         if ":" in ip_:
             if system == "Windows":
-                command= f'ping -6 -n 2 {ip_}'
+                command= f'ping -6 -n 1 {ip_}'
             else: 
-                command = f'ping6 -c 2 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
+                command = f'ping6 -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
         else:
             if system == "Windows":
-                command = f'ping -n 2 {ip_}'
+                command = f'ping -n 1 {ip_}'
             else:
-                command = f'ping -c 2 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''         
+                command = f'ping -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''         
         output = subprocess.getoutput(command)
         if system == "Windows":
             match = re.search(r"Média = (\d+)ms", output)
@@ -220,8 +221,7 @@ class Socket_RL(threading.Thread):
                 output = ms_linux
         if output == "":
             output= 0.00001
-        return output
-    #FIM ALTERAÇAO UM-------------------------------------------------------    
+        return output        
     #-------------------------------------------------------------------
     #Thread called by main Thread
     def run(self):
@@ -300,22 +300,22 @@ class Socket_RL(threading.Thread):
                     self.REMOTE = float(((time.mktime(remote_date_.timetuple())*1000)/1000)/1000)                                      
                     
                     if self.LOCAL < self.REMOTE:
-                        #ALTERAÇAO DOIS-------------------------------------------------------
-                        diferenca = remote_date_ - data_local
-                        lista_tempo = [
-                            (diferenca.days // 365, "year"),
-                            ((diferenca.days % 365) // 30, "mouth"),
-                            ((diferenca.days % 365) % 30, "day"),
-                            (diferenca.seconds // 3600, "hour"),
-                            ((diferenca.seconds % 3600) // 60, "minute"),
-                            (diferenca.seconds % 60, "second")]
-                        unidades_tempo = []
-                        for valor, unidade in lista_tempo:
-                            if valor > 0:
-                                if valor > 1:
-                                    unidade += "s"
-                                unidades_tempo.append(f"{valor} {unidade}")
-                        diff_time= ", ".join(unidades_tempo)
+                        difference = abs(remote_date_ - data_local)
+                        time_list = [
+                            (difference.days // 365, "year"),
+                            ((difference.days % 365) // 30, "month"),
+                            ((difference.days % 365) % 30, "day"),
+                            (difference.seconds // 3600, "hour"),
+                            ((difference.seconds % 3600) // 60, "minute"),
+                            (difference.seconds % 60, "second"),
+                            (difference.microseconds // 1000, "millisecond")]
+                        time_units = []
+                        for value, unit in time_list:
+                            if value > 0:
+                                if value > 1:
+                                    unit += "s"
+                                time_units.append(f"{value} {unit}")
+                        diff_time= ", ".join(time_units)
                         wx.CallAfter(Publisher.sendMessage, "time", message=str.format((diff_time)))
                         #PING RTT Method (By Diogenes)
                         OLD_H = datetime.now()
@@ -514,13 +514,12 @@ class MyPanel(wx.Frame):
         self.texRtt.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         #Receiver Publisher
         Publisher.subscribe(self.rtt_, "rtt")
-        #Time diff ALTERAÇAO TRES--------------------------------------------------
+        #Time difference--------------------------------------------------
         wx.StaticText(self.scroll, -1, "Time Differnce:", size=(150,20), pos=(620,65))
         self.texDtime = wx.TextCtrl(self.scroll, -1, "None", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
 	size=(160,37), pos=(620,80))
         self.texDtime.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         Publisher.subscribe(self.diff_time, "time")
-	    #FIM ALTERAÇAO TRES--------------------------------------------------
         #-------------------------------------#
         wx.StaticText(self.scroll, -1, "Hosts/Proccess Panel: ", size=(200,20), pos=(400,140))
         self.textVC = wx.TextCtrl(self.scroll, -1, style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
@@ -639,14 +638,12 @@ class MyPanel(wx.Frame):
         self.texRtt.write(message)
         
     #Update Diff Time Display
-    #ALTERAÇAO QUATRO--------------------------------------------------
     def diff_time(self, message):
         """
         Catch diff time and updates the display
         """
         self.texDtime.Clear()
-        self.texDtime.write(message)   
-    #FIM ALTERAÇAO QUATRO--------------------------------------------------    
+        self.texDtime.write(message)       
     #-------------------------------------------------------------------
     #Show date/time on LED Display
     """Based on:  https://goo.gl/U4gHzg"""
