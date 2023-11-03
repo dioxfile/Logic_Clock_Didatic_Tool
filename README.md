@@ -97,13 +97,11 @@ Version: 4.0.3-4<br/>
   `$sudo ./INSTALL.sh`
 
 ***********************************************************************************************
-* You can do an installation automatically by running the file 'INSTALL.sh'. But if you want to install manually just follow the steps below.
+## You can do an installation automatically by running the file 'INSTALL.sh'. But if you want to install manually just follow the steps below.
 
 * In Debian-Based Systems.
 
-First, you will download the package and later install it.
-
-Once the installation is finished you can delete the downloaded .deb files.
+* First, you will download the package and later install it. Once the installation is finished you can delete the downloaded `*.deb` files.
 
 
 1. INSTALL PYTHON3<br/>
