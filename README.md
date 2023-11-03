@@ -133,13 +133,18 @@ Once the installation is finished you can delete the downloaded .deb files.
 ## How to install it in Windows 11 Enterprise?
 
 * For x86_64<br/>
-Download INSTALL-WIN.ps1 <br/>
-`$sudo chmod +x INSTALL.sh`
-
-Obs: For the above command to work the terminal must be open where the file is located.<br/>
-
-Run the file<br/>
-`$sudo ./INSTALL.sh`
+  Download INSTALL-WIN.ps1 <br/>
+* On Windows 11, install "vs_BuildTools" from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
+* After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, 3, and 4 (e.g., where the boxes are checked) <br/>
+* Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
+* Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator <br/>
+* At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
+* If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
+* If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSgined -Scope CurrentUser` <br/>
+* After that, download the INSTALL.ps1 script and run it at the PowerShell command prompt, for example: `.\INSTALL.ps1` <br/>
+* After installing python3 and all necessary libraries (e.g., Pyhton3, wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
+* Now go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator <br/>
+* After this, the following screen will appear (Figure 5): <br/>
 
 # How to use it?
 
