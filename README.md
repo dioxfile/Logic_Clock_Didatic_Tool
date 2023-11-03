@@ -150,7 +150,7 @@ Once the installation is finished you can delete the downloaded .deb files.
 
 *  IMPORTANT: To change the computer's time you must run the application as administrator/root user.<br/>
 
-You just need to run the file with python
+You just need to run the file with python <br/>
 Linux (e.g., Bash/dash prompt) <br/>
 `$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
 Windows (e.g., PowerShell prompt)<br/>
