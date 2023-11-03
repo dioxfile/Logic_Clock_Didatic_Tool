@@ -156,7 +156,7 @@ Version: 4.0.3-4<br/>
   `c:\Users\Administrator> python.exe ds_logic_clocks_mc_30.py` <br/>
 **************************************************************
 
-## The simplest way to use eh the "Broadcast IPv4"<br/>
+## The simplest way to use the "Broadcast IPv4"<br/>
 
 * 1 - Shows the time that is "wrong"<br/>
 
