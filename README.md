@@ -4,7 +4,7 @@
 
 Code in Python to synchronize the computer clock using the [Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method.
 
-People use the physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This article explores the concept of and implementation of the logical clocks invented by Leslie Lamport in his seminal paper Time, Clocks, and the Ordering of Events in a Distributed System.
+People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper Time, Clocks, and the Ordering of Events in a Distributed System.
 
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
@@ -22,7 +22,7 @@ People use the physical time to order events. For example, we say that an event 
 </head>
 
 # What are the Possible Applications?
-Its purpose is the synchronization of logical clocks of computers connected to the same network.
+Its purpose is the synchronization of physical (e.g., CMOS clock) and logical clocks of computers connected to the same network.
 
 ## Methodology.
 * OS: Ubuntu 18.04 cosmic
@@ -32,7 +32,7 @@ Its purpose is the synchronization of logical clocks of computers connected to t
 * RAM: 7956MiB <br/> 
 
 * __Test hardware:__ Intel (R) Pentium 4 (TM) 3.0 GHz, 1 GB RAM, HD 40 GB, 10/100 Fast Ethernet network
-* __Test realize:__ The tests were performed in a _testbed_ with 8 computers in the _Laboratory of Computer Networks (UNEMAT)_, and all the computers of the laboratory were configured in a network class A 113.167.9.0/24 . In order to synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
+* __Test realize:__ The tests were performed in a _testbed_ with 8 computers in the _Laboratory of Computer Networks (UNEMAT)_, and all the computers of the laboratory were configured in a network class A 113.167.9.0/24. In order to synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
 
 # Prerequisites
 * Pyhton3 (Or more)
@@ -45,13 +45,13 @@ Its purpose is the synchronization of logical clocks of computers connected to t
 
 
 # What do you need to use this software?
-* You will need a GNU/Linux Ubuntu 20.04 Focal; Linux Mint 20.1 Ulyssa .
+* You will need a GNU/Linux Ubuntu 20.04 Focal; Linux Mint 20.1 Ulyssa or other Linux system.
+* And/Or Windows 11 Enterprise.
 * Internet connection for download.
 
-Probably the software will also work on any other Ubuntu-based, but it has only been tested on the systems listed above.
+Probably the software will also work on any other SO, but it has only been tested on the systems listed above.
 
-
-* For x86_64 Ubuntu-based distributions<br/> 
+## For x86_64 Debian-based distributions<br/> 
 These are the necessary packages and modules.
 The version may not necessarily be the same, but these versions have been tested and confirmed the operation.
 
