@@ -133,7 +133,7 @@ Once the installation is finished you can delete the downloaded .deb files.
 ## How to install it in Windows 11 Enterprise?
 
 * For x86_64<br/>
-Download INSTALL.sh<br/>
+Download INSTALL-WIN.ps1 <br/>
 `$sudo chmod +x INSTALL.sh`
 
 Obs: For the above command to work the terminal must be open where the file is located.<br/>
