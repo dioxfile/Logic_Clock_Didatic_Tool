@@ -87,14 +87,14 @@ Version: 4.0.3-4<br/>
 ## How to install it in Debian-based Systems?
 
 * For x86_64<br/>
-Download from git INSTALL.sh<br/>
-Permit to file INSTALL.sh<br/>
-`$sudo chmod +x INSTALL.sh`
+* Download from git INSTALL.sh<br/>
+* Permit to file INSTALL.sh<br/>
+  `$sudo chmod +x INSTALL.sh`
 
-Obs: For the above command to work the terminal must be open where the file is located.<br/>
+* Obs: For the above command to work the terminal must be open where the file is located.<br/>
 
-Run the file<br/>
-`$sudo ./INSTALL.sh`
+* Run the file<br/>
+  `$sudo ./INSTALL.sh`
 
 ***********************************************************************************************
 * You can do an installation automatically by running the file 'INSTALL.sh'. But if you want to install manually just follow the steps below.
