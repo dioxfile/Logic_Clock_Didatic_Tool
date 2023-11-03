@@ -147,16 +147,16 @@ Version: 4.0.3-4<br/>
 
 # How to use it?
 
-*  IMPORTANT: To change the computer's time you must run the application as administrator/root user.<br/>
+## IMPORTANT: To change the computer's time you must run the application as administrator/root user.<br/>
 
-You just need to run the file with python <br/>
-Linux (e.g., Bash/dash prompt) <br/>
-`$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
-Windows (e.g., PowerShell prompt)<br/>
-`c:\Users\Administrator> python.exe ds_logic_clocks_mc_30.py` <br/>
+### You just need to run the file with Python <br/>
+* Linux (e.g., Bash/dash prompt) <br/>
+  `$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
+* Windows (e.g., PowerShell prompt)<br/>
+  `c:\Users\Administrator> python.exe ds_logic_clocks_mc_30.py` <br/>
 **************************************************************
 
-The simplest way to use eh the "Broadcast IPv4"<br/>
+## The simplest way to use eh the "Broadcast IPv4"<br/>
 
 * 1 - Shows the time that is "wrong"<br/>
 
