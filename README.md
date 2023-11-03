@@ -176,10 +176,10 @@ Manual: Send a message each time you click on it<br/>
 
 * If any module for unknown reasons has not been installed
 
-Any module error that you may have to re-view the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
+For any module error, you may have to re-view the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
 
 In the Debian system, you may have a user error<br/>
-If you get the error "./INSTALL.sh: sudo: not found". By default sudo is not installed, but you can install it. <br/>
+If you get the error "./INSTALL.sh: sudo: not found". By default, sudo is not installed, but you can install it. <br/>
 
 First enable su-mode:<br/>
 `$su`<br/>
@@ -187,14 +187,14 @@ First enable su-mode:<br/>
 Install sudo<br/>
 `#apt install sudo -y`<br/>
 
-After that you would need to play around with users and permissions. Give sudo right to your own user.<br/>
+After that, you would need to play around with users and permissions. Give sudo right to your own user.<br/>
 `#usermod -aG sudo yoursername`<br/>
 
 Edit the file 'sudoers'<br/>
 `#nano /etc/sudoers`<br/>
 
 #User privilege specification<br/>
-```shellcript
+```shellscript
 root ALL=(ALL:ALL) ALL<br/>
 "yoursername" ALL=(ALL:ALL) ALL <br/><br/>
 ```
