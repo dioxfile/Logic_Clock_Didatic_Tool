@@ -143,19 +143,21 @@ Once the installation is finished you can delete the downloaded .deb files.
 * If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSgined -Scope CurrentUser` <br/>
 * After that, download the INSTALL.ps1 script and run it at the PowerShell command prompt, for example: `.\INSTALL.ps1` <br/>
 * After installing python3 and all necessary libraries (e.g., Pyhton3, wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
-* Now go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator <br/>
+* Now go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., clicking it twice) <br/>
 * After this, the following screen will appear (Figure 5): <br/>
 
 # How to use it?
 
-*  IMPORTANT: For the hours to change you must have root permission or be the root user.<br/>
+*  IMPORTANT: To change the computer's time you must run the application as administrator/root user.<br/>
 
 You just need to run the file with python
-
-`$ sudo python3 ds_logic_clocks_mc_30.py`
+Linux (e.g., Bash/dash prompt) <br/>
+`$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
+Windows (e.g., PowerShell prompt)<br/>
+`c:\Users\Administrator> python.exe ds_logic_clocks_mc_30.py` <br/>
 **************************************************************
 
-The simplest way to use eh the "Broadcast"<br/>
+The simplest way to use eh the "Broadcast IPv4"<br/>
 
 * 1 - Shows the time that is "wrong"<br/>
 
