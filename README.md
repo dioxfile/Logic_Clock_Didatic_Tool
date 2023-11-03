@@ -25,8 +25,7 @@ People use physical time to order events. For example, we say that an event at 8
 Its purpose is the synchronization of physical (e.g., CMOS clock) and logical clocks of computers connected to the same network.
 
 ## Methodology.
-* OS: Ubuntu 18.04 cosmic
-* Kernel: x86_64 Linux 4.18.0-10-generic
+* OS: Debian-Based Linux Systems and Windows 11 Enterprise.
 * CPU: Intel Core i7 Q 740 @ 8x 1.734GHz
 * GPU: GeForce GT 425M
 * RAM: 7956MiB <br/> 
@@ -51,7 +50,7 @@ Its purpose is the synchronization of physical (e.g., CMOS clock) and logical cl
 
 Probably the software will also work on any other SO, but it has only been tested on the systems listed above.
 
-## For x86_64 Debian-based distributions<br/> 
+## For x86_64 Debian-based distributions and Windows 11 Enterprise<br/> 
 These are the necessary packages and modules.
 The version may not necessarily be the same, but these versions have been tested and confirmed the operation.
 
@@ -85,10 +84,10 @@ Version: 4.0.3-4<br/>
 
 
 ***********************************************************************************************
-# How to install it?
+## How to install it in Debian-based Systems?
 
 * For x86_64<br/>
-Give permission to file INSTALL.sh<br/>
+Permit to file INSTALL.sh<br/>
 `$sudo chmod +x INSTALL.sh`
 
 Obs: For the above command to work the terminal must be open where the file is located.<br/>
@@ -99,11 +98,11 @@ Run the file<br/>
 ***********************************************************************************************
 * You can do an installation automatically by running the file 'INSTALL.sh'. But if you want to install manually just follow the steps below.
 
-* In Ubuntu and Mint.
+* In Debian-Based Systems.
 
-First you will download the package and later install it.
+First, you will download the package and later install it.
 
-Once the installations are finished you can delete the downloaded .deb files.
+Once the installation is finished you can delete the downloaded .deb files.
 
 
 1. INSTALL PYTHON3<br/>
@@ -130,6 +129,17 @@ Once the installations are finished you can delete the downloaded .deb files.
 `sudo apt install python3-pubsub`<br/>
 
 ***********************************************************************************************
+
+## How to install it in Windows 11 Enterprise?
+
+* For x86_64<br/>
+Download INSTALL.sh<br/>
+`$sudo chmod +x INSTALL.sh`
+
+Obs: For the above command to work the terminal must be open where the file is located.<br/>
+
+Run the file<br/>
+`$sudo ./INSTALL.sh`
 
 # How to use it?
 
