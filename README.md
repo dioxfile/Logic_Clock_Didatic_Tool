@@ -87,6 +87,7 @@ Version: 4.0.3-4<br/>
 ## How to install it in Debian-based Systems?
 
 * For x86_64<br/>
+Download from git INSTALL.sh<br/>
 Permit to file INSTALL.sh<br/>
 `$sudo chmod +x INSTALL.sh`
 
@@ -133,7 +134,7 @@ Once the installation is finished you can delete the downloaded .deb files.
 ## How to install it in Windows 11 Enterprise?
 
 * For x86_64<br/>
-  Download INSTALL-WIN.ps1 <br/>
+  Download from git INSTALL-WIN.ps1 <br/>
 * On Windows 11, install "vs_BuildTools" from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
 * After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, 3, and 4 (e.g., where the boxes are checked) <br/>
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
