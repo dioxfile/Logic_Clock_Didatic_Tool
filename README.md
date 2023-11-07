@@ -129,12 +129,10 @@ Version: 4.0.3-4<br/>
 
 ***********************************************************************************************
 
-## How to install it in Windows 11 Enterprise?
+## How to install it in Windows 11 Enterprise For x86_64?
 
-* For x86_64<br/>
-  Download from git INSTALL-WIN.ps1 <br/>
 * On Windows 11, install "vs_BuildTools" from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
-* After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, 3, and 4 (e.g., where the boxes are checked) <br/>
+* After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, and 3 (e.g., where the boxes are checked) <br/>
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
 * Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator <br/>
 * At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
