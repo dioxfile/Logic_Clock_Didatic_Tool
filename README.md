@@ -154,7 +154,7 @@ Version: 4.0.3-4<br/>
 * Linux (e.g., Bash/dash prompt) <br/>
   `$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
 * Windows (e.g., PowerShell prompt)<br/>
-  `c:\Users\Administrator> python.exe ds_logic_clocks_mc_30.py` <br/>
+  `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 5): <br/>
 ## Figure 5
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
