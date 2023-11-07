@@ -127,7 +127,7 @@ Version: 4.0.3-4<br/>
 
 ***********************************************************************************************
 
-## How to install it in Windows 11 Enterprise For x86_64?
+## How to install it in Windows 11 Enterprise (x86_64)?
 
 * On Windows 11, install "vs_BuildTools" from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
 * After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, and 3 (e.g., where the boxes are checked) <br/>
