@@ -152,27 +152,22 @@ Version: 4.0.3-4<br/>
 ## IMPORTANT: To change the computer's time you must run the application as administrator/root user.<br/>
 ### You just need to run the file with Python <br/>
 * Linux (e.g., Bash/dash prompt) <br/>
-  `$ sudo python3 ds_logic_clocks_mc_30.py` <br/>
+  `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
 * Windows (e.g., PowerShell prompt)<br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 5): <br/>
 ## Figure 5
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
+
 **************************************************************
 
-## The simplest way to use the "Broadcast IPv4"<br/>
-
-* 1 - Shows the time that is "wrong"<br/>
-
-* 2 - Click "Bind IP/Port" to make a connection<br/>
-
-* 3 - You can choose between automatic and manual<br/>
-Automatic: Send a message every 3 seconds<br/>
-Manual: Send a message each time you click on it<br/>
-
-* 4 - Note that the time has changed, important to realize that it has changed to an hour higher than it was already. Your time is now synchronized.<br/>
-
-<!-- ![animacao](https://user-images.githubusercontent.com/32777186/47819566-48d73700-dd31-11e8-87e7-d1913935d83b.gif) -->
+# Application Details: 
+1 - Communication Method, Figure 6; 
+# Figure 6 
+* The application can create DGRAM (UDP) IPv4 (Unicast, Multicast, and Broadcast) and IPv6 (Unicast and Multicast) sockets. A valid combination would be Broadcast, IP Local Server - 0.0.0.0, IP Remote Server - <broadcast>, and Port 10001 (e.g., if you have a firewall this port must be open); 
+* It is possible to use any communication port as long as another application is not already using it, Figure 7; 
+# Figure 7 
+* When clicking on the Bind IP/Port Button the `Local SOcket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`.
 
 ***********************************************************************************************
 
@@ -180,7 +175,7 @@ Manual: Send a message each time you click on it<br/>
 
 * If any module for unknown reasons has not been installed
 
-For any module error, you may have to re-view the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
+For any module error, you may have to review the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
 
 In the Debian system, you may have a user error<br/>
 If you get the error "./INSTALL.sh: sudo: not found". By default, sudo is not installed, but you can install it. <br/>
