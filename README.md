@@ -84,9 +84,7 @@ Version: 4.0.3-4<br/>
 
 
 ***********************************************************************************************
-## How to install it in Debian-based Systems?
-
-* For x86_64<br/>
+## How to install it in Debian-based Systems (x86_64)?
 * Download from git INSTALL.sh<br/>
 * Permit to file INSTALL.sh<br/>
   `$sudo chmod +x INSTALL.sh`
