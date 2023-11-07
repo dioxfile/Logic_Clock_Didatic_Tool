@@ -2,9 +2,9 @@
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
-Code in Python to synchronize the computer clock using the [Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method.
+Code in Python to synchronize the computer clock using the [Lamport-WiKi](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method.
 
-People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`. [Lamport1](https://dl.acm.org/doi/10.1145/359545.359563)
+People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`. [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563)
 
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
