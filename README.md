@@ -148,6 +148,8 @@ Version: 4.0.3-4<br/>
 * After installing python3 and all necessary libraries (e.g., Pyhton3, wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
 * Now go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., clicking it twice) <br/>
 * After that, the following screen will appear (Figure 5): <br/>
+## Figure 5
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
 
 # How to use it?
 
