@@ -136,9 +136,9 @@ Version: 4.0.3-4<br/>
 ## Figure 1
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1MS.png)
 ## Figure 2
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.png)
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3ms.png)
 ## Figure 3
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3ms.pngf)
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.pngf)
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
 * Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator <br/>
 ## Figure 4
