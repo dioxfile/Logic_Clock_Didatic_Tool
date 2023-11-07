@@ -133,8 +133,16 @@ Version: 4.0.3-4<br/>
 
 * On Windows 11, install "vs_BuildTools" from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
 * After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, and 3 (e.g., where the boxes are checked) <br/>
+## Figure 1
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1MS.png)
+## Figure 2
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.png)
+## Figure 3
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3ms.pngf)
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
 * Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator <br/>
+## Figure 4
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4ms.png)
 * At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
 * If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
 * If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSgined -Scope CurrentUser` <br/>
