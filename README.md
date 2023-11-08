@@ -189,6 +189,11 @@ Version: 4.0.3-4<br/>
 # Figure 10. 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
 * Figure 10 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`.
+
+5 - Local Physical Clock Display
+* The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 11.
+# Figure 11
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
 ***********************************************************************************************
 
 # Possibles errors
