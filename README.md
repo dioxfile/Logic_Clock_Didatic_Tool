@@ -166,10 +166,10 @@ Version: 4.0.3-4<br/>
 # Figure 6 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/transmissionLC.png)
 * The application can create DGRAM (UDP) IPv4 (Unicast, Multicast, and Broadcast) and IPv6 (Unicast and Multicast) sockets. A valid combination would be `Broadcast, IP Local Server - 0.0.0.0, IP Remote Server - <broadcast>, and Port 10001 (e.g., if you have a firewall this port must be open)`; 
-* It is possible to use any communication port as long as another application is not already using it, Figure 7; 
-# Figure 7 
-* When clicking on the Bind IP/Port Button, for instance, the `Local Socket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`.
-
+* It is possible to use any communication port as long as another application is not already using it; 
+* When clicking on the Bind IP/Port Button, for instance, the `Local Socket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`, Figure 7.
+# Figure 7
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/bindLC.png)
 ***********************************************************************************************
 
 # Possibles errors
