@@ -179,8 +179,8 @@ Version: 4.0.3-4<br/>
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
 
 3 - Hosts/Processes Panel. 
-* The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. Useful when using transmission methods such as Multicast and Broadcast, Figure 9. 
-#Figure 9
+* The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. Useful when using transmission methods such as Multicast and Broadcast, Figure 9.
+# Figure 9
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-processesLC.png)
 ***********************************************************************************************
 
