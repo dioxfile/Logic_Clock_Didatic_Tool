@@ -208,7 +208,7 @@ Version: 4.0.3-4<br/>
 * (2) After receiving the request from `Remote Process` prepare a response and append the time `T` from its own clock.
 * (3) `Local Process` receives the response at time `t1` and then sets its time to be `T + RTT/2, where RTT=t1-t0`.
 
-Therefore, to perform this calculation we use the ping program. Thus, the current application, `Local Process`, upon receiving the updated date/time from a remote application, executes the ping program on the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time. That's why we call this method `RTT Ping Average`.
+Therefore, to perform this calculation we use the ping program. Thus, the current application, `Local Process`, upon receiving the updated date/time from a remote application, executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (`T + RTT/2`). That's why we call this method `RTT Ping Average`.
 ***********************************************************************************************
 
 # Possibles errors
