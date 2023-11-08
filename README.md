@@ -162,7 +162,7 @@ Version: 4.0.3-4<br/>
 **************************************************************
 
 # Application Details: 
-1 - Trasmission Method, Figure 6; 
+1 - Transmission Method, Figure 6; 
 # Figure 6 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/transmissionLC.png)
 * The application can create DGRAM (UDP) IPv4 (Unicast, Multicast, and Broadcast) and IPv6 (Unicast and Multicast) sockets. A valid combination would be `Broadcast, IP Local Server - 0.0.0.0, IP Remote Server - <broadcast>, and Port 10001 (e.g., if you have a firewall this port must be open)`; 
@@ -194,6 +194,11 @@ Version: 4.0.3-4<br/>
 * The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 11.
 # Figure 11
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
+
+6 - Time Difference.
+* The time difference panel displays the date/time difference that was updated/synchronized in the local application and that was received from a remote application, Figure 12. 
+# Figure 12
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
 ***********************************************************************************************
 
 # Possibles errors
