@@ -199,6 +199,7 @@ Version: 4.0.3-4<br/>
 * The time difference panel displays the date/time difference that was updated/synchronized in the local application and that was received from a remote application, Figure 12. 
 # Figure 12
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
+* Figure 12 shows that the application synchronized and that the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
 ***********************************************************************************************
 
 # Possibles errors
