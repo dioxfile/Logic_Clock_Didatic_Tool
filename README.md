@@ -200,6 +200,15 @@ Version: 4.0.3-4<br/>
 # Figure 12
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
 * Figure 12 shows that the application synchronized and that the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
+
+7 - RTT Ping Average Delay.
+* The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
+* It works as follows:
+* (1) `Local Process` requests the time from `Remote Process` at time `t0`.
+* (2) After receiving the request from `Remote Process` prepare a response and append the time `T` from its own clock.
+* (3) `Local Process` receives the response at time `t1` and then sets its time to be `T + RTT/2, where RTT=t1-t0`.
+
+Therefore, to perform this calculation we use the ping program. Thus, the current application, `Local Process`, upon receiving the updated date/time from a remote application, executes the ping program on the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time. That's why we call this method `RTT Ping Average`.
 ***********************************************************************************************
 
 # Possibles errors
