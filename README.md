@@ -212,6 +212,12 @@ Therefore, to perform this calculation we use the ping program. Thus, upon recei
 # Figure 13
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/ping-LC.png)
 * Figure 13 shows the RTT value already divided by two.
+
+8 - Send Message Methods.
+* Messages can be sent automatically and manually as shown in Figure 14.
+# Figure 14.
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/buttons-LC.png)
+* Figure 15 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
 ***********************************************************************************************
 
 # Possibles errors
