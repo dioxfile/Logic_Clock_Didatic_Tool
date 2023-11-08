@@ -183,6 +183,12 @@ Version: 4.0.3-4<br/>
 # Figure 9
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-processesLC.png)
 * Figure 9 shows the local process, for instance, local default process/IP `0.0.0.0`, local process/IP `172.168.20.21`, and remote process/IP `172.168.20.96`.
+
+4 - Logic Clock Panel. 
+* The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP), in the case of sending only messages to itself (e.g., a single application on the network) and, also, all events from remote applications which came into contact with the current process, in the case of having more than one application on the network, Figure 10. 
+# Figure 10. 
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
+* Figure 10 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`.
 ***********************************************************************************************
 
 # Possibles errors
