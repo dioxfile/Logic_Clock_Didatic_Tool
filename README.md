@@ -182,6 +182,7 @@ Version: 4.0.3-4<br/>
 * The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. Useful when using transmission methods such as Multicast and Broadcast, Figure 9.
 # Figure 9
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-processesLC.png)
+* Figure 9 shows the local process, for instance, local default process/IP `0.0.0.0`, local process/IP `172.168.20.21`, and remote process/IP `172.168.20.96`.
 ***********************************************************************************************
 
 # Possibles errors
