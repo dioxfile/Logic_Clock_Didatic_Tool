@@ -211,6 +211,7 @@ Version: 4.0.3-4<br/>
 Therefore, to perform this calculation we use the ping program. Thus, the current application, `Local Process`, upon receiving the updated date/time from a remote application, executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 13.
 # Figure 13
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/ping-LC.png)
+* Figure 13 shows the RTT value already divided by two.
 ***********************************************************************************************
 
 # Possibles errors
