@@ -73,7 +73,7 @@ This application works as follows, imagine a scenario with three computers, Figu
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3.png)
 
 Why did we choose to send a message with the most current time via broadcast/multicast? The answer is that if we returned the message via unicast only to the message sender, the other machines that updated their times with it would not be aware that their times are outdated, as illustrated in Figure 6.
-# Figura 6
+# Figure 6
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4.png)
 
 # Prerequisites
