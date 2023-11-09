@@ -56,6 +56,12 @@ Its purpose is the synchronization of physical (e.g., CMOS clock) and logical cl
 ## Proposal Description 
 In this proposal Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, resulting in the misconfiguration of the physical clocks on computers. Consequently, when executing the application and transmitting a message across the network, the date and time of all computers linked to the network will be automatically synchronized based on the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs in less than 1 second.
 
+## Application Operation
+
+This application works as follows, imagine a scenario with three computers, Figure 2.
+# Figure 2
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/0.png)
+
 # Prerequisites
 * Pyhton3 (Or more)
 * Python3-wxgtk4.0
