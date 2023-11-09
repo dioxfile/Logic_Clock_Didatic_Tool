@@ -1,6 +1,7 @@
 # Logic_Clock_Didatic_Tool
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
+
 Code in Python to synchronize the computer clock using the [Lamport-WiKi](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method.
 This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages.
 ## Context
