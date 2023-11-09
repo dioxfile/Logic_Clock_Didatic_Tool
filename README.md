@@ -175,16 +175,16 @@ Version: 4.0.3-4<br/>
 ## How to install it in Windows 11 Enterprise (x86_64)?
 
 * On Windows 11 Enterprise or other version, install "vs_BuildTools" downloading it from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
-* After that, you need to run it as an administrator and check the following tools as shown in Figures 1, 2, and 3 (e.g., where the boxes are checked) <br/>
-## Figure 1
+* After that, you need to run it as an administrator and check the following tools as shown in Figures 7, 8, and 9 (e.g., where the boxes are checked) <br/>
+## Figure 7
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1MS.png)
-## Figure 2
+## Figure 8
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3ms.png)
-## Figure 3
+## Figure 9
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.png)
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
-* Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator as shown in Figure 4:<br/>
-## Figure 4
+* Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator as shown in Figure 10:<br/>
+## Figure 10
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4ms.png)
 * At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
 * If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
@@ -200,50 +200,50 @@ Version: 4.0.3-4<br/>
   `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
 * Windows (e.g., PowerShell prompt)<br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
-* After that, the following screen will appear (Figure 5): <br/>
-## Figure 5
+* After that, the following screen will appear (Figure 11): <br/>
+## Figure 11
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
 
 **************************************************************
 # Application Details: 
-1 - Transmission Method, Figure 6; 
-# Figure 6 
+1 - Transmission Method, Figure 12; 
+# Figure 12 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/transmissionLC.png)
 * The application can create DGRAM (UDP) IPv4 (Unicast, Multicast, and Broadcast) and IPv6 (Unicast and Multicast) sockets. A valid combination would be `Broadcast, IP Local Server - 0.0.0.0, IP Remote Server - <broadcast>, and Port 10001 (e.g., if you have a firewall this port must be open)`; 
 * It is possible to use any communication port as long as another application is not already using it; 
-* When clicking on the Bind IP/Port Button, for instance, the `Local Socket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`, Figure 7.
-# Figure 7
+* When clicking on the Bind IP/Port Button, for instance, the `Local Socket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`, Figure 13.
+# Figure 13
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/bindLC.png) 
 
 2 - Local Panel of Events. In the events panel, there are three types of events (Figure 8):
 * (1) The one that happens in the application itself, from it to itself. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself.
 * (2) Return via Multicast/Broadcast/Unicast. What happens when the local process returns the most current date/time to the remote process(es) (other applications on the network). Ex: `Send R:M/B/U...` which means Multicast/Broadcast/Unicast return, depending on the transmission method used.
-* (3) Update by Multicast/Broadcast/Unicast. What happens when the local application synchronizes its date/time through some remote process. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 8.
-# Figure 8
+* (3) Update by Multicast/Broadcast/Unicast. What happens when the local application synchronizes its date/time through some remote process. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
+# Figure 14
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
 
 3 - Hosts/Processes Panel. 
-* The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. Useful when using transmission methods such as Multicast and Broadcast, Figure 9.
-# Figure 9
+* The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. Useful when using transmission methods such as Multicast and Broadcast, Figure 15.
+# Figure 15
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-processesLC.png)
-* Figure 9 shows the local process, for instance, local default process/IP `0.0.0.0`, local process/IP `172.168.20.21`, and remote process/IP `172.168.20.96`.
+* Figure 15 shows the local process, for instance, local default process/IP `0.0.0.0`, local process/IP `172.168.20.21`, and remote process/IP `172.168.20.96`.
 
 4 - Logic Clock Panel. 
-* The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP), in the case of sending only messages to itself (e.g., a single application on the network) and, also, all events from remote applications which came into contact with the current process, in the case of having more than one application on the network, Figure 10. 
-# Figure 10. 
+* The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP), in the case of sending only messages to itself (e.g., a single application on the network) and, also, all events from remote applications which came into contact with the current process, in the case of having more than one application on the network, Figure 16. 
+# Figure 16 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
-* Figure 10 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`.
+* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`.
 
 5 - Local Physical Clock Display
-* The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 11.
-# Figure 11
+* The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 17.
+# Figure 17
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
 
 6 - Time Difference.
-* The time difference panel displays the date/time difference that was updated/synchronized in the local application and that was received from a remote application, Figure 12. 
-# Figure 12
+* The time difference panel displays the date/time difference that was updated/synchronized in the local application and that was received from a remote application, Figure 18. 
+# Figure 18
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
-* Figure 12 shows that the application synchronized and that the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
+* Figure 18 shows that the application synchronized and that the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
 
 7 - RTT Ping Average Delay.
 * The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
@@ -252,16 +252,16 @@ Version: 4.0.3-4<br/>
 * (2) The `Remote Process` after receiving the request prepare a response and append the time `T` from its own clock.
 * (3) `Local Process` receives the response at time `t1` and then sets its time to be `T + RTT/2, where RTT=t1-t0`.
 
-Therefore, to perform this calculation we use the ping program. Thus, upon receiving the updated date/time from a remote application, the current application, ' Local Process', executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 13.
-# Figure 13
+Therefore, to perform this calculation we use the ping program. Thus, upon receiving the updated date/time from a remote application, the current application, ' Local Process', executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 19.
+# Figure 19
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/ping-LC.png)
-* Figure 13 shows the RTT value already divided by two.
+* Figure 19 shows the RTT value already divided by two.
 
 8 - Send Message Methods.
-* Messages can be sent automatically and manually as shown in Figure 14.
-# Figure 14.
+* Messages can be sent automatically and manually as shown in Figure 20.
+# Figure 20.
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/buttons-LC.png)
-* Figure 15 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
+* Figure 20 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
 ***********************************************************************************************
 
 # Possibles errors
@@ -297,8 +297,8 @@ root ALL=(ALL:ALL) ALL<br/>
 * update error
 
 Obs: In some cases Debian, when new, in the updates configuration file "/etc/apt/sources.list", the line referring to the cdrom is not commented out, this causes an error at the time of the update and consequently when installing some programs and libraries with apt.
-It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security".
-
+It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 21.
+# Figure 21
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
 **[⬆ back to top](#Vector_Clock)**
