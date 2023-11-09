@@ -1,13 +1,23 @@
 # Logic_Clock_Didatic_Tool
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
-
 Code in Python to synchronize the computer clock using the [Lamport-WiKi](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method.
-
+This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages.
+## Context
 People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`, [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563).
 
-# Proposal Description.
-* This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages. Consequently, Lamport's algorithm is as follows:
+# Lamport's Logic Clock Algorithm
+In logical clocks, synchronization with the date/time does not need to be absolute. Furthermore, if two processes do not interact with each other, their clocks do not need to be synchronized. Thus, what happens before is taken into account, for example, two events of a process `Pi`, `a` and `b`, with `a` being the sending of a `msg` and `b` being receiving this same message is equivalent to saying that `a → b`. This way, all `Processes` agree that event `a` occurs first and then event `b` occurs; 
+Two situations: 
+* (1) `a` and `b` are from the same process, and a occurs before `b`, so `a → b` is true; 
+* (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before it is sent. 
+* The relationship between events `a → b` is transitive. Therefore, `a → b` and `b → c`, so `a → c`; 
+* Event `a` with time `C(a)` (everyone agrees); 
+* `a → b, then C(a) < C(b)`; 
+* Different processes (msg exchange); 
+* `C` always occurs forward; 
+* Time is corrected `+`, positively.  
+* Consequently, Lamport's algorithm is as follows:
 * (Step 1) Before the event (e.g., sending to network and delivery to app) `→ pi executes Ci ← Ci + 1`;
 * (Step 2) If `pi` sends a `msg m` to `pj`, adjust the timestamp of `m`, `ts(m)`, to equal to `Ci`, after having executed step 1;
 * (Step 3) Upon receiving `m`, `pj`, adjust the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
