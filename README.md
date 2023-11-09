@@ -63,11 +63,12 @@ This application works as follows, imagine a scenario with three computers, Figu
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/0.png)
 
 * In this scenario, the computer with the IP address 172.168.10.3 sends a message with its date/time via broadcast to the network. When computers 172.168.10.1 and 172.168.10.2 receive this message, they will behave as illustrated in Figure 3;
-Figure 3.
 # Figure 3
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1.png)
 
-* Neste ce
+* As shown in Figure 3, the computer with the IP address 172.168.10.2 updates its local time. However, computer 172.168.10.1 does not. This occurs because the time on computer 172.168.10.1 is more up-to-date, as depicted in Figure 4;
+# Figure 4
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2.png)
 
 # Prerequisites
 * Pyhton3 (Or more)
