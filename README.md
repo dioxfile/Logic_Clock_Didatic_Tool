@@ -62,7 +62,7 @@ This application works as follows, imagine a scenario with three computers, Figu
 # Figure 2
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/0.png)
 
-* In this scenario, the computer with the IP address 172.168.10.3 sends a message with a date/time via broadcast to the network. When computers 172.168.10.1 and 172.168.10.2 receive this message, they will behave as illustrated in Figure 3;
+* In this scenario, the computer with the IP address 172.168.10.3 sends a message with its date/time via broadcast to the network. When computers 172.168.10.1 and 172.168.10.2 receive this message, they will behave as illustrated in Figure 3;
 Figure 3.
 # Figure 3
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1.png)
