@@ -23,7 +23,7 @@ Consequently, Lamport's algorithm is as follows:
 * (Step 1) Before some event (e.g. sending to network and delivery to application) `pi executes Ci ← Ci + 1`;
 * (Step 2) If `pi` sends a `msg m` to `pj`, adjust the timestamp of `m`, `ts(m)`, to equal to `Ci`, after having executed step 1;
 * (Step 3) Upon receiving `m`, `pj`, adjust the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
-* Therefore, each `pi` maintains local counter `Ci`, Figure 6.
+Therefore, each `pi` maintains a local counter `Ci`, Figure 6.
 # Figure 6
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
 
