@@ -260,6 +260,9 @@ Therefore, to perform this calculation we use the ping program. Thus, upon recei
 # Figure 20.
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/buttons-LC.png)
 * Figure 20 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
+
+## Final Application GUI
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
 ***********************************************************************************************
 
 # Possibles errors
