@@ -72,7 +72,7 @@ This application works as follows, imagine a scenario with three computers, Figu
 
 * Consequently, the computer at 172.168.10.1 will broadcast a message to the network, containing the most up-to-date time. Consequently, all other computers will update their times with this message. Thus, complete synchronization occurs, as depicted in Figure 5;
 # Figure 5
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3.png)
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3.jpeg)
 
 # Prerequisites
 * Pyhton3 (Or more)
