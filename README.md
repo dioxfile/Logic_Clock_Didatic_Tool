@@ -54,7 +54,7 @@ Its purpose is the synchronization of physical (e.g., CMOS clock) and logical cl
 * __Test realize:__ The tests were performed in a _testbed_ with 8 computers in the _Laboratory of Computer Networks (UNEMAT) [UNEMAT-BRAZIL](https://barradobugres.unemat.br/faculdades/facet/curso/ciencia-da-computacao-bacharelado-graduacao-presencial-noturno-barra-do-bugres), and all the computers of the laboratory were configured in a network class A 113.167.9.0/24. In order to synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
 
 ## Proposal Description 
-
+"Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, resulting in the misconfiguration of the physical clocks on computers. Consequently, when executing the application and transmitting a message across the network, the date and time of all computers linked to the network will be automatically synchronized based on the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs in less than 1 second."
 
 # Prerequisites
 * Pyhton3 (Or more)
