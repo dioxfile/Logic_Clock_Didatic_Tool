@@ -32,7 +32,7 @@ Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
 1. [Methodology](#methodology)
 1. [Prerequisites](#prerequisites)
 1. [What do you need to use this software?](#What-do-you-need-to-use-this-software)
-1. [How to install this application in your system?](#How-to-install-this-application-in-your-system?)
+1. [How to install this application in your system?](#How-to-install-this-application-in-your-system)
 1. [Possibles errors](#possibles-errors)
 1. [How to use it?](#How-to-use-it)
 
