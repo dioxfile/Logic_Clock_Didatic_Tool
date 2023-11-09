@@ -8,6 +8,7 @@ People use physical time to order events. For example, we say that an event at 8
 
 # Lamport's Logic Clock Algorithm
 In logical clocks, synchronization with the date/time does not need to be absolute. Furthermore, if two processes do not interact with each other, their clocks do not need to be synchronized. Thus, what happens before is taken into account, for example, two events of a process `Pi`, `a` and `b`, with `a` being the sending of a `msg` and `b` being receiving this same message is equivalent to saying that `a → b`. This way, all `Processes` agree that event `a` occurs first and then event `b` occurs; 
+
 Two situations: 
 * (1) `a` and `b` are from the same process, and a occurs before `b`, so `a → b` is true; 
 * (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before it is sent. 
