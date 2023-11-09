@@ -28,8 +28,6 @@ Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
 # Figure 1
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
 
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
-
 1. [What are the Possible Applications?](#What-are-the-Possible-Applications)
 1. [Methodology](#methodology)
 1. [Prerequisites](#prerequisites)
