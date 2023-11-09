@@ -6,9 +6,16 @@ Code in Python to synchronize the computer clock using the [Lamport-WiKi](https:
 
 People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. This APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`, [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563).
 
+# Proposal Description.
+* This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages. Consequently, Lamport's algorithm is as follows:
+* (Step 1) Before the event (e.g., sending to network and delivery to app) `→ pi executes Ci ← Ci + 1`;
+* (Step 2) If `pi` sends a `msg m` to `pj`, adjust the timestamp of `m`, `ts(m)`, to equal to `Ci`, after having executed step 1;
+* (Step 3) Upon receiving `m`, `pj`, adjust the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
+* Therefore, each `pi` maintains local counter `Ci`, Figure 6.
+# Figure 6
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
-<!-- ![animacao](https://user-images.githubusercontent.com/32453979/47199699-d9c90e00-d340-11e8-94b7-6b609d44561e.gif) -->
 
 1. [What are the Possible Applications?](#What-are-the-Possible-Applications)
 1. [Methodology](#methodology)
@@ -160,15 +167,6 @@ Version: 4.0.3-4<br/>
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
 
 **************************************************************
-# Proposal Description.
-* This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages. Consequently, Lamport's algorithm is as follows:
-* (Step 1) Before the event (e.g., sending to network and delivery to app) `→ pi executes Ci ← Ci + 1`;
-* (Step 2) If `pi` sends a `msg m` to `pj`, adjust the timestamp of `m`, `ts(m)`, to equal to `Ci`, after having executed step 1;
-* (Step 3) Upon receiving `m`, `pj`, adjust the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
-* Therefore, each `pi` maintains local counter `Ci`, Figure 6.
-# Figure 6
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
-
 # Application Details: 
 1 - Transmission Method, Figure 6; 
 # Figure 6 
