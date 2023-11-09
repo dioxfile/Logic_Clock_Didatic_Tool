@@ -18,7 +18,8 @@ In this context there are two situations:
 * Different processes (msg exchange); 
 * `C` always occurs forward; 
 * Time is corrected `+`, positively.  
-* Consequently, Lamport's algorithm is as follows:
+
+Consequently, Lamport's algorithm is as follows:
 * (Step 1) Before the event (e.g., sending to network and delivery to app) `→ pi executes Ci ← Ci + 1`;
 * (Step 2) If `pi` sends a `msg m` to `pj`, adjust the timestamp of `m`, `ts(m)`, to equal to `Ci`, after having executed step 1;
 * (Step 3) Upon receiving `m`, `pj`, adjust the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
