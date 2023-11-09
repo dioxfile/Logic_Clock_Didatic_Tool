@@ -53,6 +53,9 @@ Its purpose is the synchronization of physical (e.g., CMOS clock) and logical cl
 * __Test hardware:__ Intel (R) Pentium 4 (TM) 3.0 GHz, 1 GB RAM, HD 40 GB, and 10/100 Fast Ethernet network.
 * __Test realize:__ The tests were performed in a _testbed_ with 8 computers in the _Laboratory of Computer Networks (UNEMAT) [UNEMAT-BRAZIL](https://barradobugres.unemat.br/faculdades/facet/curso/ciencia-da-computacao-bacharelado-graduacao-presencial-noturno-barra-do-bugres), and all the computers of the laboratory were configured in a network class A 113.167.9.0/24. In order to synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
 
+## Proposal Description 
+
+
 # Prerequisites
 * Pyhton3 (Or more)
 * Python3-wxgtk4.0
