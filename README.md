@@ -303,7 +303,7 @@ It is advisable to comment on any lines referring to the use of "cdrom" sources,
 # Figure 21
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
-**[⬆ back to top](#Vector_Clock)**
+**[⬆ back to top](#Logic_Clock_Didatic_Tool)**
 
 
 
