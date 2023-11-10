@@ -215,7 +215,7 @@ Version: 4.0.3-4<br/>
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/bindLC.png) 
 
 2 - Local Panel of Events. In the events panel, there are three types of events (Figure 8):
-* (1) The one that happens in the application itself, from it to itself. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself.
+* (1) The one that happens in the application itself, from it to itself, and also to other computers on the network. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself.
 * (2) Return via Multicast/Broadcast/Unicast. What happens when the local process returns the most current date/time to the remote process(es) (other applications on the network). Ex: `Send R:M/B/U...` which means Multicast/Broadcast/Unicast return, depending on the transmission method used.
 * (3) Update by Multicast/Broadcast/Unicast. What happens when the local application synchronizes its date/time through some remote process. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
 # Figure 14
