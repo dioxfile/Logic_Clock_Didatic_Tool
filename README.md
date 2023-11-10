@@ -64,7 +64,7 @@ This application works as follows, imagine a scenario with three computers, Figu
 # Figure 3
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1.png)
 
-* As shown in Figure 3, the computer with the IP address 172.168.10.2 updates its local time. However, computer 172.168.10.1 does not. This occurs because the time on computer 172.168.10.1 is more up-to-date, as depicted in Figure 4;
+* As shown in Figure 4, the computer with the IP address 172.168.10.2 updates its local time. However, computer 172.168.10.1 does not. This occurs because the time on computer 172.168.10.1 is more up-to-date, as depicted in Figure 4;
 # Figure 4
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2.png)
 
