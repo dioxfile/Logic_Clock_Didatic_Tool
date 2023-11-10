@@ -189,7 +189,7 @@ Version: 4.0.3-4<br/>
 * If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
 * If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSgined -Scope CurrentUser` <br/>
 * After that, download the INSTALL.ps1 script (e.g., from GitHub) and run it at the PowerShell command prompt, for example: `.\INSTALL.ps1` <br/>
-* After installing python3 and all necessary libraries (e.g., Pyhton3, wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
+* After installing python3 and all necessary libraries (e.g., wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
 * Now go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., clicking it twice). <br/>
 
 # How to use it?
