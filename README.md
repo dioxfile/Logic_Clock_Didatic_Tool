@@ -266,11 +266,11 @@ Therefore, to perform this calculation we use the ping program. Thus, upon recei
 * Figure 20 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
 
 # Figura 21
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
 * Figure 21 depicts the application running in the Linux System.
 
 # Figura 22
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
 * Figure 23 depicts the application running in Windows System via VMware WorkStation 17 Player.
 ***********************************************************************************************
 
