@@ -265,8 +265,13 @@ Therefore, to perform this calculation we use the ping program. Thus, upon recei
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/buttons-LC.png)
 * Figure 20 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
 
-## Final Application GUI
+# Figura 21
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
+* Figure 21 depicts the application running in the Linux System.
+
+# Figura 22
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
+* Figure 23 depicts the application running in Windows System via VMware WorkStation 17 Player.
 ***********************************************************************************************
 
 # Possibles errors
@@ -302,8 +307,8 @@ root ALL=(ALL:ALL) ALL<br/>
 * update error
 
 Obs: In some cases Debian, when new, in the updates configuration file "/etc/apt/sources.list", the line referring to the cdrom is not commented out, this causes an error at the time of the update and consequently when installing some programs and libraries with apt.
-It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 21.
-# Figure 21
+It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 23.
+# Figure 23
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
 **[⬆ back to top](#Logic_Clock_Didatic_Tool)**
