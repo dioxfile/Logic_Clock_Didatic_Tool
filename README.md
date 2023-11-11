@@ -278,7 +278,7 @@ Therefore, to perform this calculation we use the ping program. Thus, upon recei
 
 * If any module for unknown reasons has not been installed
 
-For any module error, you may have to review the "HOW TO USE" session and manually install each module in sequence according to the tutorial. Follow steps 1 through 10.2.<br/>
+For any module error, you may have to review the "`How to install this application in your system?`" session and manually install each module in sequence according to the tutorial. Follow all steps.<br/>
 
 In the Debian system, you may have a user error<br/>
 If you get the error "./INSTALL.sh: sudo: not found". By default, sudo is not installed, but you can install it. <br/>
