@@ -156,13 +156,13 @@ Version: 4.0.3-4<br/>
 `$sudo apt install python3-pip`
 `$sudo pip3 install ipaddr`<br/>
 
-4. DOWNLOAD NETIFACES<br/>
+4. INSTALL NETIFACES<br/>
 `$sudo apt install python3-netifaces`
 
 5. INSTALL DATEUTIL<br/>
 `sudo apt install python3-dateutil`<br/>
 
-6. DOWNLOAD PUBSUB<br/>
+6. INSTALL PUBSUB<br/>
 `sudo apt install python3-pubsub`<br/>
 
 ***********************************************************************************************
