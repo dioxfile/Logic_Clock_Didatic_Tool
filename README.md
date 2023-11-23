@@ -17,7 +17,7 @@ In this context there are two situations:
 * `a → b, then C(a) < C(b)`; 
 * Different processes (msg exchange); 
 * `C` always occurs forward; 
-* Time is corrected `+`, positively.  
+* Time is corrected positively (`+`).  
 
 Consequently, Lamport's algorithm is as follows:
 * (Step 1) Before some event (e.g., sending to network and delivery to application) `pi executes Ci ← Ci + 1`;
