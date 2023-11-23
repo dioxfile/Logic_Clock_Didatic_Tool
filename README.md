@@ -13,7 +13,7 @@ In this context there are two situations:
 * (1) `a` and `b` are from the same process, and `a` occurs before `b`, so `a → b` is true; 
 * (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before it is sent. 
 * The relationship between events `a → b` is transitive. Therefore, `a → b` and `b → c`, so `a → c`; 
-* Event `a` with time `C(a)` (everyone agrees); 
+* Event `a` has a clock `C(a)` that everyone agrees on;; 
 * `a → b, then C(a) < C(b)`; 
 * Different processes (msg exchange); 
 * `C` always occurs forward; 
