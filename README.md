@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
-Code in Python to synchronize the computer clock using the [Lamport-WIKI](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method. This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it basically applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages.
+Code in Python to synchronize the computer clock using the [Lamport-WIKI](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method. This application is used to teach Clock Synchronization in Computer Science Course subjects, for example, Distributed Systems, and it applies the concept of Lamport Logical Clocks to Physical Computer clocks and also to events occurring on these computers such as sending and receiving of messages.
 ## Context
 People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. Thus, this APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`, [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563).
 
@@ -49,7 +49,7 @@ Its purpose is the synchronization of physical (e.g., CMOS clock) and logical cl
 * RAM: 7956MiB <br/> 
 
 * __Hardware:__ Intel (R) Pentium 4 (TM) 3.0 GHz, 1 GB RAM, HD 40 GB, and 10/100 Fast Ethernet network.
-* __Tests:__ The tests were performed in a _testbed_ with 8 computers in the Laboratory of Computer Networks (UNEMAT) [UNEMAT-BRAZIL](https://barradobugres.unemat.br/faculdades/facet/curso/ciencia-da-computacao-bacharelado-graduacao-presencial-noturno-barra-do-bugres), and all the computers of the laboratory were configured in a network class A 172.168.10.0/24. In order to synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
+* __Tests:__ The tests were performed in a _testbed_ with 8 computers in the Laboratory of Computer Networks (UNEMAT) [UNEMAT-BRAZIL](https://barradobugres.unemat.br/faculdades/facet/curso/ciencia-da-computacao-bacharelado-graduacao-presencial-noturno-barra-do-bugres), and all the computers of the laboratory were configured in a network class A 172.168.10.0/24. To synchronize, the software takes into account the time correct at the highest hour. In this way, the clocks of the test machines were manually and randomly delayed.
 
 ## Proposal Description 
 In this proposal Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, resulting in the misconfiguration of the physical clocks on computers. Consequently, when executing the application and transmitting a message across the network, the date and time of all computers linked to the network will be automatically synchronized based on the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs in less than 1 second.
@@ -285,8 +285,8 @@ First enable su-mode:<br/>
 Install sudo<br/>
 `#apt install sudo -y`<br/>
 
-After that, you would need to play around with users and permissions. Give sudo right to your own user.<br/>
-`#usermod -aG sudo yoursername`<br/>
+After that, you would need to play around with users and permissions. Give sudo right to your user.<br/>
+`#usermod -aG sudo username`<br/>
 
 Edit the file 'sudoers'<br/>
 `#nano /etc/sudoers`<br/>
@@ -294,10 +294,10 @@ Edit the file 'sudoers'<br/>
 #User privilege specification<br/>
 ```shellscript
 root ALL=(ALL:ALL) ALL<br/>
-"yoursername" ALL=(ALL:ALL) ALL <br/><br/>
+"username" ALL=(ALL:ALL) ALL <br/><br/>
 ```
 #The top line was the one we added. <br/>
-#Replace 'yoursername' with the name of your user who wants to have root permission<br/>
+#Replace 'username' with the name of your user who wants to have root permission<br/>
 `#exit`
 
 * update error
