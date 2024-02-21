@@ -43,7 +43,7 @@ Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
 Its purpose is the synchronization of physical (e.g., CMOS clock) and logical clocks of computers connected to the same network.
 
 ## Methodology.
-* OS: Debian-Based Linux Systems and Windows 11 Enterprise.
+* OS: Debian-Based Linux Systems and Windows 10 and/or 11 Enterprise Edition.
 * CPU: Intel Core i7 Q 740 @ 8x 1.734GHz
 * GPU: GeForce GT 425M
 * RAM: 7956MiB <br/> 
@@ -88,12 +88,12 @@ Why did we choose to return a message with the most current time via broadcast/m
 
 # What do you need to use this software?
 * You will need a GNU/Linux Ubuntu 20.04 Focal; Linux Mint 20.1 Ulyssa or other Linux system.
-* And/Or Windows 11 Enterprise.
+* And/Or Windows 10 and/or 11 Enterprise Edition.
 * Internet connection for download.
 
 Probably the software will also work on any other SO, but it has only been tested on the systems listed above.
 
-## For x86_64 Debian-based distributions and Windows 11 Enterprise<br/> 
+## For x86_64 Debian-based distributions and Windows 10 and/or 11 Enterprise Edition <br/> 
 These are the necessary packages and modules.
 The version may not necessarily be the same, but these versions have been tested and confirmed the operation.
 
@@ -167,9 +167,9 @@ Version: 4.0.3-4<br/>
 
 ***********************************************************************************************
 
-## How to install it in Windows 11 Enterprise (x86_64)?
+## How to install it in Windows 10 and/or 11 Enterprise Edition (x86_64)?
 
-* On Windows 11 Enterprise or other version, install "vs_BuildTools" downloading it from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
+* On Windows 10 and/or 11 Enterprise or other versions, install "vs_BuildTools" by downloading it from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
 * After that, you need to run it as an administrator and check the following tools as shown in Figures 7, 8, and 9 (e.g., where the boxes are checked) <br/>
 ## Figure 7
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1MS.png)
