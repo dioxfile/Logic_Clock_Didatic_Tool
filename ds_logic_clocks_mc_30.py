@@ -41,6 +41,7 @@ import netifaces, ipaddr #catch the ip default gateway an apply mask to IP Addre
 import platform #ADD by hernandes.bruno@unemat.br 
 import locale #ADD by hernandes.bruno@unemat.br 
 import re #ADD by hernandes.bruno@unemat.br
+import ast
 #Global Vars
 MAX_BYTES = 65535
 #=== Countdown Thread: it allows to send a message each three seconds ===
@@ -107,8 +108,6 @@ class CountDown(threading.Thread):
             data_a = datetime.now()
             #format date/time
             self.texto3 = data_a.strftime("%m/%d/%Y %H:%M:%S.%f")
-            #Christian Algorithm SND
-            varglobal.SND_Christian = data_a
             #coding date/time
             message = self.texto3.encode('ascii')+b" Normal" 
             #Count and log transmission event -> Step one Lamport Algorithm
@@ -191,7 +190,7 @@ class Socket_RL(threading.Thread):
 
     #-------------------------------------------------------------------
     #RTT calc to measure delay, based average PING rtt
-    #--------------------------------------------------------------
+    #-------------------------------------------------------------------
     def rtt(self, ip):
         system = platform.system()
         ip_ = str(ip[0])
@@ -220,7 +219,21 @@ class Socket_RL(threading.Thread):
         if output == "":
             output= 0.00001
         return output        
+        
     #-------------------------------------------------------------------
+    #Tests whether the IP is a valid IPv4/IPv6
+    #-------------------------------------------------------------------
+    def validate_ip_address(self, ip_string):
+        msg = "000"
+        try:
+            ip_object = ipaddr.IPv4Address(ip_string)
+            msg = "True"
+        except ValueError:
+            msg = "False"
+        finally:
+            return msg
+    #-------------------------------------------------------------------
+            
     #Thread called by main Thread
     def run(self):
         """Run "server" """        
@@ -246,19 +259,25 @@ class Socket_RL(threading.Thread):
                 for k,val in list(C_i.items()):
                     self.ord_lv.append((k,max(val)))
                 self.ord_lv.sort()
-                wx.CallAfter(Publisher.sendMessage, "logic", message=str(self.ord_lv)+"\n")
+                wx.CallAfter(Publisher.sendMessage, "logic", message=str(self.ord_lv)+"\n")             
                 
                 #Receive event internal count -> Step three Lamport Algorithm
-                varglobal.soma +=1
-                
                 """Logic clock algorithm""" 
                 ############################
+                if str(self.validate_ip_address(self.catch_ip(self.address)))=="False":
+                    IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']
+                else:
+                    IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[2][0]['addr']		
                 interPip = self.catch_ip(self.address)
                 elem = str(interPip)
-                if self.a != self.catch_ip(self.address):
-                    vector = int(l[0]) #"""New Change for Python3"""
+                #Tests whether the IP is Remote or Local
+                if IP_LOCAL != self.catch_ip(self.address):
+                    vector = int(l[0]) #"""New Change for Python3"""               
+                    varglobal.soma = max(varglobal.soma, vector)+1
+                    wx.CallAfter(Publisher.sendMessage, "logic", message=str(self.ord_lv)+"\n")
                 else:
                     vector = int(varglobal.soma)
+                wx.CallAfter(Publisher.sendMessage, "logic", message=str(self.ord_lv)+"\n")
                 v.setdefault(interPip, [])
                 v[interPip].append(vector)
                 v.setdefault(self.a, [])
@@ -365,7 +384,7 @@ class Socket_RL(threading.Thread):
                         #Publisher Event Warning in Panel received MS
                         wx.CallAfter(Publisher.sendMessage, "vector", message=str(self.ord_v)+"\n")
                         wx.CallAfter(Publisher.sendMessage, "logic", message=str(self.ord_lv)+"\n")
-
+                    
             except socket.error as msg:
                 #Publisher Event Warning in Panel received MS
                 wx.CallAfter(Publisher.sendMessage, "main_event", message="RECEIVING ERROR (S), "+str(msg)+"\n")
@@ -400,8 +419,6 @@ class Socket_RL(threading.Thread):
             #Catch new date/time (updated)
             self.tex = datetime.now()
             self.d_time = self.tex.strftime("%m/%d/%Y %H:%M:%S.%f")
-            #Christian Algorithm SND
-            varglobal.SND_Christian = self.tex
             messag = self.d_time.encode('ascii')+b" R:M/B/U"
             #Count and log transmission event -> Step one Lamport Algorithm
             varglobal.soma +=1
@@ -564,7 +581,7 @@ class MyPanel(wx.Frame):
     #Start Thread_Count
     def Tcount(self,evt):
         self.b = CountDown(self)
-        self.b.setDaemon(True)
+        self.b.deamon=True
         self.b.start()
         self.countD.Enable(False)
         self.btn.Enable(False)
@@ -624,7 +641,12 @@ class MyPanel(wx.Frame):
         Catch data from thread and updates the logic clock event display
         """
         self.textLC.Clear()
-        self.textLC.write(message)
+        string = message
+        SK = ast.literal_eval(string)
+        if int(SK[0][1]) < int(varglobal.soma):
+            self.textLC.write("[('"+SK[0][0]+"',"+str(varglobal.soma)+")]")
+        else:
+            self.textLC.write(message)
 
     #----------------------------------------------------------------------
     #Update RTT Display 
@@ -698,7 +720,7 @@ class MyPanel(wx.Frame):
                     MyPanel.porta_classe = self.porta_
                     MyPanel.ip_unicast = self.c_
                     self.s = Socket_RL(self)
-                    self.s.setDaemon(True)
+                    self.s.deamon=True
                     self.s.start()
                     self.countD.Enable(True)
                     self.btn.Enable(True)
@@ -723,6 +745,9 @@ compatible with the sending method or IP not configured!!!")
                                           ipaddr.IPv4Address(str(self.i.GetValue().lower()))):
                         self.Warn("Warning! This IP is not a multicast and/or server IP address is different \
 from the client IP address!!!")
+                    elif str(self.i.GetValue().lower()) == '224.0.0.1':
+                        self.Warn("Warning! All hosts and multicast groups assigned to this address will receive \
+packets, making it unsuitable for testing purposes!!!")
                     else:
                         self.ip_ = str(self.i.GetValue().lower())
                         self.c_ = str(self.c.GetValue().lower()) 
@@ -731,7 +756,7 @@ from the client IP address!!!")
                         MyPanel.porta_classe = self.porta_
                         MyPanel.ip_unicast = self.c_
                         self.s = Socket_RL(self)
-                        self.s.setDaemon(True)
+                        self.s.deamon=True
                         self.s.start()
                         self.countD.Enable(True)
                         self.btn.Enable(True)
@@ -761,7 +786,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                         MyPanel.porta_classe = self.porta_
                         MyPanel.ip_unicast = self.c_
                         self.s = Socket_RL(self)
-                        self.s.setDaemon(True)
+                        self.s.deamon=True
                         self.s.start()
                         self.countD.Enable(True)
                         self.btn.Enable(True)
@@ -794,7 +819,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                         MyPanel.porta_classe = self.porta_
                         MyPanel.ip_unicast = self.c_
                         self.s = Socket_RL(self)
-                        self.s.setDaemon(True)
+                        self.s.deamon=True
                         self.s.start()
                         self.countD.Enable(True)
                         self.btn.Enable(True)
@@ -825,7 +850,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                         MyPanel.porta_classe = self.porta_
                         MyPanel.ip_unicast = self.c_
                         self.s = Socket_RL(self)
-                        self.s.setDaemon(True)
+                        self.s.deamon=True
                         self.s.start()
                         self.countD.Enable(True)
                         self.btn.Enable(True)
@@ -875,13 +900,11 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             data_a = datetime.now()
             #format date/time
             self.texto = data_a.strftime("%m/%d/%Y %H:%M:%S.%f")
-            #Christian Algorithm SND
-            varglobal.SND_Christian = data_a
             #coding date/time
             message = self.texto.encode('ascii')+b" Normal"
             #Count and log transmission event -> Step one Lamport Algorithm
             varglobal.soma += 1
-             #Step two Lamport Algorithm
+            #Step two Lamport Algorithm
             message += b" "+str(varglobal.soma).encode('ascii')
             #sending date/time to others process
             self.client.sendto(message,(IP_, self.porta_))
@@ -926,6 +949,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             #format date/time
             close_msg = data_close.strftime("%m/%d/%Y %H:%M:%S.%f")
             msg_c = close_msg.encode('ascii')+b" CLOSE" 
+            
             #Count and log transmission event -> Step one Lamport Algorithm
             varglobal.soma += 1
             #Step two Lamport Algorithm
@@ -955,7 +979,5 @@ if __name__ == "__main__":
     frame.Press_u.Enable(False)
     frame.stop.Enable(False)
     frame.Info("WARNING!!! Before send a message/synchronize, please verify Transmission Method, \
-communication ports and IP Version!")
+communication ports, and IP Version!")
     app.MainLoop()
-    
-
