@@ -15,7 +15,6 @@ In this context there are two situations:
 * The relationship between events `a → b` is transitive. Therefore, `a → b` and `b → c`, so `a → c`; 
 * Event `a` has a clock `C(a)` that everyone agrees on; 
 * `a → b, then C(a) < C(b)`; 
-* Different processes (msg exchange); 
 * `C` always occurs forward; 
 * Time is corrected positively (`+`).  
 
