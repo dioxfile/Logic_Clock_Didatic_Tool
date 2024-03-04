@@ -219,7 +219,7 @@ Version: 4.0.3-4<br/>
 * The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP), in the case of sending only messages to itself (e.g., a single application on the network) and, also, all events from remote applications which came into contact with the current process, in the case of having more than one application on the network, Figure 16. 
 # Figure 16 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
-* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`.
+* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`. For example, if two processes pi and pj, on different nodes, exchange messages (e.g., events a and b) and if the logical clock of the sending process is 8 (eg., `Ci(a)==8`) this process will increment its clock of 1 (e.g., `Ci(a)=Ci(a+1))`, `Ci(a)==9`, and after that, it will match the time stamp of the message to be sent equal to `Ci(a)` (e.g., `tsi(mi)==Ci(a)`) and will send the message to process pj. Thus, process pj upon receiving the message will perform the following calculation: `Cj=MAX{Cj, tsi(mi)} + 1`. Therefore, if `Cj's` logical clock is equal to 5, then `Cj's` clock value will be, `Cj = MAX{5, 9} + 1 --> Cj = 10`.
 
 5 - Local Physical Clock Display
 * The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 17.
