@@ -219,15 +219,15 @@ Version: 4.0.3-4<br/>
 * The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP), in the case of sending only messages to itself (e.g., a single application on the network) and, also, all events from remote applications which came into contact with the current process, in the case of having more than one application on the network, Figure 16. 
 # Figure 16 
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
-* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`. For example, if two processes `pi` and `pj`, on different nodes, exchange messages (e.g., events a and b) and if the logical clock of the sending process is 8 (eg., `Ci(a)==8`) this process will increment its clock of 1 (e.g., `Ci(a)=Ci(a)+1)`, `Ci(a)==9`, and after that, it will match the time stamp of the message to be sent equal to `Ci(a)` (e.g., `tsi(mi)==Ci(a)`) and will send the message to process pj. Thus, process pj upon receiving the message will perform the following calculation: `Cj=MAX{Cj, tsi(mi)} + 1`. Therefore, if `Cj's` logical clock is equal to 5, then `Cj's` clock value will be, `Cj = MAX{5, 9} + 1 --> Cj = 10`.
+* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`. For example, if two processes `pi` and `pj`, on different nodes, exchange messages (e.g., events a and b) and if the logical clock of the sending process is 8 (eg., `Ci(a)==8`) this process will increment its clock of 1 (e.g., `Ci(a)=Ci(a)+1)`, `Ci(a)==9`, and after that, it will match the time stamp of the message to be sent equally to `Ci(a)` (e.g., `tsi(mi)==Ci(a)`) and will send the message to process pj. Thus, process pj will perform the following calculation upon receiving the message: `Cj=MAX{Cj, tsi(mi)} + 1`. Therefore, if `Cj's` logical clock is equal to 5, then `Cj's` clock value will be `Cj = MAX{5, 9} + 1 --> Cj = 10`.
 
 5 - Local Physical Clock Display
-* The Physical clock is used to show the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 17.
+* The Physical clock shows the local time configured on the computer running the application. This way, if the user changes the local time on the computer, the application will update the time instantly, Figure 17.
 # Figure 17
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
 
 6 - Time Difference.
-* The time difference panel displays the date/time difference that was updated/synchronized in the local application and that was received from a remote application, Figure 18. 
+* The time difference panel displays the date/time difference that was updated/synchronized in the local application and received from a remote application, Figure 18. 
 # Figure 18
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
 * Figure 18 shows that the application synchronized and that the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
@@ -236,7 +236,7 @@ Version: 4.0.3-4<br/>
 * The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
 * It works as follows:
 * (1) `Local Process` requests the time from `Remote Process` at time `t0`.
-* (2) The `Remote Process` after receiving the request prepare a response and append the time `T` from its own clock.
+* (2) The `Remote Process` after receiving the request prepare a response and append the time `T` from its clock.
 * (3) `Local Process` receives the response at time `t1` and then sets its time to be `T + RTT/2, where RTT=t1-t0`.
 
 Therefore, to perform this calculation we use the ping program. Thus, upon receiving the updated date/time from a remote application, the current application, ' Local Process', executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 19.
