@@ -24,7 +24,7 @@
   **************************************************************************"""
 import wx, subprocess # GUI Widgets and record command in var
 import wx.lib.scrolledpanel as scrolled
-import socket, os, sys, struct # IPC: socket; Command date Linux: to alter date/time and error sys; and convert string to packet
+import socket, os, sys, struct # IPC: socket; Command date Linux: to alter date/time and error sys, and convert string to packet
 from datetime import datetime, timedelta # Basic date and time types
 from time import gmtime, strftime # Format date type 
 import time #To use in Countdown Class
@@ -44,7 +44,7 @@ import re #ADD by hernandes.bruno@unemat.br
 import ast
 #Global Vars
 MAX_BYTES = 65535
-#=== Countdown Thread: it allows to send a message each three seconds ===
+#=== Countdown Thread: it allows to send a message every three seconds ===
 """Based on: https://goo.gl/vLDlOs"""
 class CountDown(threading.Thread):
     def __init__(self, parent):
@@ -135,7 +135,7 @@ class Socket_RL(threading.Thread):
         self._stopevent = threading.Event()
         self.a = MyPanel.ip_classe #Local Server
         self.b = MyPanel.porta_classe
-        self.uni = MyPanel.ip_unicast #Send message to this IP
+        self.uni = MyPanel.ip_unicast #Send a message to this IP
         try:
             addrinfo = socket.getaddrinfo(self.a, None)[0]
             self.sock = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
@@ -189,7 +189,7 @@ class Socket_RL(threading.Thread):
         return lista[0]+" "+lista[1]
 
     #-------------------------------------------------------------------
-    #RTT calc to measure delay, based average PING rtt
+    #RTT calc to measure delay, based on average PING rtt
     #-------------------------------------------------------------------
     def rtt(self, ip):
         system = platform.system()
@@ -264,8 +264,12 @@ class Socket_RL(threading.Thread):
                 #Receive event internal count -> Step three Lamport Algorithm
                 """Logic clock algorithm""" 
                 ############################
+                system = platform.system()
                 if str(self.validate_ip_address(self.catch_ip(self.address)))=="False":
-                    IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']
+                    if system == "Windows":
+                        IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[23][0]['addr']
+                    else:
+                        IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']
                 else:
                     IP_LOCAL=netifaces.ifaddresses(netifaces.gateways()[2][0][1])[2][0]['addr']		
                 interPip = self.catch_ip(self.address)
@@ -298,7 +302,7 @@ class Socket_RL(threading.Thread):
                 ################################
                 """End vector clock algorithm"""
                 
-                #Catch lacal date/time
+                #Catch local date/time
                 data_local = datetime.now()
                 #Extract IP from remote socket
                 self.from_ = self.catch_ip(self.address)
@@ -312,7 +316,7 @@ class Socket_RL(threading.Thread):
                 remote_date_ = parser.parse(self.only_dt(self.text))
                 #Test if msg arrived from remote client
                 if (self.from_ != self.local_) and (self.from_ != self.local_sock) and (self.from_ != self.a):
-                    #Comparison local date/time and remote date/time
+                    #Comparison of local date/time and remote date/time
                     self.LOCAL = float(((time.mktime(data_local.timetuple())*1000)/1000)/1000)
                     self.REMOTE = float(((time.mktime(remote_date_.timetuple())*1000)/1000)/1000)                                      
                     
@@ -337,7 +341,7 @@ class Socket_RL(threading.Thread):
                         #PING RTT Method (By Diogenes)
                         OLD_H = datetime.now()
                         
-                        # Approximate Time of Propagation (ATP), based average PING RTT
+                        # Approximate Time of Propagation (ATP), based on average PING RTT
                         ATP = float(self.rtt(self.address))
                         NOW_H = datetime.now()
                         time_diff= OLD_H - NOW_H
@@ -432,8 +436,8 @@ class Socket_RL(threading.Thread):
              #Publisher Event Warning in Panel received MS
              wx.CallAfter(Publisher.sendMessage, "main_event", message="SENDING ERROR (S), "+str(msg)+"\n")
     
-#========== GUI: Create the Window with differents Widgets =============
-#======== Main Window : displays the main window to the user ===========
+#========== GUI: Create the Window with different Widgets =============
+#======== Main Window: displays the main window to the user ===========
 class MyPanel(wx.Frame):
     """Graphic User Interface WX.FRAME"""
     #Class's Global Vars
@@ -466,9 +470,6 @@ class MyPanel(wx.Frame):
         majorDimension = 1, style = wx.RA_SPECIFY_ROWS) 
         self.rbox.Bind(wx.EVT_RADIOBOX,self.onSelect_RadioBox)
         MyPanel.CHOOSE_T_METHOD = self.rbox.GetStringSelection()
-        #self.rbox.EnableItem(0, enable=False)
-        #self.rbox.ShowItem(0, show=True)
-        #print self.rbox.ShowItem(0, show=False)
         #-------------------------------------#
         wx.StaticText(self.scroll, -1, "Type a IP to the Server: ", size=(200,20), pos=(5, 70))
         self.i = wx.TextCtrl(self.scroll, -1, "0.0.0.0", size=(250,30), pos=(195,70))
@@ -536,7 +537,7 @@ class MyPanel(wx.Frame):
         self.texDtime.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         Publisher.subscribe(self.diff_time, "time")
         #-------------------------------------#
-        wx.StaticText(self.scroll, -1, "Hosts/Proccess Panel: ", size=(200,20), pos=(400,140))
+        wx.StaticText(self.scroll, -1, "Hosts/Process Panel: ", size=(200,20), pos=(400,140))
         self.textVC = wx.TextCtrl(self.scroll, -1, style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
 	size=(380,150), pos=(400,160))
         self.textVC.SetDefaultStyle(wx.TextAttr(wx.BLUE))
@@ -560,7 +561,7 @@ class MyPanel(wx.Frame):
         self.btn.Bind(wx.EVT_BUTTON, self.run_client)
 
     #------------------------------------------------------------------------------------------------------------------------
-    #Verify Message send method, IP version: Unicast, Broadcast or Multcast, and IPv4 or IPv6 protocol, and Delay Calculation.
+    #Verify Message send method, IP version: Unicast, Broadcast or Multicast, IPv4 or IPv6 protocol, and Delay Calculation.
     def Info(parent, message, caption = 'Information!'):
         dlg = wx.MessageDialog(parent, message, caption, wx.OK | wx.ICON_INFORMATION)
         dlg.ShowModal()
@@ -600,7 +601,7 @@ class MyPanel(wx.Frame):
     #Update Display Bind Socket
     def updateSockConnect(self, message):
         """
-        Catch data from thread and updates the display
+        Catch data from the thread and update the display
         """
         self.textarea_s.write(message)
 
@@ -608,7 +609,7 @@ class MyPanel(wx.Frame):
     #Update Display of Main Panel
     def updatePanelEvent(self, message):
         """
-        Catch data from thread and updates the main event display
+        Catch data from the thread and update the main event display
         """
         m = message
         s = m.split("'")
@@ -629,7 +630,7 @@ class MyPanel(wx.Frame):
     #Update Display of Vector Panel 
     def updateVector(self, message):
         """
-        Catch data from thread and updates the vector event display
+        Catch data from the thread and update the vector event display
         """
         self.textVC.Clear()
         self.textVC.write(message)
@@ -638,7 +639,7 @@ class MyPanel(wx.Frame):
     #Update Display of Logic Clock Panel 
     def updateLogic(self, message):
         """
-        Catch data from thread and updates the logic clock event display
+        Catch data from the thread and update the logic clock event display
         """
         self.textLC.Clear()
         string = message
@@ -652,7 +653,7 @@ class MyPanel(wx.Frame):
     #Update RTT Display 
     def rtt_(self, message):
         """
-        Catch rtt from thread and updates the rtt display
+        Catch rtt from the thread and update the rtt display
         """
         self.texRtt.Clear()
         self.texRtt.write(message)
@@ -660,7 +661,7 @@ class MyPanel(wx.Frame):
     #Update Diff Time Display
     def diff_time(self, message):
         """
-        Catch diff time and updates the display
+        Catch diff times and updates the display
         """
         self.texDtime.Clear()
         self.texDtime.write(message)       
@@ -810,7 +811,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                                               netifaces.ifaddresses(netifaces.gateways()[2][0][1])[2][0]['addr']:
                         self.Warn("Warning! This IP is not a valid Unicast address!!!")
                     elif str(self.i.GetValue().lower()) == str(self.c.GetValue().lower()):
-                        self.Warn("Warning! In Unicast transmission Detination and Source Address can not be the same!!!")
+                        self.Warn("Warning! In Unicast transmission Destination and Source Address can not be the same!!!")
                     else:
                         self.ip_ = str(self.i.GetValue().lower())
                         self.c_ = str(self.c.GetValue().lower()) 
@@ -829,37 +830,69 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                         self.textarea_s.Clear()
                         self.textarea_s.SetDefaultStyle(wx.TextAttr(wx.BLUE))
                 else:
-                     if str(self.c.GetValue().lower()) == "<broadcast>":
-                         self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
-                     elif ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_multicast == True \
-                                          or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_multicast == True \
-                                          or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_reserved == True \
-                                          or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_reserved == True \
-                                          or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_loopback == True \
-                                          or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_loopback == True \
-                                          or self.i.GetValue().lower() != \
-                                          netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']:
-                                              self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
-                     elif str(self.i.GetValue().lower()) == str(self.c.GetValue().lower()):
-                        self.Warn("Warning! In Unicast transmission Detination and Source Address can not be the same!!!")
+                     system = platform.system()
+                     if system == "Windows":
+                         if str(self.c.GetValue().lower()) == "<broadcast>":
+                             self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
+                         elif ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_multicast == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_multicast == True \
+                                              or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_reserved == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_reserved == True \
+                                              or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_loopback == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_loopback == True \
+                                              or self.i.GetValue().lower() != \
+                                              netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']:
+                                                  self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
+                         elif str(self.i.GetValue().lower()) == str(self.c.GetValue().lower()):
+                             self.Warn("Warning! In Unicast transmission Destination and Source Address can not be the same!!!")
+                         else:
+                             self.ip_ = str(self.i.GetValue().lower())
+                             self.c_ = str(self.c.GetValue().lower()) 
+                             self.porta_ = int(self.p.GetValue())
+                             MyPanel.ip_classe = self.ip_
+                             MyPanel.porta_classe = self.porta_
+                             MyPanel.ip_unicast = self.c_
+                             self.s = Socket_RL(self)
+                             self.s.deamon=True
+                             self.s.start()
+                             self.countD.Enable(True)
+                             self.btn.Enable(True)
+                             self.Press.Disable()
+                             self.rbox.Enable(False)
+                             self.Press_u.Enable(True)
+                             self.textarea_s.Clear()
+                             self.textarea_s.SetDefaultStyle(wx.TextAttr(wx.BLUE))
                      else:
-                        self.ip_ = str(self.i.GetValue().lower())
-                        self.c_ = str(self.c.GetValue().lower()) 
-                        self.porta_ = int(self.p.GetValue())
-                        MyPanel.ip_classe = self.ip_
-                        MyPanel.porta_classe = self.porta_
-                        MyPanel.ip_unicast = self.c_
-                        self.s = Socket_RL(self)
-                        self.s.deamon=True
-                        self.s.start()
-                        self.countD.Enable(True)
-                        self.btn.Enable(True)
-                        self.Press.Disable()
-                        self.rbox.Enable(False)
-                        self.Press_u.Enable(True)
-                        self.textarea_s.Clear()
-                        self.textarea_s.SetDefaultStyle(wx.TextAttr(wx.BLUE))
-
+                         if str(self.c.GetValue().lower()) == "<broadcast>":
+                             self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
+                         elif ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_multicast == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_multicast == True \
+                                              or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_reserved == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_reserved == True \
+                                              or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_loopback == True \
+                                              or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_loopback == True \
+                                              or self.i.GetValue().lower() != \
+                                              netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']:
+                                                  self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
+                         elif str(self.i.GetValue().lower()) == str(self.c.GetValue().lower()):
+                             self.Warn("Warning! In Unicast transmission Destination and Source Address can not be the same!!!")
+                         else:
+                             self.ip_ = str(self.i.GetValue().lower())
+                             self.c_ = str(self.c.GetValue().lower()) 
+                             self.porta_ = int(self.p.GetValue())
+                             MyPanel.ip_classe = self.ip_
+                             MyPanel.porta_classe = self.porta_
+                             MyPanel.ip_unicast = self.c_
+                             self.s = Socket_RL(self)
+                             self.s.deamon=True
+                             self.s.start()
+                             self.countD.Enable(True)
+                             self.btn.Enable(True)
+                             self.Press.Disable()
+                             self.rbox.Enable(False)
+                             self.Press_u.Enable(True)
+                             self.textarea_s.Clear()
+                             self.textarea_s.SetDefaultStyle(wx.TextAttr(wx.BLUE)) 
         except socket.error:
             self.Warn("Please, check the fields IP and port, network interface disabled or other error!!!")
 
@@ -961,7 +994,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             #sys.exit()
 
     #-------------------------------------------------------------------
-    #Destroys the main frame when exit of the wxPython app
+    #Destroys the main frame when exiting the wxPython app
     def OnExitApp(self, event):
         try:
             self.close_warning(event)
@@ -978,6 +1011,6 @@ if __name__ == "__main__":
     frame.btn.Enable(False)
     frame.Press_u.Enable(False)
     frame.stop.Enable(False)
-    frame.Info("WARNING!!! Before send a message/synchronize, please verify Transmission Method, \
+    frame.Info("WARNING!!! Before sending a message/synchronizing, please verify the Transmission Method, \
 communication ports, and IP Version!")
     app.MainLoop()
