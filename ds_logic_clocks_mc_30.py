@@ -362,7 +362,7 @@ class Socket_RL(threading.Thread):
                                 os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
                             else:
                                 os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%d/%m/%Y %H:%M:%S.%f")))
-                        #FIM ALTERAÇAO DOIS-------------------------------------------------------
+                        #End of amendment II ------------------------------------------------------
                         #Check if MSG arrived from R:M/B/U (Reply by Multicast/Broadcast/Unicast)
                         if self.catch_rb(self.text) == "R:M/B/U":
                             #Publisher Event Warning in Panel received MS by R:M/B/U
@@ -644,7 +644,7 @@ class MyPanel(wx.Frame):
         string = message
         SK = ast.literal_eval(string)
         if int(SK[0][1]) < int(varglobal.soma):
-            self.textLC.write("[('"+SK[0][0]+"',"+str(varglobal.soma)+")]")
+            self.textLC.write("[('"+SK[0][0]+"', "+str(varglobal.soma)+")]")
         else:
             self.textLC.write(message)
 
