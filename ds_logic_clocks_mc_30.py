@@ -841,7 +841,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
                                               or ipaddr.IPv6Address(str(self.i.GetValue().lower())).is_loopback == True \
                                               or ipaddr.IPv6Address(str(self.c.GetValue().lower())).is_loopback == True \
                                               or self.i.GetValue().lower() != \
-                                              netifaces.ifaddresses(netifaces.gateways()[2][0][1])[10][0]['addr']:
+                                              netifaces.ifaddresses(netifaces.gateways()[2][0][1])[23][0]['addr']:
                                                   self.Warn("Warning! This IPv6 is not a valid Unicast address!!!")
                          elif str(self.i.GetValue().lower()) == str(self.c.GetValue().lower()):
                              self.Warn("Warning! In Unicast transmission Destination and Source Address can not be the same!!!")
