@@ -2,7 +2,7 @@
 #File: ds_logic_clocks_mc.py
 
 """**************************************************************************
-  *   Name: "Socket Logic Clock's". This software synchronizes       *
+  *   Name: "Socket Logic Clock's". This software synchronizes              *
   *   physical clocks using the concept of Lamport logical clocks.          *
   *                                                                         *
   *   Copyright (C) 2016 by Diogenes Antonio Marque Jose and Bruno Hernandes*
