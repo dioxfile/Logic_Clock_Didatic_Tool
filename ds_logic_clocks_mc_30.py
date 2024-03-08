@@ -55,13 +55,13 @@ class CountDown(threading.Thread):
         self._sleepperiod = 3.0
         try:
             wx.CallAfter(Publisher.sendMessage, "main_event", message="\n\nAutomatic Send MSG Activated!!!"+"\n\n")
-        except SomeError as msg:
+        except SystemError as msg:
             wx.CallAfter(Publisher.sendMessage, "main_event", message="SYS ERROR!!!"+str(msg)+"\n")
             
     #----------------------------------------------------------------------
     #Code to be executed in this thread
     def run(self):
-        while not self._stopevent.isSet():
+        while not self._stopevent.is_set():
             self.run_c()
             self._stopevent.wait(self._sleepperiod)
 
@@ -120,7 +120,7 @@ class CountDown(threading.Thread):
                 self.client3.sendto(message,(a, j))                
        except socket.error as msg:
            self.textDisplay.write("SOCKET ERROR (C3), "+str(msg)+"\n")
-           #sys.exit()
+           sys.exit()
 
 
 #=== Server Thread: make capable run distinct instances of server===
@@ -192,34 +192,38 @@ class Socket_RL(threading.Thread):
     #RTT calc to measure delay, based on average PING rtt
     #-------------------------------------------------------------------
     def rtt(self, ip):
-        system = platform.system()
-        ip_ = str(ip[0])
-        output = 0.0
-        if ":" in ip_:
-            if system == "Windows":
-                command= f'ping -6 -n 1 {ip_}'
-            else: 
-                command = f'ping6 -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
-        else:
-            if system == "Windows":
-                command = f'ping -n 1 {ip_}'
+       try:
+            system = platform.system()
+            ip_ = str(ip[0])
+            output = 0.0
+            if ":" in ip_:
+                if system == "Windows":
+                    command= f'ping -6 -n 1 {ip_}'
+                else: 
+                    command = f'ping6 -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
             else:
-                command = f'ping -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''         
-        output = subprocess.getoutput(command)
-        if system == "Windows":
-            match = re.search(r"Média = (\d+)ms", output)
-            if match:
-                ms_win = float(match.group(1)) / 1000.0
-                output = ms_win
+                if system == "Windows":
+                    command = f'ping -n 1 {ip_}'
+                else:
+                    command = f'ping -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
+            output = subprocess.getoutput(command)   
+            if system == "Windows":
+                match = re.search(r"Média = (\d+)ms", output)
+                if match:
+                    ms_win = float(match.group(1)) / 1000.0
+                    output = float(ms_win)
+                else:
+                    output = 0.0005
             else:
-                output = 0.0005
-        else:
-            ms_linux = float(output) / 1000.0
-            output = ms_linux
-        if output == "":
-            output= 0.00001
-        return output        
+                ms_linux = float(output) / 1000.0
+                output = ms_linux
         
+            if output == 0:
+                output= 0.00001
+            return output        
+       except:
+            #Publisher Event Warning in Panel received MS
+            wx.CallAfter(Publisher.sendMessage, "main_event", message="Destination IP Address not found, different network! Please, close and restart application!!!"+"\n")
     #-------------------------------------------------------------------
     #Tests whether the IP is a valid IPv4/IPv6
     #-------------------------------------------------------------------
@@ -353,7 +357,9 @@ class Socket_RL(threading.Thread):
                                   (int(remote_date_.strftime('%f'))+AUX_RTT)/1000)/1000
                         wx.CallAfter(Publisher.sendMessage, "rtt", message="{:.5f}".format((RTT)))                        
                         #Set remote date/time in this server
-                        system_language= locale.getdefaultlocale()[0]
+                        system_language= locale.getlocale()[0]
+                        if system_language == None:
+                            system_language = ''
                         system= platform.system()
                         if system == "Windows":
                             if system_language.lower() == "en_us":
@@ -947,7 +953,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             MyPanel.S_local = self.client.getsockname()
         except socket.error as msg:
             self.textDisplay.write("SOCKET ERROR (C)!!!, "+str(msg)+"\n")
-            #sys.exit()
+            sys.exit()
 
 
     #-------------------------------------------------------------------
@@ -991,7 +997,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             self.close.sendto(msg_c, (IP_w, self.porta_))
         except socket.error as msg:
             self.textDisplay.write("SOCKET ERROR (CLOSE), "+str(msg)+"\n")
-            #sys.exit()
+            sys.exit()
 
     #-------------------------------------------------------------------
     #Destroys the main frame when exiting the wxPython app
@@ -1001,8 +1007,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             self.Destroy()
         except:
             self.Destroy()
-            
-           
+                     
 if __name__ == "__main__":
     app = wx.App()
     frame = MyPanel(parent=None, id=-1)
