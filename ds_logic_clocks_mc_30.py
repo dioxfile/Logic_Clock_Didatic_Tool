@@ -208,7 +208,11 @@ class Socket_RL(threading.Thread):
                     command = f'ping -c 1 {ip_} | egrep rtt | awk -F\"/\" \'{{print $5}}\''
             output = subprocess.getoutput(command)   
             if system == "Windows":
-                match = re.search(r"Média = (\d+)ms", output)
+				#Only Brazilian Portuguese and American English.
+                if locale.getlocale()[0]=='pt_BR':
+                    match = re.search(r"Média = (\d+)ms", output)
+                else:
+                    match = re.search(r"Average = (\d+)ms", output)
                 if match:
                     ms_win = float(match.group(1)) / 1000.0
                     output = float(ms_win)
