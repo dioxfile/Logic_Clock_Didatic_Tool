@@ -968,22 +968,22 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
         try:
             addrinfo = socket.getaddrinfo(self.ip_, None)[0]
             #Create a SOcket UDP and assign local IP
-            self.close = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
+            self.close_ = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
             #Time-to-live
             ttl = struct.pack('@i', 8) # LANs ttl < 32, and MAN, WAN, etc, ttl > 32.
             if addrinfo[0] == socket.AF_INET: # IPv4
                 if MyPanel.CHOOSE_T_METHOD == "Multicast": #MULTICAST
                     #Send a message by multicast
-                    self.close.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
+                    self.close_.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, ttl)
                 elif MyPanel.CHOOSE_T_METHOD == "Broadcast": #BROADCAST
                     #Send a message by broadcast
-                    self.close.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+                    self.close_.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
                     IP_w = self.c_.lower()
                 else: #UNICAST
                     IP_w= self.c_ 
             else: # IPv6 
                 if MyPanel.CHOOSE_T_METHOD == "Multicast": #MULTICAST
-                    self.close.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_MULTICAST_HOPS, ttl)
+                    self.close_.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_MULTICAST_HOPS, ttl)
                 else: #UNICAST
                     IP_w= self.c_ 
             
@@ -998,7 +998,7 @@ IPv6 Multicast Address Space Registry in: 'https://goo.gl/oKGRno' or try ff03::1
             #Step two Lamport Algorithm
             msg_c += b" "+str(varglobal.soma).encode("ascii")
             #sending date/time to others process
-            self.close.sendto(msg_c, (IP_w, self.porta_))
+            self.close_.sendto(msg_c, (IP_w, self.porta_))
         except socket.error as msg:
             self.textDisplay.write("SOCKET ERROR (CLOSE), "+str(msg)+"\n")
             sys.exit()
