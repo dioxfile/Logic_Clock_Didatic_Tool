@@ -182,8 +182,11 @@ Version: 4.0.3-4<br/>
 ### You just need to run the file with Python <br/>
 * Linux (e.g., Bash/dash prompt) <br/>
   `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
-* In Windows systems, to avoid problems, it is necessary to activate the following Firewall rules as shown in Figure X.
-To do this, go to the PowerShell command prompt, as administrator, and type: `firewall.cpl`. After that, click on advanced settings and activate the options/rules as shown in Figure X. <br/>
+* In Windows systems, to avoid problems, it is necessary to activate some Firewall rules.
+To do this, go to the PowerShell command prompt, as administrator, and type: `firewall.cpl`. After that, click on advanced settings and activate the following options/rules:
+  * `File and Printer Sharing (Echo Request - ICMPv4-In)`;
+  * `File and Printer Sharing (Echo Request - ICMPv6-In)`;
+  * `Virtual Machine Monitoring (Echo Request - ICMPv4-In)`.
   * Consequently, in Windows PowerShell prompt type the following command: <br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 11): <br/>
@@ -202,11 +205,11 @@ To do this, go to the PowerShell command prompt, as administrator, and type: `fi
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/bindLC.png) 
 
 2 - Local Panel of Events. In the events panel, there are six types of events (Figure 14):
-* (1) The one that happens in the application itself, from it to itself, and to other computers on the network. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself and to the network.
+* (1) The one that happens in the application itself, from it to itself, and to other computers on the network. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself and the network.
 * (2) Return via Multicast/Broadcast/Unicast. It happens when the local process returns the most current date/time to the remote process(es) (other applications on the network). Ex: `Send R:M/B/U...` which means Multicast/Broadcast/Unicast return, depending on the transmission method used.
 * (3) Update by Multicast/Broadcast/Unicast. It happens when the local application synchronizes its date/time through some remote process via a return message. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
-* (4) Update by Unicast. It happens when the local application synchronizes its date/time through some remote process via the Unicast Transmission Methode. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
-* (5) Update by Broadcast. It happens when the local application synchronizes its date/time through some remote process via the Broadcast Transmission Methode. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
+* (4) Update by Unicast. It happens when the local application synchronizes its date/time through some remote process via the Unicast Transmission method. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
+* (5) Update by Broadcast. It happens when the local application synchronizes its date/time through some remote process via the Broadcast Transmission method. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
 * (6) Update by Multicast. It happens when the local application synchronizes its date/time through some remote process via Multicast Transmission Methode. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
 # Figure 14
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
