@@ -183,8 +183,8 @@ Version: 4.0.3-4<br/>
 * Linux (e.g., Bash/dash prompt) <br/>
   `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
 * In Windows systems, to avoid problems, it is necessary to activate the following Firewall rules as shown in Figure X.
-To do this, go to the PowerShell command prompt, as administrator, and type: 'firewall.cpl'. After that, click on advanced settings and activate the options/rules as shown in Figure X.
-  * Windows (e.g., PowerShell prompt)<br/>
+To do this, go to the PowerShell command prompt, as administrator, and type: `firewall.cpl`. After that, click on advanced settings and activate the options/rules as shown in Figure X. <br/>
+  * Consequently, in Windows PowerShell prompt type the following command: <br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 11): <br/>
 ## Figure 11
