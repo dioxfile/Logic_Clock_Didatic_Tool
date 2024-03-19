@@ -244,7 +244,10 @@ class Socket_RL(threading.Thread):
             
     #Thread called by main Thread
     def run(self):
-        """Run "server" """        
+        """Run "server" """
+        #Setup Locale by Default to avoid error in windows platforms.
+        if sys.platform.startswith('win') and sys.version_info > (3,8):
+           locale.setlocale(locale.LC_ALL, "")
         #Dictionary to IP list and vector value of remote process
         v = {}
         C_i = {}
@@ -359,20 +362,19 @@ class Socket_RL(threading.Thread):
                         #New hour to setup in system
                         self.h = (time.mktime(remote_date_.timetuple())*1000 + \
                                   (int(remote_date_.strftime('%f'))+AUX_RTT)/1000)/1000
-                        wx.CallAfter(Publisher.sendMessage, "rtt", message="{:.5f}".format((RTT)))                        
+                        wx.CallAfter(Publisher.sendMessage, "rtt", message="{:.5f}".format((RTT)))
+                        
                         #Set remote date/time in this server
                         system_language= locale.getlocale()[0]
-                        if system_language == None:
-                            system_language = ''
                         system= platform.system()
                         if system == "Windows":
-                            if system_language.lower() == "en_us":
+                            if system_language.lower() == "en_us" or system_language.lower() == "english_united states":
                                 date_time_win= datetime.fromtimestamp(self.h).strftime("%m/%d/%y %H:%M:%S")
                             else:
                                 date_time_win= datetime.fromtimestamp(self.h).strftime("%d/%m/%y %H:%M:%S")
-                            os.system(f'date {date_time_win.split()[0]} & time {date_time_win.split()[1]}')
+                            os.system(f'date {date_time_win.split()[0]} & time {date_time_win.split()[1]}')        
                         else:
-                            if system_language.lower() == "en_us":
+                            if system_language.lower() == "en_us" or system_language.lower() == "english_united states":
                                 os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
                             else:
                                 os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%d/%m/%Y %H:%M:%S.%f")))
