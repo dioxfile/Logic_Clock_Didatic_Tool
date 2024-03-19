@@ -544,7 +544,7 @@ class MyPanel(wx.Frame):
         Publisher.subscribe(self.rtt_, "rtt")
         #Time difference--------------------------------------------------
         wx.StaticText(self.scroll, -1, "Time Differnce:", size=(150,20), pos=(620,65))
-        self.texDtime = wx.TextCtrl(self.scroll, -1, "None", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
+        self.texDtime = wx.TextCtrl(self.scroll, -1, "No Updated...", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
 	size=(160,37), pos=(620,80))
         self.texDtime.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         Publisher.subscribe(self.diff_time, "time")
