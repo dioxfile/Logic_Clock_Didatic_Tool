@@ -186,7 +186,8 @@ Version: 4.0.3-4<br/>
 To do this, go to the PowerShell command prompt, as administrator, and type: `firewall.cpl`. After that, click on advanced settings and activate the following options/rules:
   * `File and Printer Sharing (Echo Request - ICMPv4-In)`;
   * `File and Printer Sharing (Echo Request - ICMPv6-In)`;
-  * `Virtual Machine Monitoring (Echo Request - ICMPv4-In)`.
+  * `Virtual Machine Monitoring (Echo Request - ICMPv4-In)`;
+  * `Virtual Machine Monitoring (Echo Request - ICMPv6-In)`.
   * Consequently, in Windows PowerShell prompt type the following command: <br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 11): <br/>
