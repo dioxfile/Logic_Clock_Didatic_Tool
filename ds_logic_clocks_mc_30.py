@@ -140,7 +140,8 @@ class Socket_RL(threading.Thread):
             addrinfo = socket.getaddrinfo(self.a, None)[0]
             self.sock = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
             #UDP socket Bind
-            self.sock.bind((self.a,self.b))
+            bind_address = '0.0.0.0' if addrinfo[0] == socket.AF_INET else '::'
+            self.sock.bind((bind_address, self.b))
             #IPv4 or IPv6, group type
             group_type = socket.inet_pton(addrinfo[0], addrinfo[4][0])
             # Join to the group
@@ -374,10 +375,7 @@ class Socket_RL(threading.Thread):
                                 date_time_win= datetime.fromtimestamp(self.h).strftime("%d/%m/%y %H:%M:%S")
                             os.system(f'date {date_time_win.split()[0]} & time {date_time_win.split()[1]}')        
                         else:
-                            if system_language.lower() == "en_us" or system_language.lower() == "english_united states":
-                                os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
-                            else:
-                                os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%d/%m/%Y %H:%M:%S.%f")))
+                            os.system('date -s "{}"'.format(datetime.fromtimestamp(self.h).strftime("%m/%d/%Y %H:%M:%S.%f")))
                         #End of amendment II ------------------------------------------------------
                         #Check if MSG arrived from R:M/B/U (Reply by Multicast/Broadcast/Unicast)
                         if self.catch_rb(self.text) == "R:M/B/U":
@@ -535,21 +533,21 @@ class MyPanel(wx.Frame):
         #Receiver Publisher
         Publisher.subscribe(self.updatePanelEvent, "main_event")
         #-------------------------------------#
-        wx.StaticText(self.scroll, -1, "RTT Ping Average:", size=(150,20), pos=(620,122))
-        wx.StaticText(self.scroll, -1, "Delay (sec)", size=(100,20), pos=(620,140))
+        wx.StaticText(self.scroll, -1, "RTT Ping Average:", size=(150,20), pos=(599,123))
+        wx.StaticText(self.scroll, -1, "Delay (sec)", size=(100,20), pos=(599,140))
         self.texRtt = wx.TextCtrl(self.scroll, -1, "No Delay...", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
-	size=(90,18), pos=(690,140))
+	size=(115,18), pos=(665,140))
         self.texRtt.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         #Receiver Publisher
         Publisher.subscribe(self.rtt_, "rtt")
         #Time difference--------------------------------------------------
-        wx.StaticText(self.scroll, -1, "Time Differnce:", size=(150,20), pos=(620,65))
+        wx.StaticText(self.scroll, -1, "Time Differnce:", size=(150,20), pos=(450,61))
         self.texDtime = wx.TextCtrl(self.scroll, -1, "No Updated...", style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
-	size=(160,37), pos=(620,80))
+	size=(330,42), pos=(450,80))
         self.texDtime.SetDefaultStyle(wx.TextAttr(wx.BLUE))
         Publisher.subscribe(self.diff_time, "time")
         #-------------------------------------#
-        wx.StaticText(self.scroll, -1, "Hosts/Process Panel: ", size=(200,20), pos=(400,140))
+        wx.StaticText(self.scroll, -1, "Hosts/Process Panel: ", size=(200,20), pos=(400,142))
         self.textVC = wx.TextCtrl(self.scroll, -1, style=wx.TE_MULTILINE|wx.BORDER_SUNKEN|wx.TE_READONLY| wx.TE_RICH2, 
 	size=(380,150), pos=(400,160))
         self.textVC.SetDefaultStyle(wx.TextAttr(wx.BLUE))
