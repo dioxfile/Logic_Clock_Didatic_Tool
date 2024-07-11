@@ -358,7 +358,7 @@ class Socket_RL(threading.Thread):
                         NOW_H = datetime.now()
                         time_diff= OLD_H - NOW_H
                         delay= abs(time_diff.total_seconds())
-                        RTT = delay+(float(ATP)/2)
+                        RTT = ((float(delay)+float(ATP))/2)
                         AUX_RTT = RTT * 1000
                         #New hour to setup in system
                         self.h = (time.mktime(remote_date_.timetuple())*1000 + \
