@@ -2,8 +2,8 @@
 #File: ds_logic_clocks_mc.py
 
 """**************************************************************************
-  *   Name: "Socket Logic Clock's". This software synchronizes              *
-  *   physical clocks using the concept of Lamport logical clocks.          *
+  *   Name: "Lamport's Didactic Logic Clock Tool (LDLT)". This software     *
+  *   synchronizes physical clocks using the concept of logical clocks.     *
   *                                                                         *
   *   Copyright (C) 2016 by Diogenes Antonio Marque Jose and Bruno Hernandes*
   *   dioxfile@unemat.br and hernandes.bruno@unemat.br                      *
@@ -461,7 +461,7 @@ class MyPanel(wx.Frame):
 
     #----------------------------------------------------------------------
     #Main function GUI
-    def __init__(self, parent, id=-1,title="Socket Logic Clock's - DS",pos=wx.DefaultPosition,
+    def __init__(self, parent, id=-1,title="Lamport's Didactic Logic Clock Tool (LDLT)",pos=wx.DefaultPosition,
          size=(795,700), style=wx.DEFAULT_FRAME_STYLE):
         """Constructor"""
         wx.Frame.__init__(self,parent,id,title,pos,size,style)
