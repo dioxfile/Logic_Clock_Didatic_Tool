@@ -241,9 +241,10 @@ To do this, go to the PowerShell command prompt, as administrator, and type: `fi
 7 - RTT Ping Average Delay.
 * The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
 * It works as follows:
-* (1) `Local Process` requests the time from `Remote Process` at time `t0`.
-* (2) The `Remote Process` after receiving the request prepare a response and append the time `T` from its clock.
-* (3) `Local Process` receives the response at time `t1` and then sets its time to be `T + RTT/2, where RTT=t1-t0`.
+* This method is based on Cristian's method [1989]. For example:
+* (1.) The Local Process sends its timestamp to the network at time `t0`;
+* (2.) All Remote Processes receive this timestamp. Thus, if a remote process has a more current time it will return a message to the network with its timestamp `T`;
+* (3.) The Local Process, with an outdated timestamp, receives the response at time `t1` and then adjusts its time to `T + RTT/2`, where `RTT = [(t1 − t0) + RTT Ping Average]`.
 
 Therefore, to perform this calculation we use the ping program. Thus, upon receiving the updated date/time from a remote application, the current application, ' Local Process', executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`) which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 19.
 # Figure 19
