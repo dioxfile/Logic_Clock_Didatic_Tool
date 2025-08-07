@@ -192,7 +192,7 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 11): <br/>
 ## Figure 11
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui.png)
+![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
 
 **************************************************************
 # Application Details: 
