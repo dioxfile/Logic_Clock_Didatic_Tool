@@ -31,7 +31,7 @@ Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
 1. [Prerequisites](#prerequisites)
 1. [What do you need to use this software?](#What-do-you-need-to-use-this-software)
 1. [How to install this application in your system?](#How-to-install-this-application-in-your-system)
-1. [Possibles errors](#possibles-errors)
+1. [Possible errors](# possible-errors)
 1. [How to use it?](#How-to-use-it)
 
 
@@ -167,14 +167,14 @@ Version: 4.0.3-4<br/>
 ## Figure 9
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.png)
 * Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
-* Now go to the Windows search bar and type PowerShell and in the PowerShell application, right-click and run as administrator as shown in Figure 10:<br/>
+* Now go to the Windows search bar and type PowerShell, and in the PowerShell application, right-click and run as administrator as shown in Figure 10:<br/>
 ## Figure 10
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4ms.png)
 * At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
 * If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
-* If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSgined -Scope CurrentUser` <br/>
+* If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` <br/>
 * After that, download the INSTALL.ps1 script (e.g., from GitHub) and run it at the PowerShell command prompt, for example: `.\INSTALL.ps1` <br/>
-* After installing python3 and all necessary libraries (e.g., wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub) download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
+* After installing Python3 and all necessary libraries (e.g., wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub), download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
 * Go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., click it twice). <br/>
 
 # How to use it?
@@ -211,7 +211,7 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
 * (3) Update by Multicast/Broadcast/Unicast. It happens when the local application synchronizes its date/time through some remote process via a return message. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
 * (4) Update by Unicast. It happens when the local application synchronizes its date/time through some remote process via the Unicast Transmission method. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
 * (5) Update by Broadcast. It happens when the local application synchronizes its date/time through some remote process via the Broadcast Transmission method. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
-* (6) Update by Multicast. It happens when the local application synchronizes its date/time through some remote process via Multicast Transmission Methode. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
+* (6) Update by Multicast. It happens when the local application synchronizes its date/time through some remote process via Multicast Transmission Method. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
 # Figure 14
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
 
@@ -236,7 +236,7 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
 * The time difference panel displays the date/time difference that was updated/synchronized in the local application and received from a remote application, Figure 18. 
 # Figure 18
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
-* Figure 18 shows that the application synchronized and the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
+* Figure 18 shows that the application synchronized, and the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
 
 7 - RTT Ping Average Delay.
 * The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
@@ -262,12 +262,12 @@ Therefore, we use the ping program to perform this calculation. Thus, upon recei
 
 # Figure 22
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
-* Figure 22 depicts the application running in Windows System via VMware WorkStation 17 Player.
+* Figure 22 depicts the application running in Windows System via VMware Workstation 17 Player.
 ***********************************************************************************************
 
-# Possibles errors
+# Possible errors
 
-* If any module for unknown reasons has not been installed
+* If any module, for unknown reasons, has not been installed
 
 For any module error, you may have to review the "`How to install this application in your system?`" session and manually install each module in sequence according to the tutorial. Follow all steps.<br/>
 
@@ -280,7 +280,7 @@ First, enable su-mode:<br/>
 Install sudo<br/>
 `#apt install sudo -y`<br/>
 
-After that, you would need to play around with users and permissions. Give sudo right to your user.<br/>
+After that, you would need to play around with users and permissions. Give sudo rights to your user.<br/>
 `#usermod -aG sudo username`<br/>
 
 Edit the file 'sudoers'<br/>
@@ -297,7 +297,7 @@ root ALL=(ALL:ALL) ALL<br/>
 
 * update error
 
-Obs: In some cases, Debian, when new, does not comment out the line referring to the CDROM in the updates configuration file "/etc/apt/sources.list." This causes an error at the time of the update and, consequently, when installing some programs and libraries with apt.
+Obs: In some cases, Debian, when new, does not comment out the line referring to the CD-ROM in the updates configuration file "/etc/apt/sources.list." This causes an error at the time of the update and, consequently, when installing some programs and libraries with apt.
 It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 23.
 # Figure 23
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
