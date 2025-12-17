@@ -2,16 +2,16 @@
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
-Code in Python to synchronize the computer clock using the [Lamport-WIKI](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method. This application is used to teach clock synchronization in computer science course subjects, such as distributed systems, and it applies the concept of Lamport Logical Clocks to physical computer clocks and events occurring on these computers, such as sending and receiving messages.
+Code in Python to synchronize the computer clock using the [Lamport-WIKI](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method. This application teaches clock synchronization in computer science courses, such as distributed systems. It applies the concept of Lamport Logical Clocks to physical computer clocks and events on these computers, such as message sending and receiving.
 ## Context
 People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. Thus, this APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`, [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563).
 
 # Lamport's Logic Clock Algorithm
-In logical clocks, synchronization with the date/time does not need to be absolute. Furthermore, if two processes do not interact with each other, their clocks do not need to be synchronized. Thus, what happens before is taken into account, for example, two events of a process `Pi`, `a` and `b`, with `a` being the sending of a `msg` and `b` being receiving this same `msg` is equivalent to saying that `a → b`. This way, all `Processes` agree that event `a` occurs first and then event `b` occurs; 
+In logical clocks, synchronization with the date/time does not need to be absolute. Furthermore, if two processes do not interact, their clocks do not need to be synchronized. Thus, what happens before is taken into account, for example, two events of a process `Pi`, `a` and `b`, with `a` being the sending of a `msg` and `b` being receiving this same `msg` is equivalent to saying that `a → b`. This way, all `Processes` agree that event `a` occurs first and then event `b` occurs; 
 
 In this context, there are two situations:
 * (1) `a` and `b` are from the same process, and `a` occurs before `b`, so `a → b` is true; 
-* (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before sending it. 
+* (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before it is sent. 
 * The relationship between events `a → b` is transitive. Therefore, `a → b` and `b → c`, so `a → c`; 
 * Event `a` has a clock `C(a)` that everyone agrees on; 
 * `a → b, then C(a) < C(b)`; 
@@ -23,7 +23,7 @@ Consequently, Lamport's algorithm is as follows:
 * (Step 2) If `pi` sends a message `m` to `pj`, then it sets the timestamp of `m` message `ts(m)` to equal `Ci`, after having performed `step 1`;
 * (Step 3) Upon receiving `m`, `pj` adjusts the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
 
-Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
+Therefore, each `pi` maintains a local counter `Ci` (Figure 1).
 # Figure 1
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
 
@@ -41,7 +41,7 @@ Therefore, each `pi` maintains a local counter `Ci`, Figure 1.
 Its purpose is to synchronize the physical (e.g., CMOS clock) and logical clocks of computers connected to the same network.
 
 ## Proposal Description 
-In this proposal, Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, which results in the misconfiguration of the physical clocks on computers. Consequently, when executing the application and transmitting a message across the network, all computers linked to the network will be automatically synchronized based on the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs in less than 1 second.
+In this proposal, Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, which can cause the misconfiguration of physical clocks on computers. Consequently, when the application executes and transmits a message across the network, all computers on the network will automatically synchronize to the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs within 1 second.
 
 ## Application Operation
 
@@ -128,7 +128,7 @@ Version: 4.0.3-4<br/>
   `$sudo ./INSTALL.sh`
 
 ***********************************************************************************************
-## You can install automatically by running the file 'INSTALL.sh'. But if you want to install it manually, follow the steps below.
+## You can install automatically by running the file 'INSTALL.sh'. But if you'd like to install it manually, please follow the steps below.
 
 * In Debian-Based Systems.
 
@@ -178,7 +178,7 @@ Version: 4.0.3-4<br/>
 * Go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., click it twice). <br/>
 
 # How to use it?
-## IMPORTANT: To change the computer's time, you must run the application as administrator/root user.<br/>
+## IMPORTANT: To change the computer's time, you must run the application as administrator or a root user.<br/>
 ### You need to run the file with Python <br/>
 * Linux (e.g., Bash/dash prompt) <br/>
   `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
@@ -188,7 +188,7 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
   * `File and Printer Sharing (Echo Request - ICMPv6-In)`;
   * `Virtual Machine Monitoring (Echo Request - ICMPv4-In)`;
   * `Virtual Machine Monitoring (Echo Request - ICMPv6-In)`.
-  * Consequently, in Windows PowerShell prompt, type the following command: <br/>
+  * Consequently, in the Windows PowerShell prompt, type the following command: <br/>
   `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
 * After that, the following screen will appear (Figure 11): <br/>
 ## Figure 11
@@ -209,9 +209,9 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
 * (1) The one that happens in the application itself, from it to itself, and to other computers on the network. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself and the network.
 * (2) Return via Multicast/Broadcast/Unicast. It happens when the local process returns the most current date/time to the remote process(es) (other applications on the network). Ex: `Send R:M/B/U...` which means Multicast/Broadcast/Unicast return, depending on the transmission method used.
 * (3) Update by Multicast/Broadcast/Unicast. It happens when the local application synchronizes its date/time through some remote process via a return message. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
-* (4) Update by Unicast. It happens when the local application synchronizes its date/time through some remote process via the Unicast Transmission method. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
-* (5) Update by Broadcast. It happens when the local application synchronizes its date/time through some remote process via the Broadcast Transmission method. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
-* (6) Update by Multicast. It happens when the local application synchronizes its date/time through some remote process via Multicast Transmission Method. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
+* (4) Update by Unicast. It occurs when the local application synchronizes its date/time with a remote process via the Unicast Transmission method. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
+* (5) Update by Broadcast. It occurs when the local application synchronizes its date/time via a remote process using the Broadcast Transmission method. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
+* (6) Update by Multicast. It happens when the local application synchronizes its date/time with a remote process via the Multicast Transmission Method. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
 # Figure 14
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
 
@@ -228,7 +228,7 @@ To do this, go to the PowerShell command prompt as administrator, and type: `fir
 * Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`. For example, if two processes, `pi` and `pj`, on different nodes, exchange messages (e.g., events a and b), and if the logical clock of the sending process is 8 (e.g., `Ci==8`), this process will increment its clock of 1 (e.g., `Ci=Ci+1)`, `Ci==9`, and after that, it will match the time stamp of the message to be sent equally to `Ci` (e.g., `tsi(mi)==Ci`). It will send the message to process pj. Thus, process pj will calculate upon receiving the message: `Cj=MAX{Cj, tsi(mi)} + 1`. Therefore, if `Cj's` logical clock equals 5, then `Cj's` clock value will be `= MAX{5, 9} + 1 --> Cj = 10`.
 
 5 - Local Physical Clock Display
-* The Physical clock shows the local time configured on the application's computer. If the user changes the local time on the computer, the application will update the time instantly (Figure 17).
+* The Physical clock shows the local time configured on the application's computer. If the user changes the computer's local time, the application will update the time instantly (Figure 17).
 # Figure 17
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
 
@@ -297,7 +297,7 @@ root ALL=(ALL:ALL) ALL<br/>
 
 * update error
 
-Obs: In some cases, Debian, when new, does not comment out the line referring to the CD-ROM in the updates configuration file "/etc/apt/sources.list." This causes an error at the time of the update and, consequently, when installing some programs and libraries with apt.
+Obs: In some cases, Debian, when new, does not comment out the line referring to the CD-ROM in the updates configuration file "/etc/apt/sources.list." This causes an error during the update and, consequently, when installing some programs and libraries with apt.
 It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 23.
 # Figure 23
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
