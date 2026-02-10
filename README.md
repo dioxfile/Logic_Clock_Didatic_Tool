@@ -1,3 +1,7 @@
+# LLCTT Software Registration
+
+![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/certificado.png)
+
 # Logic_Clock_Didatic_Tool
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
