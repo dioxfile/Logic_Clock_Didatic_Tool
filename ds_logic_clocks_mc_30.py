@@ -37,7 +37,7 @@ from pubsub import pub as Publisher
 import varglobal # Global var shared between class
 from socket import error as socket_error #error socket
 from dateutil import parser
-import netifaces, ipaddr #catch the ip default gateway an apply mask to IP Address
+import netifaces, ipaddress #catch the ip default gateway an apply mask to IP Address
 import platform #ADD by hernandes.bruno@unemat.br 
 import locale #ADD by hernandes.bruno@unemat.br 
 import re #ADD by hernandes.bruno@unemat.br
