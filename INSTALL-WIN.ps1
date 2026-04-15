@@ -65,7 +65,7 @@ function Verificar-Pip {
     }
 }
 
-$bibliotecas = @("wxPython", "netifaces", "python-dateutil", "pyPubSub", "ipaddr")
+$bibliotecas = @("wxPython", "netifaces", "python-dateutil", "pyPubSub", "ipaddress")
 
 function Verificar-Bibliotecas($bibliotecas) {
     foreach ($biblioteca in $bibliotecas) {
