@@ -1,0 +1,179 @@
+LLCTT SOFTWARE LICENSE AGREEMENT
+Commercial / Annual / Perpetual / Academic Trial
+Version 2.0
+
+Lamport Logical Clock Teaching Tool (LLCTT)
+
+Intellectual Property Notice:
+LLCTT is a registered computer program before the Brazilian
+National Institute of Industrial Property (INPI),
+Process No. BR512025006919-7.
+
+Copyright (c) 2026 Diogenes Antonio Marques Jose.
+All rights reserved.
+
+IMPORTANT NOTICE
+
+This Agreement governs the authorized use of LLCTT software.
+By installing, activating, executing, accessing, or using LLCTT,
+the Licensee agrees to all terms described herein.
+
+==================================================
+1. LICENSE GRANT
+==================================================
+
+The Licensor grants the Licensee a limited, non-exclusive,
+non-transferable, revocable license to use LLCTT strictly
+according to the license type purchased or contractually agreed.
+
+Available license models include:
+
+(a) Annual License  
+Use authorized for twelve (12) months from activation date.
+
+(b) Perpetual License  
+Use authorized for unlimited duration on licensed machine(s),
+subject to this Agreement.
+
+(c) Academic Trial License  
+Use authorized for seven (7) calendar days from first activation,
+strictly for evaluation, classroom teaching, demonstration,
+and non-commercial testing purposes.
+
+==================================================
+2. PERMITTED USE
+==================================================
+
+The Licensee may use LLCTT only for lawful internal purposes
+within the scope of the acquired license.
+
+Examples may include:
+
+- Educational activities
+- Teaching laboratories
+- Internal technical demonstrations
+- Operational institutional use
+- Internal commercial use (commercial license required)
+- Academic evaluation and testing
+
+==================================================
+3. LICENSE RESTRICTIONS
+==================================================
+
+The Licensee may NOT:
+
+- Copy, reproduce, redistribute, sublicense, rent, lease,
+  lend, or resell the software;
+- Share license files, activation credentials, or protected binaries;
+- Reverse engineer, decompile, disassemble, decode, inspect,
+  derive source code, or bypass protections;
+- Modify, adapt, translate, patch, or create derivative works;
+- Remove notices of ownership or authorship;
+- Circumvent licensing, trial, activation, or security mechanisms;
+- Use the software beyond the licensed duration or scope.
+
+==================================================
+4. MACHINE-BOUND LICENSE
+==================================================
+
+Unless otherwise expressly agreed in writing, licenses may be
+bound to specific hardware, operating system instance,
+virtual machine, or authorized device identifiers.
+
+Transfer to another machine may require prior authorization
+from the Licensor.
+
+==================================================
+5. UPDATES AND TECHNICAL SUPPORT
+==================================================
+
+Unless expressly included in a separate agreement:
+
+- Updates are optional and may be separately licensed;
+- Technical support may be separately contracted;
+- New versions may require renewed licensing;
+- Major upgrades may be commercially distinct products.
+
+==================================================
+6. INTELLECTUAL PROPERTY
+==================================================
+
+LLCTT, including all binaries, source code, interface design,
+methods, algorithms, documentation, branding, trademarks,
+trade secrets, educational models, and related materials,
+remain the exclusive intellectual property of the Licensor.
+
+Registration before INPI does not transfer ownership rights
+to the Licensee.
+
+No ownership rights are granted or implied.
+
+==================================================
+7. TERM AND RENEWAL
+==================================================
+
+(a) Annual License  
+Automatically expires at the end of the contracted term,
+unless renewed.
+
+(b) Perpetual License  
+Remains valid indefinitely, subject to compliance with this Agreement.
+
+(c) Academic Trial License  
+Automatically expires seven (7) days after first activation.
+
+==================================================
+8. TERMINATION
+==================================================
+
+This license may be terminated immediately if:
+
+- Any term of this Agreement is violated;
+- Unauthorized copying or redistribution occurs;
+- Fraudulent or abusive use is detected;
+- Activation controls are bypassed;
+- Payment obligations are breached under commercial contracts.
+
+Upon termination, the Licensee must immediately cease use
+of the software.
+
+==================================================
+9. DISCLAIMER OF WARRANTY
+==================================================
+
+Except where required by applicable law, LLCTT is provided
+"AS IS", without warranties of any kind, express or implied.
+
+==================================================
+10. LIMITATION OF LIABILITY
+==================================================
+
+To the maximum extent permitted by law, the Licensor shall not
+be liable for indirect, incidental, consequential, special,
+or punitive damages arising from use or inability to use LLCTT.
+
+==================================================
+11. GOVERNING LAW AND JURISDICTION
+==================================================
+
+This Agreement shall be governed by the laws of the
+Federative Republic of Brazil.
+
+Any disputes shall be resolved under the competent jurisdiction
+chosen according to Brazilian law.
+
+==================================================
+12. ACCEPTANCE
+==================================================
+
+By installing, activating, executing, or using LLCTT,
+the Licensee confirms that they have read, understood,
+and accepted all terms of this Agreement.
+
+==================================================
+13. CONTACT AND COMMERCIAL LICENSING
+==================================================
+
+For commercial licensing, institutional deployment,
+support contracts, or authorized redistribution,
+contact the Licensor.
