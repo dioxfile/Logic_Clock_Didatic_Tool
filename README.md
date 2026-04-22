@@ -306,6 +306,90 @@ It is advisable to comment on any lines referring to the use of "cdrom" sources,
 # Figure 23
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
+# LLCTT CONTAINERZED
+
+LLCTT is distributed as a containerized application for Linux systems with a local graphical interface (X11). This guide explains how to install, run, activate, and stop the system.
+
+## Requirements
+
+- Linux with graphical interface (X11)
+- Docker installed
+- Docker Compose enabled
+
+## Delivered Files
+
+- `llctt.tar`
+- `docker-compose.yml`
+- `install.sh`
+- `run.sh`
+- `stop.sh`
+- `activate_license.sh`
+- `README_LLCTT_CLIENTE.txt`
+
+## Installation
+
+Run the following command inside the application folder:
+
+```bash
+./install.sh
+```
+
+## Run
+
+After installation, start LLCTT with:
+
+```bash
+./run.sh
+```
+
+## Free Trial Mode
+
+If no active license is available, LLCTT will run automatically in **7-day trial mode**. After that period, license activation is required.
+
+## License Activation
+
+After receiving the license file:
+
+```text
+license.json
+```
+
+run:
+
+```bash
+./activate_license.sh license.json
+```
+
+Then restart the system:
+
+```bash
+./stop.sh
+./run.sh
+```
+
+## Stop the System
+
+To stop LLCTT, run:
+
+```bash
+./stop.sh
+```
+
+## Important Notes
+
+- Do not modify internal files.
+- The license is bound to the machine.
+- Licenses are valid according to the contracted period.
+- The system uses a local graphical interface.
+
+## Support
+
+If you need assistance, please contact the software provider.
+
+## Usage Rights
+
+This software is licensed for authorized use only. Unauthorized reproduction, redistribution, or reverse engineering is prohibited.
+
 **[⬆ back to top](#Logic_Clock_Didatic_Tool)**
 
 
