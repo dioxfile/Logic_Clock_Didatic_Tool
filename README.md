@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/certificado.png)
 
-# Lamport Logic Clock Teaching Tool (LLCTT)
+# Lamport Logical Clock Teaching Tool (LLCTT)
 
 ![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
 
