@@ -308,6 +308,7 @@ It is advisable to comment on any lines referring to the use of "cdrom" sources,
 # Figure 23
 ![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
 
+
 # LLCTT CONTAINERIZED 🐧
  
 LLCTT is distributed as a containerized application for Linux systems with a local graphical interface (X11). This guide explains how to install, run, activate, and stop the system.
