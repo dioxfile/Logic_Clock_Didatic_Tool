@@ -325,7 +325,7 @@ LLCTT is distributed as a containerized application for Linux systems with a loc
 - `run.sh`
 - `stop.sh`
 - `activate_license.sh`
-- `README_LLCTT_CLIENTE.txt`
+- `README_LLCTT_CLIENT.txt`
 
 ## Installation
 
