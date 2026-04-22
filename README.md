@@ -102,8 +102,8 @@ Version: 4.0.7+dfsg-2build1 <br/>
 Package: python3-pip<br/>
 Version: 22.0.2<br/>
 
-* 4. IPADDR<br/>
-Package: ipaddr<br/>
+* 4. IPADDRESS<br/>
+Package: ipaddress<br/>
 Version: 2.2.0<br/>
 
 * 5. NETIFACES<br/>
