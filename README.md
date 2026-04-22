@@ -73,7 +73,7 @@ Why did we return a message with the most current time via broadcast/multicast? 
 * Pyhton3 (Or more)
 * Python3-wxgtk4.0
 * python3-pip
-* ipaddr
+* ipaddress
 * Python3-netifaces
 * Python3-dateutil
 * Python3-pubsub
