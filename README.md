@@ -386,7 +386,7 @@ To stop LLCTT, run:
 
 ## Support
 
-If you need assistance, please contact the software provider.
+If you need assistance, please contact the software provider: [LLCTT Owner](https://www.linkedin.com/in/di%C3%B3genes-antonio-m-jos%C3%A9-jos%C3%A9-40ba6223/).
 
 ## Usage Rights
 
