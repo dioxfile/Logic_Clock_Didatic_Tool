@@ -286,7 +286,7 @@ or run:
 ```PowerShell
 .\get_machine-id.bat
 ```
-Send the generated identifier to the software provider to request a license. Link: [LLCTT Owner](https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact_info%3BdK%2FjeMRPTXS4wMqe3JHtdQ%3D%3D).
+Send the generated identifier to the software provider to request a license. Link: [LLCTT Owner](https://www.linkedin.com/in/dioxfile).
 
 ---
 
