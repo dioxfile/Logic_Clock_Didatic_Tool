@@ -286,7 +286,7 @@ or run:
 ```PowerShell
 .\get_machine-id.bat
 ```
-Send the generated identifier to the software provider to request a license. Link: [LLCTT Owner](https://www.linkedin.com/in/di%C3%B3genes-antonio-m-jos%C3%A9-jos%C3%A9-40ba6223/).
+Send the generated identifier to the software provider to request a license. Link: [LLCTT Owner](https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact_info%3BdK%2FjeMRPTXS4wMqe3JHtdQ%3D%3D).
 
 ---
 
@@ -527,7 +527,7 @@ All required dependencies are already included in the container image.
 
 On Windows, LLCTT does not require manual installation of Python or additional APIs for end users.
 
-All dependencies are already bundled inside the LLCTT executable package generated with Nuitka standalone mode.
+All dependencies are already bundled inside the LLCTT executable package generated with Nuitka's standalone mode.
 
 Windows users only need to:
 
@@ -623,7 +623,7 @@ For best operational stability:
 
 ---
 
-For further clarification, please read the LLCTT Operational Considerations in PDF format.
+For further clarification, please read the LLCTT Operational Considerations PDF.
 
 # Reference
 
