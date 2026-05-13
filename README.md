@@ -224,7 +224,7 @@ README_WINDOWS.txt
 3. Do not rename or modify internal files.
 4. Run the executable as Administrator.
 
-Install Example, Double Click:
+Install Example:
 
 ```text
 LLCTT_Setup_v1.0.exe
@@ -236,7 +236,7 @@ Administrator permission is recommended because LLCTT may need to access network
 
 ## Windows Execution
 
-Right-click the executable and select:
+Right-click the executable (e.g., LLCTT.exe (Desktop Ico)) and select:
 
 ```text
 Run as administrator
