@@ -132,6 +132,8 @@ stop.sh
 ---
 
 ## Linux Installation
+Allow execution only if the package was received from the official software provider.
+### Sha512 Linux (LLCTT_LINUX.zip): 273b41e605f9137d205840968f46ce0314c225e6a0f2c60296398e5608a24d2cb12d74ad0f8a8420d241cead9d2a508a53c5c2dca4ab9781136a883beff38161
 
 Open a terminal in the LLCTT folder and run:
 
@@ -241,7 +243,7 @@ Run as administrator
 ```
 
 If Windows Defender or another security tool asks for confirmation, allow execution only if the package was received from the official software provider.
-### Sha512 Windows: 1acee55d982bffc9036191a1f7042ea34b67f9cdd404948d8659f2a20bf25269dfd20bc73f775fafb5c3fbc99e41834ee44b50606ff84dc3c494665b08d823e4
+### Sha512 Windows (LLCTT_WINDOWS.zip): 1acee55d982bffc9036191a1f7042ea34b67f9cdd404948d8659f2a20bf25269dfd20bc73f775fafb5c3fbc99e41834ee44b50606ff84dc3c494665b08d823e4
 ---
 
 ## Windows Firewall Notes
