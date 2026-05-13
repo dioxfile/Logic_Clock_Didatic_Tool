@@ -201,7 +201,7 @@ Then restart LLCTT:
 
 The Windows version is distributed as a packaged executable.
 
-The user does not need to install Python, Visual Studio Build Tools, wxPython, pip packages, or any other dependencies manually.
+The user does not need to install Python, Visual Studio Build Tools, wxPython, pip packages, or any other dependencies manually. However, Python is only required to run the machine_fingerprint.py utility, which is used to generate the machine identifier for activation/licensing.
 
 ---
 ## Windows Delivered Files
@@ -215,8 +215,6 @@ get_machine-id.bat
 machine_fingerprint.py
 README_WINDOWS.txt
 ```
-### OBS: Python is only a prerequisite for running the machine_fingerprint.py file.
-
 ## Windows Installation
 
 1. Extract the LLCTT Windows package.
@@ -243,7 +241,7 @@ Run as administrator
 ```
 
 If Windows Defender or another security tool asks for confirmation, allow execution only if the package was received from the official software provider.
-
+### Sha512 Windows: 1acee55d982bffc9036191a1f7042ea34b67f9cdd404948d8659f2a20bf25269dfd20bc73f775fafb5c3fbc99e41834ee44b50606ff84dc3c494665b08d823e4
 ---
 
 ## Windows Firewall Notes
@@ -546,6 +544,86 @@ LLCTT must be executed with administrator/root privileges because the applicatio
 - Modifies or synchronizes the operating system date and time
 
 ---
+
+# IPv6 Configuration Recommendation for LLCTT
+
+## Important Observation
+
+To ensure proper IPv6 communication in the LLCTT (Lamport Logic Clock Didactic Tool), both Multicast and Unicast modes are recommended to operate with only one configured IPv6 Unicast address per node.
+
+Having multiple IPv6 Unicast addresses assigned to the same node may cause synchronization, routing, or communication errors.
+
+Therefore, it is recommended to:
+
+- Remove IPv6 addresses automatically assigned by DHCPv6;
+- Disable DHCPv6 on the node;
+- Configure a single static IPv6 Unicast address, for example, within the `fc00::/64` range.
+
+---
+
+# Linux
+
+## List IPv6 Addresses
+
+```bash
+ip -6 addr
+```
+
+## Remove a Specific IPv6 Address
+
+```bash
+ip -6 addr del <IPv6>/64 dev <IFACE>
+```
+
+Example:
+
+```bash
+sudo ip -6 addr del fc00::20/64 dev eth0
+```
+
+## Alternative Command
+
+```bash
+ifconfig <IFACE> del <IPv6>
+```
+
+---
+
+# Windows
+
+## List IPv6 Addresses
+
+```cmd
+netsh interface ipv6 show addresses
+```
+
+## Remove a Specific IPv6 Address
+
+```cmd
+netsh interface ipv6 delete address "Ethernet" <IPv6>
+```
+
+Example:
+
+```cmd
+netsh interface ipv6 delete address "Ethernet" fc00::20
+```
+
+---
+
+# Recommendation
+
+After removing dynamic IPv6 addresses, configure only one static IPv6 Unicast address per node.
+
+Example:
+
+```text
+fc00::10/64
+fc00::20/64
+fc00::30/64
+```
+
+This configuration improves IPv6 communication stability for both Unicast and Multicast experiments in the LLCTT.
 
 # IPv6 Multicast Notes
 
