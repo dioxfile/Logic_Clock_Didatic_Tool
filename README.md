@@ -4,7 +4,7 @@
 
 **Lamport Logical Clock Teaching Tool (LLCTT)** is an educational software tool for teaching and experimenting with concepts from **Distributed Systems**, especially **Lamport Logical Clocks**, distributed event ordering, message exchange, and clock synchronization.
 
-The tool allows students and instructors to visualize logical clocks, physical clock updates, communication between processes, and distributed synchronization using IPv4 and IPv6 networks.
+The tool allows students and instructors to visualize logical clocks, physical clock updates, interprocess communication, and distributed synchronization over IPv4 and IPv6 networks.
 
 LLCTT is distributed for **Linux** and **Windows**. In both versions, the user does **not** need to manually install Python, wxPython, or external libraries. The required runtime components are already packaged with the application.
 
@@ -170,7 +170,7 @@ The license is bound to the machine. To obtain the Linux machine identifier, run
 cat /etc/machine-id
 ```
 
-Send the generated value to the software provider to request a license.
+Send the generated value to the software provider to request a license: [Provider](https://www.linkedin.com/in/dioxfile).
 
 ---
 
@@ -201,7 +201,7 @@ Then restart LLCTT:
 
 The Windows version is distributed as a packaged executable.
 
-The user does not need to install Python, Visual Studio Build Tools, wxPython, pip packages, or any other dependency manually.
+The user does not need to install Python, Visual Studio Build Tools, wxPython, pip packages, or any other dependencies manually.
 
 ---
 ## Windows Delivered Files
