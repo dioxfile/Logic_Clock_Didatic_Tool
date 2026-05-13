@@ -584,7 +584,7 @@ sudo ip -6 addr del fc00::20/64 dev eth0
 ## Alternative Command
 
 ```bash
-ifconfig <IFACE> del <IPv6>
+sudo ifconfig <IFACE> del <IPv6>
 ```
 
 ---
