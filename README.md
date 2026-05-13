@@ -224,7 +224,7 @@ README_WINDOWS.txt
 3. Do not rename or modify internal files.
 4. Run the executable as Administrator.
 
-Install Example:
+Install Example, Double Click:
 
 ```text
 LLCTT_Setup_v1.0.exe
