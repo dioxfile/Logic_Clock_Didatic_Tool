@@ -1,399 +1,630 @@
+# LLCTT — Lamport Logical Clock Teaching Tool
+
+![LLCTT Linux](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
+
+**Lamport Logical Clock Teaching Tool (LLCTT)** is an educational software tool for teaching and experimenting with concepts from **Distributed Systems**, especially **Lamport Logical Clocks**, distributed event ordering, message exchange, and clock synchronization.
+
+The tool allows students and instructors to visualize logical clocks, physical clock updates, communication between processes, and distributed synchronization using IPv4 and IPv6 networks.
+
+LLCTT is distributed for **Linux** and **Windows**. In both versions, the user does **not** need to manually install Python, wxPython, or external libraries. The required runtime components are already packaged with the application.
+
+---
+
+## Main Features
+
+- Didactic graphical interface for Distributed Systems classes.
+- Lamport Logical Clock visualization.
+- Logical and physical clock synchronization.
+- IPv4 and IPv6 support.
+- UDP communication.
+- Unicast, Broadcast, and Multicast transmission modes.
+- Local and remote process monitoring.
+- Distributed event panel.
+- Logical clock counter panel.
+- Physical clock panel.
+- Time difference panel.
+- RTT-based adjustment inspired by Cristian's algorithm.
+- Manual and automatic message sending.
+- Linux containerized version.
+- Windows packaged executable version by Nuitka.
+- 7-day trial mode.
+- Machine-bound license validation.
+- Anti-rollback and anti-tampering protection.
+
+---
+
+## Educational Purpose
+
+LLCTT was designed to support practical teaching of Distributed Systems topics, including:
+
+- Lamport Logical Clocks;
+- ordering of distributed events;
+- logical time versus physical time;
+- message passing between processes;
+- synchronization through network communication;
+- Unicast, Broadcast, and Multicast behavior;
+- IPv4 and IPv6 socket communication.
+
+The tool helps students observe how distributed processes exchange messages, update logical clocks, and synchronize events in real time.
+
+---
+
+## Basic Concept
+
+In Distributed Systems, physical clocks are not always reliable for ordering events. Lamport Logical Clocks provide a logical mechanism for defining the causal order of events.
+
+If an event `a` happens before an event `b`, then the logical timestamp of `a` must be smaller than the logical timestamp of `b`:
+
+```text
+if a → b, then C(a) < C(b)
+```
+
+The basic Lamport rule used by LLCTT is:
+
+```text
+1. Before a local event, increment the local logical clock.
+2. When sending a message, attach the current logical timestamp.
+3. When receiving a message, update the local logical clock using:
+
+   Cj = max(Cj, ts(m)) + 1
+```
+## Pseudo Code Lamport Logical Clock Algorithm
+![Pseudo Code](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
+
+---
+
 # LLCTT Software Registration
 
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/certificado.png)
+### The LLCTT has been officially registered with the Instituto Nacional da Propriedade Industrial (INPI), ensuring the legal protection of its intellectual property in Brazil. This registration reinforces the originality and technological relevance of the tool, which was developed to support the teaching and practical understanding of distributed systems concepts, especially Lamport logical clocks and network communication mechanisms.
 
-# Lamport Logical Clock Teaching Tool (LLCTT)
+![INPI Registration](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/certificado.png)
 
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/QRCode_Vector_clock.png)
+## Example of Operation
+![Operation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3.png)
 
-Code in Python to synchronize the computer clock using the [Lamport-WIKI](https://en.wikipedia.org/wiki/Leslie_Lamport) Logic Clock method. This application teaches clock synchronization in computer science courses, such as distributed systems. It applies the concept of Lamport Logical Clocks to physical computer clocks and events on these computers, such as message sending and receiving.
-## Context
-People use physical time to order events. For example, we say that an event at 8:15 AM occurs before an event at 8:16 AM. In distributed systems, physical clocks are not always precise, so we can't rely on physical time to order events. Instead, we can use logical clocks to create a partial or total ordering of events. Thus, this APPLICATION explores the concept and implementation of the logical clocks invented by Leslie Lamport in his seminal paper `Time, Clocks, and the Ordering of Events in a Distributed System`, [Lamport-Paper](https://dl.acm.org/doi/10.1145/359545.359563).
+### Illustration of the LLCTT broadcast synchronization process using Lamport logical clocks. The figure demonstrates how a node propagates a broadcast time reference (Bcst T) to other distributed nodes, allowing clients to update their local logical time (UTB) according to the received synchronization message and returned broadcast time (TRB).
+---
 
-# Lamport's Logic Clock Algorithm
-In logical clocks, synchronization with the date/time does not need to be absolute. Furthermore, if two processes do not interact, their clocks do not need to be synchronized. Thus, what happens before is taken into account, for example, two events of a process `Pi`, `a` and `b`, with `a` being the sending of a `msg` and `b` being receiving this same `msg` is equivalent to saying that `a → b`. This way, all `Processes` agree that event `a` occurs first and then event `b` occurs; 
+## Supported Platforms
 
-In this context, there are two situations:
-* (1) `a` and `b` are from the same process, and `a` occurs before `b`, so `a → b` is true; 
-* (2) `a` is the event of `msg` being sent by `P1`, and `b` is the event of the same `msg` being received by `P2`, so `a → b` is true. Furthermore, a `msg` cannot be received before it is sent. 
-* The relationship between events `a → b` is transitive. Therefore, `a → b` and `b → c`, so `a → c`; 
-* Event `a` has a clock `C(a)` that everyone agrees on; 
-* `a → b, then C(a) < C(b)`; 
-* `C` always occurs forward; 
-* Time is corrected positively (`+`).  
+| Platform | Distribution Model | Manual Dependencies Required |
+|---|---|---|
+| Linux | Docker container | No |
+| Windows 10/11 | Packaged executable | No |
 
-Consequently, Lamport's algorithm is as follows:
-* (Step 1) Before some event (e.g., sending to network and delivery to application) `pi executes Ci ← Ci + 1`;
-* (Step 2) If `pi` sends a message `m` to `pj`, then it sets the timestamp of `m` message `ts(m)` to equal `Ci`, after having performed `step 1`;
-* (Step 3) Upon receiving `m`, `pj` adjusts the local counter to `Cj ← max{Cj, ts(m)}`, after which step 1 is executed, and the message is delivered to the application; 
+---
 
-Therefore, each `pi` maintains a local counter `Ci` (Figure 1).
-# Figure 1
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/algo.png)
+# Linux Version 🐧
 
-1. [What are the Possible Applications?](#What-are-the-Possible-Applications)
-1. [Prerequisites](#prerequisites)
-1. [What do you need to use this software?](#What-do-you-need-to-use-this-software)
-1. [How to install this application in your system?](#How-to-install-this-application-in-your-system)
-1. [How to use it?](#How-to-use-it)
-1. [Possible errors](#possible-errors)
-1. [LLCTT Containerized 🐧](#LLCTT-CONTAINERIZED)
+The Linux version is distributed as a **containerized application** with graphical interface support through X11 🐧.
 
+The user does not need to install Python, wxPython, netifaces, dateutil, PyPubSub, or any other Python dependency manually.
 
+## Linux Requirement
 
-</head>
+Only the following is required:
 
-# What are the Possible Applications?
-Its purpose is to synchronize the physical (e.g., CMOS clock) and logical clocks of computers connected to the same network.
-
-## Proposal Description 
-In this proposal, Lamport's Logical Clock Algorithm was employed to address the issue of a depleted CMOS battery, which can cause the misconfiguration of physical clocks on computers. Consequently, when the application executes and transmits a message across the network, all computers on the network will automatically synchronize to the highest date and time. To achieve synchronization across the entire network, only one message is sent via broadcast or multicast. Following this, convergence occurs within 1 second.
-
-## Application Operation
-
-This application works as follows: imagine a scenario with three computers, as shown in Figure 2.
-# Figure 2
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/0.png)
-
-* In this scenario, the computer with the IP address 172.168.10.3 sends a message with its date/time via broadcast to the network (Figure 3). When computers 172.168.10.1 and 172.168.10.2 receive this message, they will behave as illustrated in Figure 4;
-# Figure 3
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1.png)
-
-* As shown in Figure 4, the computer with the IP address 172.168.10.2 updates its local time. However, computer 172.168.10.1 does not. This occurs because the time on computer 172.168.10.1 is more up-to-date, as depicted in Figure 4;
-# Figure 4
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2.png)
-
-* Consequently, the computer at 172.168.10.1 will broadcast a message containing the most up-to-date time to the network. All other computers will update their times with this message in this context. Thus, complete synchronization occurs, as depicted in Figure 5;
-# Figure 5
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3.png)
-
-Why did we return a message with the most current time via broadcast/multicast? The answer is that if we returned the message via unicast only to the message sender, the other machines that updated their times with it would not be aware that their times are outdated, as illustrated in Figure 6.
-# Figure 6
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4_.png)
-
-# Prerequisites
-* Pyhton3 (Or more)
-* Python3-wxgtk4.0
-* python3-pip
-* ipaddress
-* Python3-netifaces
-* Python3-dateutil
-* Python3-pubsub
-
-
-# What do you need to use this software?
-* You will need a GNU/Linux Ubuntu 20.04 Focal, Linux Mint 20.1 Ulyssa, or another Linux system.
-* And/Or Windows 10 and/or 11 Enterprise Edition.
-* Internet connection for download.
-
-The software will probably also work on any other SO, but it has only been tested on the systems listed above.
-
-## For x86_64 Debian-based distributions and Windows 10 and/or 11 Enterprise Edition <br/> 
-These are the necessary packages and modules.
-Although the versions may not necessarily be the same, they have been tested and confirmed to be operating normally.
-
-* 1. PYTHON3 <br/>
-Package: python3 <br/>
-Version: 3.8.2-0ubuntu2 <br/>
-
-* 2. WXGTK4<br/>
-Package: python3-wxgtk4.0<br/>
-Version: 4.0.7+dfsg-2build1 <br/>
-
-* 3. PIP-3<br/>
-Package: python3-pip<br/>
-Version: 22.0.2<br/>
-
-* 4. IPADDRESS<br/>
-Package: ipaddress<br/>
-Version: 2.2.0<br/>
-
-* 5. NETIFACES<br/>
-Package: python3-netifaces<br/>
-Version: 0.10.4-1ubuntu4<br/>
-
-* 6. DATEUTIL<br/>
-Package: python3-dateutil<br/>
-Version: 2.7.3-3ubuntu1<br/>
-
-* 7. PUBSUB<br/>
-Package: python3-pubsub<br/>
-Version: 4.0.3-4<br/>
-
-
-***********************************************************************************************
-# How do you install this application on your system?
-## How do you install it in Debian-based Systems (x86_64)?
-* Download INSTALL.sh from git<br/>
-* Permit to file INSTALL.sh<br/>
-  `$sudo chmod +x INSTALL.sh`
-
-* Obs: For the above command to work, the terminal must be open where the file is located.<br/>
-
-* Run the file<br/>
-  `$sudo ./INSTALL.sh`
-
-***********************************************************************************************
-## You can install automatically by running the file 'INSTALL.sh'. But if you'd like to install it manually, please follow the steps below.
-
-* In Debian-Based Systems.
-
-* First, you will download the package and later install it. Once the installation is finished, you can delete the downloaded `*.deb` files.
-
-
-1. INSTALL PYTHON3<br/>
-`$sudo apt install python3`<br/>
-
-2. INSTALE WXGTK4<br/>
-`$sudo apt install python3-wxgtk4.0`<br/>
-
-3. INSTALL IPADDR (PIP)<br/>
-`$sudo apt install python3-pip`
-`$sudo pip3 install ipaddr`<br/>
-
-4. INSTALL NETIFACES<br/>
-`$sudo apt install python3-netifaces`
-
-5. INSTALL DATEUTIL<br/>
-`sudo apt install python3-dateutil`<br/>
-
-6. INSTALL PUBSUB<br/>
-`sudo apt install python3-pubsub`<br/>
-
-***********************************************************************************************
-
-## How do you install it in Windows 10 and/or 11 Enterprise Edition (x86_64)?
-
-* On Windows 10 and/or 11 Enterprise or other versions, install "vs_BuildTools" by downloading it from the following link: https://visualstudio.microsoft.com/visual-cpp-build-tools/ <br/>
-* After that, you need to run it as an administrator and check the following tools as shown in Figures 7, 8, and 9 (e.g., where the boxes are checked) <br/>
-## Figure 7
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/1MS.png)
-## Figure 8
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/3ms.png)
-## Figure 9
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/2ms.png)
-* Now click Install and wait for the installation (e.g., this may take a few minutes depending on your Internet connection) <br/>
-* Now go to the Windows search bar and type PowerShell, and in the PowerShell application, right-click and run as administrator as shown in Figure 10:<br/>
-## Figure 10
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/4ms.png)
-* At the PowerShell prompt, run the following command: `ExecutionPolicy RemoteSigned` <br/>
-* If prompted, press A to confirm the action. This will set the RemoteSigned execution policy for all users <br/>
-* If you want to set the execution policy for the Current User only, use the Scope parameter followed by the username. For example: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` <br/>
-* After that, download the INSTALL.ps1 script (e.g., from GitHub) and run it at the PowerShell command prompt, for example: `.\INSTALL.ps1` <br/>
-* After installing Python3 and all necessary libraries (e.g., wxgtk, pip, ipaddr, netifaces, dateutil, and pubsub), download the following files from git: `ds_logic_clocks_mc_30.py and varglobal.py` <br/>
-* Go to the folder where the files were downloaded and run `ds_logic_clocks_mc_30.py` as administrator (e.g., click it twice). <br/>
-
-# How to use it?
-## IMPORTANT: To change the computer's time, you must run the application as administrator or a root user.<br/>
-### You need to run the file with Python <br/>
-* Linux (e.g., Bash/dash prompt) <br/>
-  `$ sudo ./ds_logic_clocks_mc_30.py` <br/>
-* In Windows systems, to avoid problems, some firewall rules must be activated.
-To do this, go to the PowerShell command prompt as administrator, and type: `firewall.cpl`. After that, click on advanced settings and activate the following options/rules:
-  * `File and Printer Sharing (Echo Request - ICMPv4-In)`;
-  * `File and Printer Sharing (Echo Request - ICMPv6-In)`;
-  * `Virtual Machine Monitoring (Echo Request - ICMPv4-In)`;
-  * `Virtual Machine Monitoring (Echo Request - ICMPv6-In)`.
-  * Consequently, in the Windows PowerShell prompt, type the following command: <br/>
-  `c:\Users\Administrator> .\ds_logic_clocks_mc_30.py` <br/>
-* After that, the following screen will appear (Figure 11): <br/>
-## Figure 11
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gui1.png)
-
-**************************************************************
-# Application Details: 
-1 - Transmission Method, Figure 12; 
-# Figure 12 
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/transmissionLC.png)
-* The application can create DGRAM (UDP) IPv4 (Unicast, Multicast, and Broadcast) and IPv6 (Unicast and Multicast) sockets. A valid combination would be `Broadcast, IP Local Server - 0.0.0.0, IP Remote Server - <broadcast>, and Port 10001 (e.g., if you have a firewall, this port must be open)`; 
-* It is possible to use any communication port as long as another application is not already using it; 
-* When clicking on the Bind IP/Port Button, for instance, the `Local Socket Assigned (Local):` panel will show the connected socket (tuple), for example: `Connection in ('0.0.0.0', 10001)`, Figure 13.
-# Figure 13
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/bindLC.png) 
-
-2 - Local Panel of Events. In the events panel, there are six types of events (Figure 14):
-* (1) The one that happens in the application itself, from it to itself, and to other computers on the network. Ex: `The process at ('172.168.20.21', 52952) says, date/time: 11/08/2023 14:31:00.701633`. It shows that the local process on socket `172.168.20.21', 52952` sent the time to itself and the network.
-* (2) Return via Multicast/Broadcast/Unicast. It happens when the local process returns the most current date/time to the remote process(es) (other applications on the network). Ex: `Send R:M/B/U...` which means Multicast/Broadcast/Unicast return, depending on the transmission method used.
-* (3) Update by Multicast/Broadcast/Unicast. It happens when the local application synchronizes its date/time through some remote process via a return message. Ex: `Update date/time from ('172.168.20.96', 52643) by R:M/B/U`. Figure 14.
-* (4) Update by Unicast. It occurs when the local application synchronizes its date/time with a remote process via the Unicast Transmission method. Ex: `Update date/time from ('172.168.20.96', 52683) by unicast`. 
-* (5) Update by Broadcast. It occurs when the local application synchronizes its date/time via a remote process using the Broadcast Transmission method. Ex: `Update date/time from ('172.168.20.96', 33643) by broadcast`. 
-* (6) Update by Multicast. It happens when the local application synchronizes its date/time with a remote process via the Multicast Transmission Method. Ex: `Update date/time from ('172.168.20.96', 62643) by multicast`.
-# Figure 14
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panelLC.png)
-
-3 - Hosts/Processes Panel. 
-* The hosts and processes panel shows all local and remote processes (e.g., hosts) that are part of the communication for synchronization. This is useful when using transmission methods such as Multicast and Broadcast (Figure 15).
-# Figure 15
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-processesLC.png)
-* Figure 15 shows the local processes, for instance, the local default process/IP `0.0.0.0`, the local process/IP `172.168.20.21`, and the remote process/IP `172.168.20.96`.
-
-4 - Logic Clock Panel. 
-* The logical clock panel displays the number of events that occurred in the local application (e.g., Local IP) when sending messages only to itself (e.g., a single application on the network) and all events from remote applications that came into contact with the current process when having more than one application on the network (Figure 16). 
-# Figure 16 
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/panel-LC.png)
-* Figure 16 shows that the local application registered `8 events`, and the IP used for that is `0.0.0.0`. For example, if two processes, `pi` and `pj`, on different nodes, exchange messages (e.g., events a and b), and if the logical clock of the sending process is 8 (e.g., `Ci==8`), this process will increment its clock of 1 (e.g., `Ci=Ci+1)`, `Ci==9`, and after that, it will match the time stamp of the message to be sent equally to `Ci` (e.g., `tsi(mi)==Ci`). It will send the message to process pj. Thus, process pj will calculate upon receiving the message: `Cj=MAX{Cj, tsi(mi)} + 1`. Therefore, if `Cj's` logical clock equals 5, then `Cj's` clock value will be `= MAX{5, 9} + 1 --> Cj = 10`.
-
-5 - Local Physical Clock Display
-* The Physical clock shows the local time configured on the application's computer. If the user changes the computer's local time, the application will update the time instantly (Figure 17).
-# Figure 17
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/phisical-LC.png)
-
-6 - Time Difference.
-* The time difference panel displays the date/time difference that was updated/synchronized in the local application and received from a remote application, Figure 18. 
-# Figure 18
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/diffe-time-LC.png)
-* Figure 18 shows that the application synchronized, and the date/time difference was: `1 hour, 2 seconds, 745 milliseconds`.
-
-7 - RTT Ping Average Delay.
-* The `RTT Ping Average` panel displays the time used to adjust the date/time received from remote processes. This method is based on [Cristian](https://www.cs.utexas.edu/users/lorenzo/corsi/cs380d/papers/Cristian.pdf).
-* It works as follows:
-* (1.) The Local Process sends its timestamp to the network at time `t0`;
-* (2.) All Remote Processes receive this timestamp. Thus, if a remote process has a more current time, it will return a message to the network with its timestamp `T`;
-* (3.) With an outdated timestamp, the Local Process receives the response at time `t1` and then adjusts its time to `T + RTT/2`, where `RTT = [(t1 − t0) + RTT Ping Average]`.
-
-Therefore, we use the ping program to perform this calculation. Thus, upon receiving the updated date/time from a remote application, the current application, ' Local Process', executes the ping program in the direction of the remote application (e.g., `$ ping Remote IP`). Thus, ping returns the average `RTT` time (e.g., `rtt min/avg/max/mdev = 0.994/1.021/1.048/0.027 ms`), which is divided by two `(1.021ms/2)` and then added to the received date/time (e.g., `T + RTT/2`). That's why we call this method `RTT Ping Average`, Figure 19.
-# Figure 19
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/ping-LC.png)
-* Figure 19 shows the RTT value already divided by two.
-
-8 - Send Message Methods.
-* Messages can be sent automatically and manually, as shown in Figure 20.
-# Figure 20.
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/buttons-LC.png)
-* Figure 20 shows the buttons: `Automatic Send Message`, `Stop: Automatic Message`, and `Manual Send Message`.
-
-# Figure 21
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
-* Figure 21 depicts the application running in the Linux System.
-
-# Figure 22
-![alt text](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
-* Figure 22 depicts the application running in Windows System via VMware Workstation 17 Player.
-***********************************************************************************************
-
-# Possible errors
-
-* If any module, for unknown reasons, has not been installed
-
-For any module error, you may have to review the "`How to install this application in your system?`" session and manually install each module in sequence according to the tutorial. Follow all steps.<br/>
-
-In the Debian system, you may have a user error<br/>
-If you get the error "./INSTALL.sh: sudo: not found". By default, sudo is not installed, but you can install it. <br/>
-
-First, enable su-mode:<br/>
-`$su`<br/>
- 
-Install sudo<br/>
-`#apt install sudo -y`<br/>
-
-After that, you would need to play around with users and permissions. Give sudo rights to your user.<br/>
-`#usermod -aG sudo username`<br/>
-
-Edit the file 'sudoers'<br/>
-`#nano /etc/sudoers`<br/>
-
-#User privilege specification<br/>
-```shellscript
-root ALL=(ALL:ALL) ALL<br/>
-"username" ALL=(ALL:ALL) ALL <br/><br/>
+```text
+Docker must be installed and working, but if the user does not have it, a Docker 🐳 installation script is provided with LLCTT (e.g., install_docker.sh).
 ```
-#The top line was the one we added. <br/>
-#Replace 'username' with the name of your user who wants to have root permission<br/>
-`#exit`
 
-* update error
+Docker Compose 📦 must also be available. In most recent Docker installations, Compose is already included.
 
-Obs: In some cases, Debian, when new, does not comment out the line referring to the CD-ROM in the updates configuration file "/etc/apt/sources.list." This causes an error during the update and, consequently, when installing some programs and libraries with apt.
-It is advisable to comment on any lines referring to the use of "cdrom" sources, and it is strongly recommended to use official Debian sources, both "Debian" and "security". Figure 23.
-# Figure 23
-![animation](https://github.com/dioxfile/Vector_Clock/raw/master/Imagens/gif-animada.gif)
+---
 
+## Linux Delivered Files
 
-# LLCTT CONTAINERIZED 🐧
- 
-LLCTT is distributed as a containerized application for Linux systems with a local graphical interface (X11). This guide explains how to install, run, activate, and stop the system.
+The Linux package may include:
 
-## Requirements
-- 🐧 Linux with graphical interface (X11)
-- 🐳 Docker installed
-- 📦 Docker Compose enabled
+```text
+activate_license.sh
+docker-compose.yml
+get_machine-id.sh
+install_docker.sh
+install.sh
+llctt.tar
+README_CLIENT.txt
+repair_client.sh
+run.sh
+stop.sh
+```
 
-## Delivered Files
+---
 
-- `llctt.tar`
-- `docker-compose.yml`
-- `install.sh`
-- `run.sh`
-- `stop.sh`
-- `activate_license.sh`
-- `README_LLCTT_CLIENT.txt`
+## Linux Installation
 
-## Installation
-
-Run the following command inside the application folder:
+Open a terminal in the LLCTT folder and run:
 
 ```bash
+chmod +x install.sh run.sh stop.sh activate_license.sh
 ./install.sh
 ```
 
-## Run
+This loads the LLCTT Docker image and prepares the application environment.
 
-After installation, start LLCTT with:
+---
+
+## Linux Execution
+
+To start LLCTT:
 
 ```bash
 ./run.sh
 ```
 
-## Free Trial Mode
+To stop LLCTT:
 
-If no active license is available, LLCTT will run automatically in **7-day trial mode**. After that period, license activation is required.
+```bash
+./stop.sh
+```
 
-## License Activation
+If the application needs to modify the system clock, it must run with the required system permissions configured in the container package.
 
-After receiving the license file:
+---
+
+## Linux Machine-ID
+
+The license is bound to the machine. To obtain the Linux machine identifier, run:
+
+```bash
+cat /etc/machine-id
+```
+
+Send the generated value to the software provider to request a license.
+
+---
+
+## Linux License Activation
+
+After receiving the license file named:
 
 ```text
 license.json
 ```
 
-run:
+activate it with:
 
 ```bash
 ./activate_license.sh license.json
 ```
 
-Then restart the system:
+Then restart LLCTT:
 
 ```bash
 ./stop.sh
 ./run.sh
 ```
 
-## Stop the System
+---
 
-To stop LLCTT, run:
+# Windows Version 🪟
 
-```bash
-./stop.sh
+The Windows version is distributed as a packaged executable.
+
+The user does not need to install Python, Visual Studio Build Tools, wxPython, pip packages, or any other dependency manually.
+
+---
+## Windows Delivered Files
+
+The Windows package may include:
+
+```text
+LLCTT_Setup_v1.0.exe
+activate_license.bat
+get_machine-id.bat
+machine_fingerprint.py
+README_WINDOWS.txt
+```
+### OBS: Python is only a prerequisite for running the machine_fingerprint.py file.
+
+## Windows Installation
+
+1. Extract the LLCTT Windows package.
+2. Keep all files in the same folder.
+3. Do not rename or modify internal files.
+4. Run the executable as Administrator.
+
+Example:
+
+```text
+LLCTT.exe
 ```
 
-## Important Notes
+Administrator permission is recommended because LLCTT may need to access network resources and adjust the system clock.
 
+---
+
+## Windows Execution
+
+Right-click the executable and select:
+
+```text
+Run as administrator
+```
+
+If Windows Defender or another security tool asks for confirmation, allow execution only if the package was received from the official software provider.
+
+---
+
+## Windows Firewall Notes
+
+For network communication tests, Windows Firewall may need to allow ICMP and local network communication.
+
+Open PowerShell as Administrator and run:
+
+```powershell
+firewall.cpl
+```
+
+Then enable, when necessary:
+
+```text
+File and Printer Sharing (Echo Request - ICMPv4-In);
+File and Printer Sharing (Echo Request - ICMPv6-In);
+Virtual Machine Monitoring (Echo Request - ICMPv4-In);
+Virtual Machine Monitoring (Echo Request - ICMPv6-In).
+```
+
+In laboratory environments, also verify whether UDP communication is allowed on the selected LLCTT port.
+
+---
+
+## Windows Machine-ID
+
+Open PowerShell as Administrator and run one of the following commands:
+
+```powershell
+wmic csproduct get uuid
+```
+
+or:
+
+```powershell
+Get-ComputerInfo | Select-Object CsSystemUUID
+```
+or run:
+```PowerShell
+.\get_machine-id.bat
+```
+Send the generated identifier to the software provider to request a license. Link: [LLCTT Owner](https://www.linkedin.com/in/di%C3%B3genes-antonio-m-jos%C3%A9-jos%C3%A9-40ba6223/).
+
+---
+
+## Windows License Activation
+
+Place the received file:
+
+```text
+license.json
+```
+
+inside the LLCTT application folder.
+
+Then run LLCTT again as Administrator.
+
+If the Windows package includes a specific activation script, use it according to the client instructions provided with the package.
+
+---
+
+# Trial Mode
+
+When no valid license is found, LLCTT may start in **trial mode**.
+
+Current trial period:
+
+```text
+7 days
+```
+
+After the trial expires, a valid license is required.
+
+---
+
+# Licensing System
+
+LLCTT uses a local licensing system with:
+
+- machine identification;
+- signed license file;
+- expiration date validation;
+- trial period control;
+- anti-rollback verification;
+- anti-tampering checks.
+
+A license is valid only for the machine for which it was issued.
+
+---
+
+# Anti-Rollback Protection
+
+LLCTT includes protection against system clock rollback and runtime state manipulation.
+
+The system may block execution when it detects:
+
+- manual system clock rollback;
+- VM snapshot rollback;
+- license state tampering;
+- trial state manipulation;
+- inconsistent runtime state.
+
+If a message such as the following appears:
+
+```text
+System clock rollback detected
+```
+
+or:
+
+```text
+Runtime state has been tampered with
+```
+
+contact the software provider. Do not manually edit internal files.
+
+---
+
+# How to Use LLCTT
+
+## 1. Start the Application
+
+Linux:
+
+```bash
+./run.sh
+```
+
+Windows:
+
+```text
+Run LLCTT.exe as Administrator
+```
+
+---
+
+## 2. Choose the Communication Mode
+
+LLCTT supports:
+
+```text
+Unicast
+Broadcast
+Multicast
+```
+
+The correct option depends on the teaching activity and the local network environment.
+
+---
+
+## 3. Configure IP and Port
+
+Typical examples:
+
+```text
+IPv4 local server: 0.0.0.0
+Broadcast address: <broadcast>
+Port: 10001
+```
+
+Any available UDP port may be used, provided it is not already in use by another application.
+
+---
+
+## 4. Bind the Socket
+
+After selecting the IP address, port, and transmission mode, click the bind/connect button in the graphical interface.
+
+The local socket information will be displayed in the application.
+
+---
+
+## 5. Send Messages
+
+LLCTT supports:
+
+```text
+Manual Send Message
+Automatic Send Message
+Stop Automatic Message
+```
+
+Each message generates distributed events and updates the logical clock panel.
+
+---
+
+## 6. Observe the Panels
+
+The main panels show:
+
+- local events;
+- remote events;
+- local logical clock;
+- physical clock;
+- known hosts/processes;
+- time difference;
+- RTT delay;
+- synchronization updates.
+
+---
+
+# Network Notes
+
+For best results:
+
+- use machines connected to the same local network;
+- allow UDP traffic on the selected port;
+- enable ICMP echo when RTT measurement is required;
+- test Broadcast and Multicast according to the network policy;
+- verify IPv6 scope when using IPv6 Multicast.
+
+On Windows, some IPv6 Multicast scenarios may require a more specific scope, depending on the network interface and operating system configuration.
+
+---
+
+# Important Recommendations
+
+- Run LLCTT as Administrator/root when clock adjustment is required.
 - Do not modify internal files.
-- The license is bound to the machine.
-- Licenses are valid according to the contracted period.
-- The system uses a local graphical interface.
+- Do not edit `license.json` manually.
+- Do not delete runtime state files.
+- Avoid system clock rollback.
+- Avoid restoring old VM snapshots after trial or license activation.
+- Keep the original package structure.
 
-## Support
+---
 
-If you need assistance, please contact the software provider: [LLCTT Owner](https://www.linkedin.com/in/di%C3%B3genes-antonio-m-jos%C3%A9-jos%C3%A9-40ba6223/).
+# Screenshots
 
-## Usage Rights
+## Linux
 
-This software is licensed for authorized use only. Unauthorized reproduction, redistribution, or reverse engineering is prohibited.
+![LLCTT Linux](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/LogicClock.png)
 
-**[⬆ back to top](#Logic_Clock_Didatic_Tool)**
+## Windows
 
+![LLCTT Windows](https://github.com/dioxfile/Vector_Clock/blob/master/Imagens/gui-win.png)
 
+---
 
-***********************************************************************************************
+# Academic and Institutional Use
+
+LLCTT is suitable for:
+
+- Distributed Systems courses;
+- Computer Networks laboratories;
+- operating systems classes;
+- practical demonstrations of logical clocks;
+- academic experiments involving distributed event ordering.
+
+---
+
+# Usage Rights
+
+This software is licensed for authorized use only.
+
+Unauthorized reproduction, redistribution, reverse engineering, tampering, or license circumvention is prohibited.
+
+---
+
+# Support
+
+For licensing, activation, or technical support, contact the software provider.
+
+**Developer / Provider:** Diógenes Antônio Marques José
+**Institution:** Universidade do Estado de Mato Grosso — UNEMAT
+
+---
+
+# LLCTT – Lamport Logic Clock Teaching Tool - Platform Notes
+
+## Linux
+
+LLCTT runs inside a preconfigured containerized environment on Linux.
+
+All required dependencies are already included in the container image.
+
+---
+
+## Windows
+
+On Windows, LLCTT does not require manual installation of Python or additional APIs for end users.
+
+All dependencies are already bundled inside the LLCTT executable package generated with Nuitka standalone mode.
+
+Windows users only need to:
+
+- Install the LLCTT executable package
+- Run LLCTT as Administrator
+
+---
+
+# Administrator Privileges
+
+LLCTT must be executed with administrator/root privileges because the application:
+
+- Uses multicast sockets
+- Performs low-level networking operations
+- Accesses privileged socket APIs
+- Modifies or synchronizes the operating system date and time
+
+---
+
+# IPv6 Multicast Notes
+
+Linux generally provides stable IPv6 multicast support.
+
+Windows is significantly more restrictive regarding IPv6 multicast, especially inside virtualized environments such as:
+
+- VirtualBox
+- VMware
+
+During testing, the most reliable multicast scope on Windows virtual machines was:
+
+```text
+ff03::/16
+```
+
+particularly:
+
+```text
+ff03::1
+```
+
+Although functional, IPv6 multicast on Windows may still present instability depending on:
+
+- hypervisor
+- VM network mode
+- firewall configuration
+- network adapter driver
+- multicast scope handling
+
+---
+
+# Recommended Configuration
+
+## Linux
+
+Recommended for IPv6 multicast experiments.
+
+## Windows
+
+Prefer:
+
+- IPv4 Unicast
+- IPv4 Broadcast
+- IPv4 Multicast
+
+---
+
+# Virtual Machines
+
+For VirtualBox and VMware:
+
+- Use Bridged Networking / Bridged Adapter
+- Avoid NAT mode during multicast experiments
+
+---
+
+# Firewall Considerations
+
+If communication problems occur:
+
+- Allow LLCTT through the firewall
+- Allow UDP traffic on the selected port
+- Temporarily disable the firewall for testing purposes
+
+---
+
+# Final Recommendation
+
+For best operational stability:
+
+- Use Linux whenever possible for IPv6 multicast experiments
+- Execute LLCTT with administrator/root privileges
+- Prefer Bridged networking in virtualized environments
+
+---
+
+For further clarification, please read the LLCTT Operational Considerations in PDF format.
+
+# Reference
+
+Lamport, L. (1978). *Time, Clocks, and the Ordering of Events in a Distributed System*. Communications of the ACM.
