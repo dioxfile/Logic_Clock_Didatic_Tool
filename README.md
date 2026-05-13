@@ -224,12 +224,12 @@ README_WINDOWS.txt
 3. Do not rename or modify internal files.
 4. Run the executable as Administrator.
 
-Example:
+Install Example:
 
 ```text
-LLCTT.exe
+LLCTT_Setup_v1.0.exe
 ```
-
+### After that, run LLCTT.exe (Desktop Ico).
 Administrator permission is recommended because LLCTT may need to access network resources and adjust the system clock.
 
 ---
