@@ -6,11 +6,12 @@
 
 The tool allows students and instructors to visualize logical clocks, physical clock updates, interprocess communication, and distributed synchronization over IPv4 and IPv6 networks.
 
-LLCTT is distributed for **Linux** and **Windows**. In both versions, the user does **not** need to manually install Python, wxPython, or external libraries. The required runtime components are already packaged with the application.
+LLCTT is distributed for **Linux** and **Windows**. In both versions, the user does **not** need to install Python, wxPython, or external libraries manually. The required runtime components are already packaged with the application.
 
 ---
 
-## For further details, the complete and detailed description of the LLCTT is presented in the article published in the Revista Brasileira de Informática na Educação, Vol. 34 (2026), DOI: [10.5753/rbie.2026](https://doi.org/10.5753/rbie.2026?utm_source=chatgpt.com). The RBIE is one of the leading scientific journals in Computer Science Education and Educational Informatics in Latin America, maintained by the Sociedade Brasileira de Computação. ([journals-sol.sbc.org.br][1])
+### For further details, the complete and detailed description of the LLCTT is presented in the article ```Lamport Logical Clock Teaching Tool (LLCTT): A New Tool
+for Teaching Clock Synchronization in Distributed Systems``  published in the Revista Brasileira de Informática na Educação, Vol. 34 (2026), DOI: [10.5753/rbie.2026](https://doi.org/10.5753/rbie.2026?utm_source=chatgpt.com). The RBIE is one of the leading scientific journals in Computer Science Education and Educational Informatics in Latin America, maintained by the Sociedade Brasileira de Computação. ([journals-sol.sbc.org.br][1])
 
 [1]: https://journals-sol.sbc.org.br/index.php/rbie?utm_source=chatgpt.com "Revista Brasileira de Informática na Educação - Journals - SBC"
 
