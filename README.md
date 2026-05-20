@@ -10,7 +10,7 @@ LLCTT is distributed for **Linux** and **Windows**. In both versions, the user d
 
 ---
 
-### For further details, the complete and detailed description of the LLCTT is presented in the article _Lamport Logical Clock Teaching Tool (LLCTT): A New Tool for Teaching Clock Synchronization in Distributed Systems_ published in the Revista Brasileira de Informática na Educação, Vol. 34 (2026), DOI: [10.5753/rbie.2026](https://doi.org/10.5753/rbie.2026). The RBIE is one of the leading scientific journals in Computer Science Education and Educational Informatics in Latin America, maintained by the Sociedade Brasileira de Computação. ([journals-sol.sbc.org.br][1])
+### For further details, the complete and detailed description of the LLCTT is presented in the article _Lamport Logical Clock Teaching Tool (LLCTT): A New Tool for Teaching Clock Synchronization in Distributed Systems_ published in the Revista Brasileira de Informática na Educação, Vol. 34 (2026), DOI: [10.5753/rbie.2026.6060]( https://doi.org/10.5753/rbie.2026.6060). The RBIE is one of the leading scientific journals in Computer Science Education and Educational Informatics in Latin America, maintained by the Sociedade Brasileira de Computação. ([journals-sol.sbc.org.br][1])
 
 [1]: https://journals-sol.sbc.org.br/index.php/rbie? "Revista Brasileira de Informática na Educação - Journals - SBC"
 
